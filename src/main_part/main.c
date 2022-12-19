@@ -20,6 +20,8 @@ int	main(int arg_nb, char **argv, char **env)
 		count_init(str, &token);
 		env_init(env, s_env);
 		parsing(str, &token);
+		if (str[0])
+			 add_history(str);
 		//env_cmd(s_env);
 		printf("count_redirect-%d\n", token->count.count_redirect );
 		printf("count_cmd-%d\n", token->count.count_cmd );
