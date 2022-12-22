@@ -28,7 +28,7 @@ typedef struct s_tokens
     // char            **infile; //<
     // char            **outfile;  //>
     char            **redirect;  //>
-    char            *readline;
+    char            *rdl;
 	t_count			count;
     struct  s_tokens    *next;
 }               t_tokens;
@@ -46,10 +46,15 @@ void 	parsing(char *str, t_tokens **token);
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strchr(char *str, int c);
 char	*ft_strjoin(char  *s1, char  *s2);
-void 	initializer(t_tokens *token);
-void 	count_init(char *str, t_tokens **token);
+void 	initializer(t_tokens **token);
+int 	count_init(char *str, t_tokens **token);
 int 	ft_strlen(char *str);
 void	env_cmd(t_env *env);
 void	env_init(char **env, t_env *s_env);
 char	**ft_split(char const *s, char c);
+int pre_parsing(char *str);
+int check_redirect(char *str, t_tokens **token, int i);
+int check_herdoc(char *str, t_tokens **token, int i);
+int check_cmd(char *str, t_tokens **token, int i);
+
 # endif
