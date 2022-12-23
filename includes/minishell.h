@@ -2,22 +2,20 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include "utils.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <unistd.h>
-#include <stdio.h>
 
-# define METACHARS " |&()<>;\t\n"
+# define METACHARS " |&()<>;"
 
 typedef struct s_count
 {
     int			count_cmd;
     int	count_herdoc; //<<
 	int count_redirect;
-    // int		count_append; //>>
-    // int    count_infile; //<
-    // int    count_outfile;  //>
 }               t_count;
 
 typedef struct s_tokens
@@ -42,19 +40,16 @@ typedef struct s_env t_env;
 	t_env	*next;
 };
 
-void 	parsing(char *str, t_tokens **token);
-char	*ft_substr(char *s, int start, int len);
-char	*ft_strchr(char *str, int c);
-char	*ft_strjoin(char  *s1, char  *s2);
-void 	initializer(t_tokens **token);
-int 	count_init(char *str, t_tokens **token);
-int 	ft_strlen(char *str);
 void	env_cmd(t_env *env);
+int		ft_strlen(char *str);
+int		pre_parsing(char *str);
+int		count_init( t_tokens **token);
+void	initializer(t_tokens **token);
 void	env_init(char **env, t_env *s_env);
-char	**ft_split(char const *s, char c);
-int pre_parsing(char *str);
-int check_redirect(char *str, t_tokens **token, int i);
-int check_herdoc(char *str, t_tokens **token, int i);
-int check_cmd(char *str, t_tokens **token, int i);
+int		check_cmd( t_tokens **token, int i);
+int		check_herdoc( t_tokens **token, int i);
+int		check_redirect( t_tokens **token, int i);
+int		gen_parsing(t_tokens **token, char *str);
+void	parsing_part_1(char *str, t_tokens **token);
 
 # endif

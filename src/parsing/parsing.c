@@ -63,7 +63,7 @@ int c_comand(t_tokens **token, int i, int c_c)
 	return (i);
 }
 
-void parsing(char *str, t_tokens **token)
+void parsing_part_1(char *str, t_tokens **token)
 {
 	int i;
 	int c_r;

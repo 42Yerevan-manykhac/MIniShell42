@@ -44,7 +44,7 @@ char	*ft_strchr(char *str, int c)
 {
 	unsigned int	i;
 	unsigned char	*s;
-	int			len;
+	int				len;
 
 	s = (unsigned char *) str;
 	len = ft_strlen(str);
