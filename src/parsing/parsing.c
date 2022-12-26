@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-void initializer(t_tokens **token)
+void	initializer(t_tokens **token)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *token;
 	node->count.count_cmd = 0;
@@ -10,15 +10,16 @@ void initializer(t_tokens **token)
 	node->count.count_redirect = 0;
 }
 
-void malloc_init(t_tokens **token)
+void	malloc_init(t_tokens **token)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *token;
 	node->cmd = (char **)malloc(sizeof(char *) * (node->count.count_cmd + 1));
-	node->herdoc = (char **)malloc(sizeof(char *) 
-								* (node->count.count_herdoc + 1));
-	node->redirect = (char **)malloc(sizeof(char *) * (node->count.count_redirect + 1));
+	node->herdoc = (char **)malloc(sizeof(char *)
+			*(node->count.count_herdoc + 1));
+	node->redirect = (char **)malloc(sizeof(char *)
+			*(node->count.count_redirect + 1));
 	node->cmd[node->count.count_cmd] = 0;
 	node->herdoc[node->count.count_herdoc] = 0;
 	node->redirect[node->count.count_redirect] = 0;
@@ -91,8 +92,3 @@ void parsing_part_1(char *str, t_tokens **token)
 			i = c_comand(token, i, c_c++);
 	}
 }
-
-
-
-
-
