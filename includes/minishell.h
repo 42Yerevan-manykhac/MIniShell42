@@ -2,38 +2,40 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "utils.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include "utils.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
 
 # define METACHARS " |&()<>;"
 
-typedef struct s_count
+typedef struct s_count	t_count;
+
+struct	s_count
 {
-    int			count_cmd;
+    int	count_cmd;
     int	count_herdoc; //<<
-	int count_redirect;
-}               t_count;
+	int	count_redirect;
+};
 
-typedef struct s_tokens
+typedef struct s_tokens	t_tokens;
+
+struct s_tokens
 {
-    char			**cmd;
-    char			**herdoc; //<<
-    // char			**append; //>>
-    // char            **infile; //<
-    // char            **outfile;  //>
-    char            **redirect;  //>
-    char            *rdl;
-	t_count			count;
-    struct  s_tokens    *next;
-}               t_tokens;
+    char		**cmd;
+    char		**herdoc; //<<
+    char		**redirect;  //>
+    char		*rdl;
+	t_count		count;
+	t_tokens	*next;
+};
 
-typedef struct s_env t_env;
+typedef struct s_env	t_env;
 
- struct s_env
+ struct	s_env
 {
 	char	*key;
 	char	*value;
