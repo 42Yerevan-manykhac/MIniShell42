@@ -9,7 +9,8 @@ int	main(int arg_nb, char **argv, char **env)
 	char		*str;
 	t_tokens	*token;
 	t_env		*s_env;
-
+	(void)s_env;
+	printf("\033[0;35m");
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
 	s_env = malloc(sizeof(t_env));

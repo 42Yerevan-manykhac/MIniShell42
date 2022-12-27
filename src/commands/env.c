@@ -4,10 +4,10 @@ void	env_init(char **env, t_env *s_env)
 {
 	int		i;
 	char	**env_split;
-	t_env	*tmp;
+	//t_env	*tmp;
 
 	i = 0;
-	tmp = s_env;
+	//tmp = s_env;
 	while (env[i])
 	{
 		env_split = ft_split(env[i], '=');
