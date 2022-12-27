@@ -19,23 +19,16 @@ int	cheack_front(char *str, int *x)
 int	cheack_back(char *str, int x)
 {
 	int i;
-printf("x == %d \n", x);
 	while (str[x] == ' ')
-	{
 			x--;
-			i--;
-	}
 	i = x;
 	while (!ft_strchr(METACHARS, str[x]))
 		x--;
-		printf("x == %d, i == %d\n", x, i);
-	if (i - x - 1 <= 0)
+	if (i - x <= 0)
 		return (1);
 	return (0);
 }
 
-
-//cheack_back(str, i - 1) ||
 int syntax_pars_2(char *str)
 {
 	int	i;
@@ -47,18 +40,41 @@ int syntax_pars_2(char *str)
 				|| (str[i] == '>' && str[i + 1] != '>'))
 		{
 			i++;
-			if (cheack_back(str, i - 1) || cheack_front(str, &i))
+			if (cheack_back(str, i - 2) || cheack_front(str, &i))
 			{
-					printf("Minishell: syntax error near unexpected token `newline1'\n");
+					write(2 ,"Minishell: syntax error near unexpecte token `newline1'\n", 58);
 					return (1);
 			}
-			printf("smt\n");
 		}
-		// if ((str[i] == '<' && str[i + 1] =='<')
-		// 		|| (str[i] == '>' && str[i + 1] == '>'))
-		// 	if (cheack_front(str, &i)) //|| cheack_back(str, i - 2))
-		// 			return (1);
-	i++;
+		else if ((str[i] == '>' && str[i + 1] == '>'))
+		{
+			i += 2;
+			if (cheack_back(str, i - 3) || cheack_front(str, &i))
+			{
+					write(2 ,"Minishell: syntax error near unexpecte token `newline1'\n", 58);
+					return (1);
+			} 
+		}
+		else if (str[i] == '<' && str[i + 1] =='<')
+		{
+			i += 2;
+			if (cheack_front(str, &i))
+			{
+					write(2 ,"Minishell: syntax error near unexpecte token `newline1'\n", 58);
+					return (1);
+			} 
+		}
+		else if (str[i] == '|')
+		{
+			i++;
+			if (cheack_back(str, i - 2) || cheack_front(str, &i))
+			{
+					write(2 ,"Minishell: syntax error near unexpecte token `newline1'\n", 58);
+					return (1);
+			}
+		}
+		else 
+			i++;
 	}
 	return (0);
 }
