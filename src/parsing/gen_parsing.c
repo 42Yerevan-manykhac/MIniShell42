@@ -10,19 +10,29 @@ int	cheack_front(char *str, int *x)
 			(*x)++;
 	while (!ft_strchr(METACHARS, str[*x]))
 		(*x)++;
-		printf(" i = %d, x = %d\n",i , *x );
+		//printf(" i = %d, x = %d\n",i , *x );
 	if (*x - i - 1 <= 0)
-	{
-		printf("Minishell: syntax error near unexpected token `newline'\n");
 		return (1);
-	}
 	return (0);
 }
 
-// int	cheack_back(char *str, int x)
-// {
-
-// }
+int	cheack_back(char *str, int x)
+{
+	int i;
+printf("x == %d \n", x);
+	while (str[x] == ' ')
+	{
+			x--;
+			i--;
+	}
+	i = x;
+	while (!ft_strchr(METACHARS, str[x]))
+		x--;
+		printf("x == %d, i == %d\n", x, i);
+	if (i - x - 1 <= 0)
+		return (1);
+	return (0);
+}
 
 
 //cheack_back(str, i - 1) ||
@@ -37,13 +47,16 @@ int syntax_pars_2(char *str)
 				|| (str[i] == '>' && str[i + 1] != '>'))
 		{
 			i++;
-			if (cheack_front(str, &i))
+			if (cheack_back(str, i - 1) || cheack_front(str, &i))
+			{
+					printf("Minishell: syntax error near unexpected token `newline1'\n");
 					return (1);
+			}
 			printf("smt\n");
 		}
 		// if ((str[i] == '<' && str[i + 1] =='<')
 		// 		|| (str[i] == '>' && str[i + 1] == '>'))
-		// 	if (cheack_front(str, &i)) //|| cheack_back(str, i - 1))
+		// 	if (cheack_front(str, &i)) //|| cheack_back(str, i - 2))
 		// 			return (1);
 	i++;
 	}
@@ -65,9 +78,9 @@ int	syntax_pars_1(char c)
 int	syntax_pars(t_tokens **token)
 {
 	t_tokens	*node;
-	int			i;
+	//int			i;
 
-	i = 0;
+	//i = 0;
 	node = *token;
 	if (syntax_pars_1(node->rdl[0]))
 		return (1);
