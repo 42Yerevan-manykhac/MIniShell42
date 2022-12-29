@@ -19,10 +19,11 @@ int	main(int arg_nb, char **argv, char **env)
 		str = readline ("Minishell$> ");
 		if (str)
 			add_history(str);
+		env_init(env, s_env);
+		gen_parsing(&token, &s_env, str);
 		// else
 		// 	continue ;
 		//parsing(str, token);
-		gen_parsing(&token, str);
 		//printf("\nstr11 == %s\n", token->rdl);
 	   // count_init( &token);
 		//parsing_part_1(token->rdl, &token);
