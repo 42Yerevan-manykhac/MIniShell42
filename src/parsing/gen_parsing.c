@@ -38,7 +38,7 @@ int	syntax_pars_2(char *str)
 		i = check(i, str, &flg);
 	if (flg == 0)
 	{
-		write(2, "Minishell: syntax error near unexpected token `newline1'\n", 58);
+		write(2, "Minishell: syntax error near unexpected token `newline'\n", 58);
 		return (1);
 	}
 	return (0);
@@ -50,7 +50,7 @@ int	syntax_pars_1(char c)
 	{
 		write(2, "Minishell: syntax error near unexpected token `", 48);
 		write(2, &c, 1);
-		write(2, " '\n", 4);
+		write(2, " '\n", 3);
 		return (1);
 	}
 	return (0);
