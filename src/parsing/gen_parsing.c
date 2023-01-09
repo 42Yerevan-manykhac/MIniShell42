@@ -76,7 +76,7 @@ int	gen_parsing(t_tokens **token, t_env **env, char *str)
 	node->rdl = ft_strtrim(str, " ");
 	if (syntax_pars(token))
 		return (1);
-	// if (dolar_pars(node->rdl, env))
-	// 	return (1);
+	dolar_pars(node->rdl, env);
+	 	//return (1);
 	return (0);
 }

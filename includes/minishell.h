@@ -51,7 +51,7 @@ void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void	env_init(char **env, t_env *s_env);
 int		check_cmd( t_tokens **token, int i);
-int		dolar_pars(char **str, t_env **env);
+int		dolar_pars(char *str, t_env **env);
 int		check_herdoc( t_tokens **token, int i);
 int		check_redirect( t_tokens **token, int i);
 void	parsing_part_1(char *str, t_tokens **token);
