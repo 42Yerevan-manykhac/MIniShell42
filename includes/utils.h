@@ -2,6 +2,15 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+# define BLK "\e[0;30m"
+# define RED "\033[0;31m"
+# define GRN "\e[0;32m"
+# define YEL "\e[0;33m"
+# define BLU "\e[0;34m"
+# define MAG "\e[0;35m"
+# define CYN "\e[0;36m"
+# define WHT "\e[0;37m"
+# define OOO "\033[0m"
 
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strchr(char *str, int c);
