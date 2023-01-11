@@ -12,11 +12,12 @@
 # define WHT "\e[0;37m"
 # define OOO "\033[0m"
 
-char	*ft_substr(char *s, int start, int len);
+char	*ft_itoa(int n);
 char	*ft_strchr(char *str, int c);
-char	*ft_strjoin(char  *s1, char  *s2);
-char	**ft_split(char const *s, char c);
+char	*ft_strchr(char *str, int c);
 char	*ft_strtrim(char *s1, char *set);
-char	*ft_strchr(char *str, int c);
+char	*ft_strjoin(char *s1, char  *s2);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char *s, int start, int len);
 
 # endif

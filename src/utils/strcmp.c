@@ -24,7 +24,6 @@ char	*ft_substr(char *s, int start, int len)
 		k = len;
 	else
 		k = ft_strlen(s) - start;
-	printf("jjjj =====> %d\n",len);
 	str = (char *) malloc(sizeof(char) * (k + 1));
 	if (str == NULL)
 		return (NULL);

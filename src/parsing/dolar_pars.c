@@ -1,12 +1,12 @@
 
 #include "minishell.h"
 
-int	join_dolar_str(char *str, char *world, int x, int z)
+char	*join_dolar_str(char *str, char *world, int x, int z)
 {
 	int	i;
 	int	j;
 	int	len_s;
-	int	len_w;
+	//int	len_w;
 	char *new_str;
 	(void)z;
 	i = 0;
@@ -14,15 +14,15 @@ int	join_dolar_str(char *str, char *world, int x, int z)
 //	printf("\nx= %d\n",x);
 	len_s = ft_strlen(str);
 //	printf("w == %s\n", world);
-	len_w = ft_strlen(world);
+	//len_w = ft_strlen(world);
 	new_str = ft_substr(str, 0, x - 1);
 	//len_s = ft_strlen(new_str);
+	if (world)
 	new_str = ft_strjoin(new_str, world);
-	new_str = ft_strjoin(new_str,ft_substr(str, x, len_s));
-	free(str);
+	new_str = ft_strjoin(new_str,ft_substr(str, x + z - 1, len_s));
+	//free(str);
 	str = new_str;
-	printf("str ======= > %s\n", new_str);
-	return (0); 
+	return (new_str); 
 }
 int	if_single_quote(char *str, int i)
 {
@@ -47,35 +47,34 @@ int	if_single_quote(char *str, int i)
 	return (0);
 }
 
-int	dolar_pars(char *str, t_env **env)
+char	*dolar_pars(char *str, t_env **env)
 {
-	int			i;
-	int			x;
-	const char	*world;
-	char		*back;
+	int		i;
+	int		x;
+	char	*world;
+	char	*back;
 	(void)env;
 	i = 0;
 	x = 0;
-	if (if_single_quote(str, x))
-		return (1);
 	while (str[i] && str[i])
 	{
 		if (str[i] == '$')
 		{
 			x = ++i;
-			while (str[i] != ' ' && str[i] && str[i] != '$')
+			printf("x = %d\n",x);
+			while (str[i] != ' ' && str[i] && str[i] != '$' && str[i] != '"')
 				i++;
+			world = ft_substr(str, x, i - x);
+			printf("world = %s\n", world);
+		back = getenv(world);
+				str = join_dolar_str(str, back, x, i - x + 1);
 			if (str[i] == '$')
 				i--;
-			world = ft_substr(str, x, i - x);
-			//printf("str1 == %s\n", world);
-			back = getenv(world);
-			join_dolar_str(str, back, x, i - x + 1);
-			printf("str== %s\n", str);
+			free(world);
+			i = x - 1;
 		}
 		i++;
-		//return (0);
 	}
-	return (0);
+	return (str);
 }
 //dolar , export unset
