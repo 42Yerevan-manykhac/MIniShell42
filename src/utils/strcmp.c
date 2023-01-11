@@ -32,11 +32,7 @@ char	*ft_substr(char *s, int start, int len)
 		str[i++] = s[start++];
 		len--;
 	}
-	
 	str[i] = '\0';
-	//char *b = str;
-	//free(str);
-	//printf("inside SUB%s\n", b);
 	return (str);
 }
 
