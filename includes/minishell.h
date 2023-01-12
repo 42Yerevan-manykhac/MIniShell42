@@ -9,6 +9,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <string.h>
 
 # define METACHARS " |&()<>;"
 
@@ -44,6 +45,7 @@ typedef struct s_env	t_env;
 
 void	env_cmd(t_env *env);
 int		ft_strlen(char *str);
+void	sortList(t_env **env);
 int		pre_parsing(char *str);
 int		cheack_back(char *str, int x);
 int		count_init( t_tokens **token);
