@@ -24,27 +24,13 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 	str = new_str;
 	return (new_str); 
 }
-int	if_single_quote(char *str, int i)
-{
-	int	quote_1;
-	int	quote_2;
 
-	quote_1 = 0;
-	quote_2 = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-			quote_1 += 1;
-		if (str[i] == '"')
-			quote_2 += 1;
+int	find_end_of_single_quote(char *str, int i)
+{
+	i++;
+	while (str[i] != '\'')
 		i++;
-	}
-	if (quote_1 % 2 != 0 || quote_2 % 2 != 0)
-	{
-		printf("erorr\n");
-		return (1);
-	}
-	return (0);
+	return (i);
 }
 
 char	*dolar_pars(char *str, t_env **env)
@@ -58,7 +44,9 @@ char	*dolar_pars(char *str, t_env **env)
 	x = 0;
 	while (str[i] && str[i])
 	{
-		if (str[i] == '$')
+		if (str[i] == '\'')
+			i = find_end_of_single_quote(str, i);
+		if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1])
 		{
 			x = ++i;
 			printf("x = %d\n",x);

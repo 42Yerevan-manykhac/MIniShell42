@@ -15,6 +15,7 @@
 char	*ft_itoa(int n);
 char	*ft_strchr(char *str, int c);
 char	*ft_strchr(char *str, int c);
+int		ft_strcmp(char *str, char *cmd);
 char	*ft_strtrim(char *s1, char *set);
 char	*ft_strjoin(char *s1, char  *s2);
 char	**ft_split(char const *s, char c);

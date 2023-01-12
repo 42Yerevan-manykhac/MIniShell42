@@ -1,4 +1,5 @@
 #include "minishell.h"
+
 int ft_strlen(char *str)
 {
 	int i;
@@ -57,10 +58,12 @@ char	*ft_strchr(char *str, int c)
 }
 int ft_strcmp(char *str, char *cmd)
 {
-	int i;
-	int j;
-	int len;
-int flag = 0;
+	int	i;
+	int	j;
+	int	len;
+	int	flag;
+
+	flag = 0;
 	i = 0;
 	j = 0;
 	len = ft_strlen(cmd);
@@ -70,7 +73,6 @@ int flag = 0;
 		{
 			if (j == len - 1)
 				return (1);
-				
 			i++;
 			j++;
 		}
@@ -82,7 +84,6 @@ int flag = 0;
 			i++;
 			flag =0;
 		}
-				
 	}
 	return (0);
 }

@@ -7,13 +7,16 @@ void	pwd_cmd(void)
 	printf("%s\n", getcwd(cwd, sizeof(cwd)));
 }
 
-void env_cmd(t_env *env)
+void	env_cmd(t_env *env)
 {
-	 while (env)
-	 {
-		printf("%s",env->key);
-		printf("=");
-		printf("%s\n",env->value);
+	while (env)
+	{
+		if (env->value)
+		{
+			printf("%s", env->key);
+			printf("=");
+			printf("%s\n", env->value);
+		}
 		env = env->next;
-	 }
+	}
 }
