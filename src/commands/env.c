@@ -22,3 +22,8 @@ void	env_init(char **env, t_env *s_env)
 		i++;
 	}
 }
+
+//avelacnell
+//  if !value-n apa chtpel  (expend i jamnak tpuma)
+//OLP_PWD chtpel&
+//

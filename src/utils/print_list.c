@@ -17,7 +17,7 @@ static void print_list_added(t_env **node)
 	}
 }
 
-void	sortList(t_env **env) // export_no_args()
+void	sortlist(t_env **env) // export_no_args()
 {
 	t_env	*current = *env;
 	t_env	*index = NULL;  
