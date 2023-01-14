@@ -20,7 +20,9 @@ int	main(int arg_nb, char **argv, char **env)
 		if (str)
 			add_history(str);
 		env_init(env, s_env);
-		sortlist(&s_env);
+		export_cmd(&s_env,str);
+		env_cmd(s_env);
+		//sortlist(&s_env);
 		gen_parsing(&token, &s_env, str);
 		// else
 		// 	continue ;
