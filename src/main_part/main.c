@@ -10,6 +10,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_tokens	*token;
 	t_env		*s_env;
 	(void)s_env;
+	print_logo();
 	printf("\033[0;35m");
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
@@ -20,7 +21,9 @@ int	main(int arg_nb, char **argv, char **env)
 		if (str)
 			add_history(str);
 		env_init(env, s_env);
-		sortlist(&s_env);
+		export_cmd(&s_env,str);
+		env_cmd(s_env);
+		//sortlist(&s_env);
 		gen_parsing(&token, &s_env, str);
 		// else
 		// 	continue ;
@@ -53,6 +56,7 @@ int	main(int arg_nb, char **argv, char **env)
 	// 		printf("herdoc[%d]!%s!\n", i, token->herdoc[i]);
 	// 		i++;
 	// 	}
+	//////free(str);
 	}
 	return (0);
 }

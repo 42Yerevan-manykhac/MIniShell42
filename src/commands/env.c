@@ -12,6 +12,7 @@ void	env_init(char **env, t_env *s_env)
 	{
 		env_split = ft_split(env[i], '=');
 		s_env->key = env_split[0];
+		//s_env->key = key_add_end(s_env->key)  grell
 		s_env->value = env_split[1];
 		s_env->next = NULL;
 		if (env[i + 1])

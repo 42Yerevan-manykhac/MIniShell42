@@ -64,12 +64,12 @@ int c_comand(t_tokens **token, int i, int c_c)
 	return (i);
 }
 
-void parsing_part_1(char *str, t_tokens **token)
+void	parsing_part_1(char *str, t_tokens **token)
 {
-	int i;
-	int c_r;
-	int c_c;
-	int c_h;
+	int	i;
+	int	c_r;
+	int	c_c;
+	int	c_h;
 
 	i = 0;
 	c_r = 0;

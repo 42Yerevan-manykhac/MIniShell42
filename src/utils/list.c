@@ -1,21 +1,29 @@
 #include "minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+t_env	*ft_lstlast(t_env *lst)
 {
 	if (lst == NULL)
 		return (0);
-	while (lst)
+	while (lst->next)
 	{
-		if (!lst->next)
-			return (lst);
 		lst = lst->next;
 	}
+		//if (!lst->key)
+			return (lst);
+		//lst = lst->next;
+	//}
+		printf("smt\n");
 	return (lst);
 }
 
+// while (lst -> next)
+// 		lst = lst->next;
+// 	return (lst);
+// }
+
 void	ft_lstadd_back(t_env **lst, t_env *new)
 {
-	t_list	*node;
+	t_env	*node;
 
 	node = *lst;
 	if (!node)
@@ -23,5 +31,8 @@ void	ft_lstadd_back(t_env **lst, t_env *new)
 		*lst = new;
 		return ;
 	}
-	ft_lstlast(node)->next = new;
+	//printf("1 == %s\n", new->key);
+	//printf("1 == %s\n", new->value);
+	node = ft_lstlast(*lst);
+	node->next = new;
 }
