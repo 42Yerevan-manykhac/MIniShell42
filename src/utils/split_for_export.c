@@ -16,8 +16,7 @@ char	**split_export(char *str)
 		{
 			i++;
 			ptr = (char **)malloc (sizeof(char *) * (3));
-			ptr[0] = ft_substr(str, 0, i);
-			printf("ptr[0] -> %s\n", ptr[0]);
+			ptr[0] = ft_substr(str, 0, i - 1);
 			ptr[1] = ft_substr(str, i, len - 1);
 			ptr[2] = "\0";
 			flag = 1;

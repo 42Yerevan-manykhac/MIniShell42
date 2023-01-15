@@ -14,6 +14,7 @@
 # define OOO "\033[0m"
 
 char	*ft_itoa(int n);
+void	print_logo();
 char	**split_export(char *str);
 char	*ft_strchr(char *str, int c);
 char	*ft_strchr(char *str, int c);

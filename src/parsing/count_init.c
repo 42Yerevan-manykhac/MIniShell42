@@ -85,18 +85,18 @@ int count_init(t_tokens **token)
 	// 	}
 	// else {
 	// 	i = 0;
-		if ((node->rdl[i] == '<' && node->rdl[i + 1] != '<') 
-		|| (node->rdl[i] == '>' && node->rdl[i + 1] != '>'))
-			i = check_redirect( &node, i);
+		if ((node->rdl[i] == '<' && node->rdl[i + 1] != '<')
+			|| (node->rdl[i] == '>' && node->rdl[i + 1] != '>'))
+			i = check_redirect(&node, i);
 		else if (node->rdl[i] == '<' && node->rdl[i + 1] == '<')
-				i = check_herdoc( &node,i);
-		else if(node->rdl[i] == '>' && node->rdl[i + 1] == '>')
-			i = check_redirect( &node,++i);	
+				i = check_herdoc(&node, i);
+		else if (node->rdl[i] == '>' && node->rdl[i + 1] == '>')
+			i = check_redirect(&node, ++i);	
 		else if (node->rdl[i] == ' ')
 			i++;
 		else
-			i = check_cmd( &node,i);
-		 }
+			i = check_cmd(&node, i);
+		}
 	//}
 	return(0);
 }

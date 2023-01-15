@@ -10,6 +10,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_tokens	*token;
 	t_env		*s_env;
 	(void)s_env;
+	print_logo();
 	printf("\033[0;35m");
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
@@ -55,6 +56,7 @@ int	main(int arg_nb, char **argv, char **env)
 	// 		printf("herdoc[%d]!%s!\n", i, token->herdoc[i]);
 	// 		i++;
 	// 	}
+	//////free(str);
 	}
 	return (0);
 }

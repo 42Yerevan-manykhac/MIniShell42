@@ -10,8 +10,6 @@ void	export_cmd(t_env **l_env, char *str)
 	env->key = splited[0];
 	env->value = splited[1];
 	env->next = NULL;
-	printf("prt1 == %s\n", env->key);
-	printf("prt1 == %s\n", env->value);
 	ft_lstadd_back(l_env, env);
 }
 //export a=54 b=65 c=46
@@ -21,7 +19,7 @@ void	export_cmd(t_env **l_env, char *str)
 //export a+=2
 //errornery export a!#$%%^&=54, 34567asad=54, a++=54
 
-//1)a export um pahume - a  (chi tpvum env um) eshutyun1
+//1)a export um pahume - a  (chi tpvum env um) eshutyun1 a
 //2)a= export um pahuma - a="" (tpvuma env um a=) eshutyun2
 //bayc ete anum es 2 heto 1 mnuma a="" eshutyun3
 
