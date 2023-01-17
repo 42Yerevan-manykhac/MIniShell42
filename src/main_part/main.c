@@ -15,24 +15,19 @@ int	main(int arg_nb, char **argv, char **env)
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
 	s_env = malloc(sizeof(t_env));
+	env_init(env, &s_env);
 	while (1)
 	{
 		str = readline ("Minishell$> ");
 		if (str)
 			add_history(str);
-		env_init(env, s_env);
 		export_cmd(&s_env,str);
 		env_cmd(s_env);
 		//sortlist(&s_env);
 		gen_parsing(&token, &s_env, str);
-		// else
-		// 	continue ;
 		//parsing(str, token);
-		//printf("\nstr11 == %s\n", token->rdl);
 	   // count_init( &token);
-		//parsing_part_1(token->rdl, &token);
 		
-		//env_init(env, s_env);
 		//env_cmd(s_env);
 	// 	printf("count_redirect-%d\n", token->count.count_redirect );
 	// 	printf("count_cmd-%d\n", token->count.count_cmd );

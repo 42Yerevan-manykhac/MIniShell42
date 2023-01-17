@@ -11,7 +11,7 @@ void	env_cmd(t_env *env)
 {
 	while (env)
 	{
-		if (env->value)
+		if (env->value && env)
 		{
 			printf("%s", env->key);
 			printf("=");

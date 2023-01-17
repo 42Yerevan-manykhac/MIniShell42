@@ -33,3 +33,23 @@ char	*ft_strtrim(char *s1, char *set)
 	free(s1);
 	return (trm);
 }
+
+int ft_int_strchr(char *str, char c)
+{
+	unsigned int	i;
+	unsigned char	*s;
+	int				len;
+
+	s = (unsigned char *) str;
+	len = ft_strlen(str);
+	i = 0;
+	if (c == 0)
+		return (len);
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return (i);
+		i++;
+	}
+	return (0);
+}
