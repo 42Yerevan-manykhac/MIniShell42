@@ -45,13 +45,16 @@ typedef struct s_env	t_env;
 
 void	env_cmd(t_env *env);
 int		ft_strlen(char *str);
-void	sortlist(t_env **env);
+void	export_sortlist(t_env **env);
+t_env	*ft_lstlast(t_env *lst);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		pre_parsing(char *str);
 int		cheack_back(char *str, int x);
 int		count_init( t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
-void	env_init(char **env, t_env *s_env);
+void	env_init(char **env, t_env **s_env);
+void    only_export(t_env **node);
 int		check_cmd( t_tokens **token, int i);
 char	*dolar_pars(char *str, t_env **env);
 void	export_cmd(t_env **l_env, char *str);

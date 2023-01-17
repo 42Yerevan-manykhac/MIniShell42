@@ -87,6 +87,7 @@ int ft_strcmp(char *str, char *cmd)
 	}
 	return (0);
 }
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 		char	*ptr;
@@ -112,3 +113,34 @@ char	*ft_strjoin(char *s1, char *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
+int    ft_strcmp1(char *s1, char *s2)
+{
+    int    i;
+
+    i = 0;
+    while (s1 && s2 && s1[i] && s1[i] == s2[i])
+        i++;
+    return (s1[i] - s2[i]);
+}
+
+// int    ft_strcmp1(char *s1, char *s2)
+// {
+//     int    i;
+// 	int		len;
+// 	int		len1;
+
+// 	len = ft_strlen(s1);
+// 	len1 = ft_strlen(s2);
+// 	printf("str1 = %s str2 = %s\n", s1, s2);
+// 	printf("len = %d len1 = %d\n", len, len1);
+//     i = 0;
+// 	if (len == len1)
+// 	{
+//     while (s1 && s2 && s1[i] && s1[i] == s2[i])
+//         i++;
+// 		printf("len == %d i = %d\n", len, i);
+// 	if ( i == len - 1)
+// 		return (1);
+// 	}
+// 	return (0);
+// }
