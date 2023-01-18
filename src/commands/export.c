@@ -6,13 +6,38 @@ t_env *get_env(t_env **l_env, char *new_key)
 	env = *l_env;
 	while (env)
 	{
-		if (ft_strcmp(new_key ,env->key))
+		if (ft_strcmp1(new_key ,env->key))
 			env = env->next;
 		else
 			return (env);
 	}
 	return (0);
 }
+
+int	if_need_to_add(t_env **l_env, char **splited)
+{
+
+	int		len;
+	t_env	*rtv;
+
+	rtv = 0;
+	len = ft_strlen(splited[0]);
+		printf("hi\n");
+	if (splited[0][len - 1] == '+')
+	{
+		splited[0] = ft_strtrim(splited[0], "+");
+	if (find_key(l_env, splited[0]) )
+	{
+		rtv = get_env(l_env, splited[0]);
+		rtv->key = splited[0];
+		rtv->value = ft_strjoin(rtv->value, splited[1]);
+		 return (1);
+	}
+	}
+	return (0);
+}
+
+
 int find_key(t_env **l_env, char *new_key)
 {
 	t_env *env;
@@ -20,17 +45,10 @@ int find_key(t_env **l_env, char *new_key)
 	env = *l_env;
 	while (env)
 	{
-		printf("new key == %s  env_key = %s\n", new_key, env->key);
-		if (ft_strcmp1(new_key ,env->key) != 0)
-		{
-			printf("xexe\n");
+		if (ft_strcmp1(new_key ,env->key) != 0 && env)
 			env = env->next;
-		}
 		else
-		{
-			printf("xexe12\n");
 			return (1);
-		}
 	}
 	return (0);
 }
@@ -41,19 +59,22 @@ int if_key_already_exist(t_env **l_env, char **splited)
 	t_env	*rtv;
 
 	rtv = 0;
+
+	if (if_need_to_add(l_env, splited))
+		return (1);
 	if (find_key(l_env, splited[0]))
 	{
-		printf("find_key\n");
 		rtv = get_env(l_env, splited[0]);
 		if (rtv->value)
 		{
 			free(rtv->value);
+			rtv->flag = 1;
 			rtv->value = splited[1];
 		}
 		else
 		{
+			rtv->flag = 1;
 			rtv->value = splited[1];
-			rtv->next = NULL;
 		}
 		return (1);
 	}
@@ -63,22 +84,36 @@ int if_key_already_exist(t_env **l_env, char **splited)
 
 void export_cmd(t_env **l_env, char *str)
 {
-	char **splited;
+	int		i;
 	t_env *env;
-	//	t_env	*tmp;
+	int		len;
+	char **splited;
 
+	len = ft_strlen(str);
+	i = ft_int_strchr(str, '=');
 	env = malloc(sizeof(t_env));
+	env->flag = 1;
 	splited = split_export(str);
 	env->key = splited[0];
-	//printf("SPL	= %s\n",splited[0] );
 	if (!if_key_already_exist(l_env, splited))
 	{
-		printf("key kaa\n");
-		//printf("key ne kaa\n");
+		printf("key ckea\n");
 	if (splited[1])
+	{
+		env->flag = 1;
 		env->value = ft_strdup(splited[1]);
+	}
 	else
+	if (i && i == len - 1)
+	{
+		env->flag = 1;
 		env->value = 0;
+	}
+	else 
+	{
+		env->flag = 0;
+		env->value = 0;
+	}
 	env->next = NULL;
 	ft_lstadd_back(l_env, env);
 	}

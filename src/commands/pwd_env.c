@@ -11,11 +11,14 @@ void	env_cmd(t_env *env)
 {
 	while (env)
 	{
-		if (env->value && env)
+		if (env && env->flag)
 		{
 			printf("%s", env->key);
 			printf("=");
-			printf("%s\n", env->value);
+			if (env->value)
+				printf("%s\n", env->value);
+			else
+				printf("\n");
 		}
 		env = env->next;
 	}

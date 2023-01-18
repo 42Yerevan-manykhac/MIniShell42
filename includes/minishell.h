@@ -40,29 +40,31 @@ typedef struct s_env	t_env;
 {
 	char	*key;
 	char	*value;
+    int     flag;
 	t_env	*next;
 };
 
 void	env_cmd(t_env *env);
 int		ft_strlen(char *str);
-void	export_sortlist(t_env **env);
-t_env	*ft_lstlast(t_env *lst);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		pre_parsing(char *str);
+t_env	*ft_lstlast(t_env *lst);
+void    only_export(t_env **node);
+void	export_sortlist(t_env **env);
 int		cheack_back(char *str, int x);
 int		count_init( t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void	env_init(char **env, t_env **s_env);
-void    only_export(t_env **node);
 int		check_cmd( t_tokens **token, int i);
 char	*dolar_pars(char *str, t_env **env);
 void	export_cmd(t_env **l_env, char *str);
 int		check_herdoc( t_tokens **token, int i);
+int     find_key(t_env **l_env, char *new_key);
 void	ft_lstadd_back(t_env **lst, t_env *new);
 //char	**split_export(char *str);;
 int		check_redirect( t_tokens **token, int i);
 void	parsing_part_1(char *str, t_tokens **token);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char *str);
 
 # endif
