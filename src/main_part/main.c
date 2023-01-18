@@ -5,13 +5,12 @@ int	main(int arg_nb, char **argv, char **env)
 {
 	(void)arg_nb;
 	(void)argv;
-	(void)env;
+	// (void)env;
 	char		*str;
 	t_tokens	*token;
 	t_env		*s_env;
 	(void)s_env;
 	print_logo();
-	printf("\033[0;35m");
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
 	s_env = malloc(sizeof(t_env));
@@ -19,12 +18,16 @@ int	main(int arg_nb, char **argv, char **env)
 	while (1)
 	{
 		str = readline ("Minishell$> ");
+		printf("\033[0;35m");
 		if (str)
 			add_history(str);
 		export_cmd(&s_env,str);
-		env_cmd(s_env);
+		 env_cmd(s_env);
+		 
+		 
+		 printf("\033[0;36m");
 		//sortlist(&s_env);
-		gen_parsing(&token, &s_env, str);
+		// gen_parsing(&token, &s_env, str);
 		//parsing(str, token);
 	   // count_init( &token);
 		
