@@ -1,5 +1,6 @@
 #include "minishell.h"
-t_env *get_env(t_env **l_env, char *new_key)
+
+t_env *get_env(t_env **l_env, char *new_key) 
 {
 	t_env *env;
 
@@ -46,7 +47,10 @@ int find_key(t_env **l_env, char *new_key)
 	while (env)
 	{
 		if (ft_strcmp1(new_key ,env->key) != 0 && env)
+		{
+			printf("env == %s , new_key = %s\n",env->key, new_key);
 			env = env->next;
+		}
 		else
 			return (1);
 	}

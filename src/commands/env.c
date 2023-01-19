@@ -26,6 +26,11 @@ void	env_init(char **env, t_env **s_env)
 	(*s_env)->next = NULL;
 }
 
+
+// OLDPWD ancnel vror (env um chgrvi skzbic)
+
+
+
 //avelacnell
 //  if !value-n apa chtpel  (expend i jamnak tpuma)
 //OLP_PWD chtpel&
