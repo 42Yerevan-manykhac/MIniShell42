@@ -21,13 +21,15 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
-		export_cmd(&s_env,str);
-		 env_cmd(s_env);
+		//gen_parsing(&token, &s_env, str);
+		printf("\n\nstr = %s\n\n", str);
+		unset_cmd(&s_env, str);
+		env_cmd(s_env);
+		//export_cmd(&s_env,str); (done( check only_export ))
 		 
 		 
-		 printf("\033[0;36m");
+		printf("\033[0;36m");
 		//sortlist(&s_env);
-		// gen_parsing(&token, &s_env, str);
 		//parsing(str, token);
 	   // count_init( &token);
 		
