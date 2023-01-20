@@ -14,7 +14,11 @@ void	env_init(char **env, t_env **s_env)
 		(*s_env)->key = env_split[0];
 		//s_env->key = key_add_end(s_env->key)  grell
 		(*s_env)->value = env_split[1];
-		(*s_env)->flag = 1;
+	//	printf("\n\n\nhav === %s , hav == %s ",(*s_env)->value, (*s_env)->key );
+		if (ft_strcmp((*s_env)->key, "OLDPWD"))
+			(*s_env)->flag = 0;
+		else
+			(*s_env)->flag = 1;
 		(*s_env)->next = NULL;
 		if (env[i + 1])
 		{
@@ -26,12 +30,3 @@ void	env_init(char **env, t_env **s_env)
 	(*s_env)->next = NULL;
 }
 
-
-// OLDPWD ancnel vror (env um chgrvi skzbic)
-
-
-
-//avelacnell
-//  if !value-n apa chtpel  (expend i jamnak tpuma)
-//OLP_PWD chtpel&
-//

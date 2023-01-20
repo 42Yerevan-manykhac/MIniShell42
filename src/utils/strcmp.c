@@ -77,12 +77,12 @@ int ft_strcmp(char *str, char *cmd)
 			j++;
 		}
 		if (j == 0)
-				flag =1;
+				flag = 1;
 			j = 0;
 		if (flag)
 		{
 			i++;
-			flag =0;
+			flag = 0;
 		}
 	}
 	return (0);

@@ -13,12 +13,15 @@ void	env_cmd(t_env *env)
 	{
 		if (env && env->flag)
 		{
-			printf("%s", env->key);
-			printf("=");
-			if (env->value)
-				printf("%s\n", env->value);
-			else
-				printf("\n");
+			//if (env->flag)
+			//{
+				printf("%s", env->key);
+				printf("=");
+				if (env->value)
+					printf("%s\n", env->value);
+				else
+					printf("\n");
+			//}
 		}
 		env = env->next;
 	}
