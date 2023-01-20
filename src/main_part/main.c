@@ -22,8 +22,8 @@ int	main(int arg_nb, char **argv, char **env)
 		if (str)
 			add_history(str);
 		//gen_parsing(&token, &s_env, str);
-		printf("\n\nstr = %s\n\n", str);
-		unset_cmd(&s_env, str);
+		//printf("\n\nstr = %s\n\n", str);
+		//unset_cmd(&s_env, str);
 		env_cmd(s_env);
 		//export_cmd(&s_env,str); (done( check only_export ))
 		 

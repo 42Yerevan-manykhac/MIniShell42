@@ -21,9 +21,6 @@ void    unset_cmd(t_env **l_env,char *new_key)
 
 void echo_cmd(char **str)
 {
-    int i;
-
-    i = 0;
     if (ft_strcmp1(str[1],"-n") == 0)
         printf("%s",str[2]);
     else 
