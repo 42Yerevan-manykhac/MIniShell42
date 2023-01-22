@@ -53,3 +53,4 @@ int ft_int_strchr(char *str, char c)
 	}
 	return (0);
 }
+

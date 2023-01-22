@@ -7,7 +7,7 @@ void    unset_cmd(t_env **l_env,char *new_key)
 
 	env = *l_env;
     rtv = 0;
-    printf("\nkey === %s \n\n", new_key);
+   // printf("\nkey === %s \n\n", new_key);
     if (find_key(l_env, new_key))
     {
           printf("\nhi1\n\n");
