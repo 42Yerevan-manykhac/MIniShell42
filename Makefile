@@ -8,7 +8,7 @@ SRCS		= $(wildcard src/*/*.c)
 #SRCS		+= $(wildcard src/*.c)
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= ./includes
-CFLAGS		= -Wall -Wextra -Werror -lreadline  #-fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address #-lreadline  
 RM			= rm -f
 CC			= cc
 
