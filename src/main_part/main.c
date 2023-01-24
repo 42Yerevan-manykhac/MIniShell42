@@ -5,7 +5,6 @@ int	main(int arg_nb, char **argv, char **env)
 {
 	(void)arg_nb;
 	(void)argv;
-	// (void)env;
 	char		*str;
 	t_tokens	*token;
 	t_env		*s_env;
@@ -21,15 +20,15 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
-		heredoc(str);
+		//heredoc(str);
 		//redirection_input(str);
 		//gen_parsing(&token, &s_env, str);
 		//printf("\n\nstr = %s\n\n", str);
 		//unset_cmd(&s_env, str);
 		//env_cmd(s_env);
+	//	cd_cmd(&s_env, &str);
 		//export_cmd(&s_env,str); (done( check only_export ))
-		 
-		 
+
 		printf("\033[0;36m");
 		//sortlist(&s_env);
 		//parsing(str, token);

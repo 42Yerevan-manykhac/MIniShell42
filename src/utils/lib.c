@@ -34,7 +34,7 @@ char	*ft_strtrim(char *s1, char *set)
 	return (trm);
 }
 
-int ft_int_strchr(char *str, char c)
+int	ft_int_strchr(char *str, char c)
 {
 	unsigned int	i;
 	unsigned char	*s;

@@ -1,12 +1,11 @@
 #include "minishell.h"
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
-	
 		i++;
 	return (i);
 }
@@ -15,8 +14,8 @@ int ft_strlen(char *str)
 char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
-	int	i;
-	int	k;
+	int		i;
+	int		k;
 
 	i = 0;
 	if (start > ft_strlen(s))
@@ -56,7 +55,8 @@ char	*ft_strchr(char *str, int c)
 	}
 	return (0);
 }
-int ft_strcmp(char *str, char *cmd)
+
+int	ft_strcmp(char *str, char *cmd)
 {
 	int	i;
 	int	j;
@@ -90,7 +90,7 @@ int ft_strcmp(char *str, char *cmd)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-		char	*ptr;
+	char	*ptr;
 	size_t	i;
 	size_t	j;
 
@@ -113,14 +113,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
-int    ft_strcmp1(char *s1, char *s2)
-{
-    int    i;
 
-    i = 0;
-    while (s1 && s2 && s1[i] && s1[i] == s2[i])
-        i++;
-    return (s1[i] - s2[i]);
+int	ft_strcmp1(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1 && s2 && s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
 
 // int    ft_strcmp1(char *s1, char *s2)

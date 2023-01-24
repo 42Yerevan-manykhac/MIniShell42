@@ -22,6 +22,7 @@ void	ft_lstadd_back(t_env **lst, t_env *new)
 	node = ft_lstlast(*lst);
 	node->next = new;
 }
+
 char	*ft_strdup( char *s1)
 {
 	char	*s;

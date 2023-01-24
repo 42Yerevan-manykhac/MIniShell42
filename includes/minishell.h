@@ -60,6 +60,7 @@ int		count_init( t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void    heredoc(char *key);
+void	cd_cmd(t_env **l_env, char **str);
 void    redirection_input(char *file, int i);
 void	env_init(char **env, t_env **s_env);
 int		check_cmd( t_tokens **token, int i);

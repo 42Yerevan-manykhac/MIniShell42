@@ -22,9 +22,9 @@ int pre_parsing(char *str)
 	return (0);
 }
 
-int check_redirect( t_tokens **token, int i)
+int	check_redirect( t_tokens **token, int i)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *token;
 	node->count.count_redirect++;
@@ -33,12 +33,12 @@ int check_redirect( t_tokens **token, int i)
 		i++;
 	while (!ft_strchr(METACHARS, node->rdl[i]))
 		i++;
-		return (i);
+	return (i);
 }
 
-int check_herdoc( t_tokens **token, int i)
+int	check_herdoc( t_tokens **token, int i)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *token;
 	node->count.count_herdoc++;
@@ -47,27 +47,27 @@ int check_herdoc( t_tokens **token, int i)
 		i++;
 	while (!ft_strchr(METACHARS, node->rdl[i]))
 		i++;
-		return (i);
+	return (i);
 }
 
 
-int check_cmd(t_tokens **token, int i)
+int	check_cmd(t_tokens **token, int i)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *token;
 	while (!ft_strchr(METACHARS, node->rdl[i]))
 				i++;
-			node->count.count_cmd++;
-			while (node->rdl[i] == ' ')
-				i++;
-				return (i);
+	node->count.count_cmd++;
+	while (node->rdl[i] == ' ')
+		i++;
+	return (i);
 }
 
-int count_init(t_tokens **token)
+int	count_init(t_tokens **token)
 {
-	int i;
-	t_tokens *node;
+	int			i;
+	t_tokens	*node;
 
 	node = *token;
 	i = 0;
