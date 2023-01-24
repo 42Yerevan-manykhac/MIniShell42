@@ -26,3 +26,5 @@ int	exit_cmd(char **str)
 				else if (tivy < 0)
 						exit (256 - ft_abs(tivy))
 }
+
+aaaaaaaa
