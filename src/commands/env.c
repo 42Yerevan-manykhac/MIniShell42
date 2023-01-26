@@ -1,18 +1,18 @@
 #include "minishell.h"
 
+
 void	env_init(char **env, t_env **s_env)
 {
 	int		i;
 	char	**env_split;
-	//t_env	*tmp;
 
 	i = 0;
-	//tmp = s_env;
 	while (env[i])
 	{
 		env_split = ft_split(env[i], '=');
 		(*s_env)->key = env_split[0];
 		(*s_env)->value = env_split[1];
+		matrix_free(env_split);
 		if (ft_strcmp((*s_env)->key, "OLDPWD"))
 			(*s_env)->flag = 0;
 		else
@@ -27,4 +27,3 @@ void	env_init(char **env, t_env **s_env)
 	}
 	(*s_env)->next = NULL;
 }
-
