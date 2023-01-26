@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int pre_parsing(char *str)
+int	pre_parsing(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -49,7 +49,6 @@ int	check_herdoc( t_tokens **token, int i)
 		i++;
 	return (i);
 }
-
 
 int	check_cmd(t_tokens **token, int i)
 {

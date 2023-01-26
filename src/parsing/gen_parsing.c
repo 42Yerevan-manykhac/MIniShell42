@@ -73,12 +73,11 @@ int	gen_parsing(t_tokens **token, t_env **env, char *str)
 	t_tokens	*node;
 	(void)env;
 	node = *token;
-	printf("smt\n");
 	node->rdl = ft_strtrim(str, " ");
 	if (syntax_pars(token))
 		return (1);
 	//node->rdl = 
-	node->rdl = dolar_pars(node->rdl, env);
+	//node->rdl = dolar_pars(node->rdl, env);
 	printf("strrr => %s\n", node->rdl);
 	 	//return (1);
 	return (0);

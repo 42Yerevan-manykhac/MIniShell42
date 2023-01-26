@@ -54,15 +54,21 @@ void	heredoc(char *key)
 	{
 		hrd = readline("heredoc> ");
 		if (ft_strcmp1(key, hrd) == 0)
-			return ;
+			break ;
 		write(fd, hrd, ft_strlen(hrd));
 		write(fd, "\n", 1);
 		free(hrd);
 	}
+	free(hrd);
 	close(fd);
 	fd = open(file, O_RDONLY);
-	dup2(fd, 0);
+	if (dup2(fd, 0) == -1)
+	{
+		printf("error\n");
+		return ;
+	}
 	close(fd);
 	unlink(file);
 	free(file);
+	//printf("heyyyyyy\n");
 }

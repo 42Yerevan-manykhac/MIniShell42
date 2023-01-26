@@ -3,21 +3,17 @@
 
 char	*join_dolar_str(char *str, char *world, int x, int z)
 {
-	//int	i;
-	//int	j;
 	int	len_s;
 	char *new_str;
 	(void)z;
 
-	//i = 0;
-	//j = 0;
 	len_s = ft_strlen(str);
 	new_str = ft_substr(str, 0, x - 1);
 	if (world)
 		new_str = ft_strjoin(new_str, world);
 	new_str = ft_strjoin(new_str, ft_substr(str, x + z - 1, len_s));
+	free(str);
 	str = new_str;
-	//free(str);
 	return (new_str);
 }
 

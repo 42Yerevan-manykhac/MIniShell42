@@ -9,6 +9,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_tokens	*token;
 	t_env		*s_env;
 	(void)s_env;
+	(void)env;
 	print_logo();
 	token = malloc(sizeof(t_tokens));
 	token->next = NULL;
@@ -20,44 +21,22 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
-		//heredoc(str);
-		//redirection_input(str);
+	heredoc(str);
+		//redirection_input(str, 1);
 		//gen_parsing(&token, &s_env, str);
 		//printf("\n\nstr = %s\n\n", str);
 		//unset_cmd(&s_env, str);
 		//env_cmd(s_env);
 	//	cd_cmd(&s_env, &str);
 		//export_cmd(&s_env,str); (done( check only_export ))
-
-		printf("\033[0;36m");
 		//sortlist(&s_env);
 		//parsing(str, token);
 	   // count_init( &token);
 		
 		//env_cmd(s_env);
-	// 	printf("count_redirect-%d\n", token->count.count_redirect );
-	// 	printf("count_cmd-%d\n", token->count.count_cmd );
-	// 	printf("count_herdoc-%d\n", token->count.count_herdoc );
-	// 	int i = 0;
-		
-	// 	while (i < token->count.count_cmd)
-	// 	{
-	// 		printf("cmd[%d]!%s!\n", i, token->cmd[i]);
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	while (i < token->count.count_redirect)
-	// 	{
-	// 		printf("redirect[%d]!%s!\n", i, token->redirect[i]);
-	// 		i++;
-	// 	}
-	// 		 i = 0;
-	// 	while (i < token->count.count_herdoc)
-	// 	{
-	// 		printf("herdoc[%d]!%s!\n", i, token->herdoc[i]);
-	// 		i++;
-	// 	}
-	//////free(str);
+		printf("\033[0;36m");
+	free(str);
+		printf("smt\n");
 	}
 	return (0);
 }
