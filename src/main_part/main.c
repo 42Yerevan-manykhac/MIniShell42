@@ -6,6 +6,7 @@ int	main(int arg_nb, char **argv, char **env)
 	(void)arg_nb;
 	(void)argv;
 	char		*str;
+	int    in_copy;
 	t_tokens	*token;
 	t_env		*s_env;
 	(void)s_env;
@@ -17,26 +18,27 @@ int	main(int arg_nb, char **argv, char **env)
 	env_init(env, &s_env);
 	while (1)
 	{
+		in_copy = dup(0);
 		str = readline ("Minishell$> ");
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
-	heredoc(str);
+	//heredoc(str);
 		//redirection_input(str, 1);
+		export_cmd(&s_env,str); //(done( check only_export ))
+		env_cmd(s_env);
+	dup2(in_copy, 0);
 		//gen_parsing(&token, &s_env, str);
 		//printf("\n\nstr = %s\n\n", str);
 		//unset_cmd(&s_env, str);
-		//env_cmd(s_env);
 	//	cd_cmd(&s_env, &str);
-		//export_cmd(&s_env,str); (done( check only_export ))
 		//sortlist(&s_env);
 		//parsing(str, token);
 	   // count_init( &token);
 		
 		//env_cmd(s_env);
-		printf("\033[0;36m");
+		printf("\033[0;36m");  
 	free(str);
-		printf("smt\n");
 	}
 	return (0);
 }

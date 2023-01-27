@@ -47,7 +47,7 @@ int	find_key(t_env **l_env, char *new_key)
 	{
 		if (ft_strcmp1(new_key, env->key) != 0 && env)
 		{
-			printf("env == %s , new_key = %s\n",env->key, new_key);
+			//printf("env == %s , new_key = %s\n",env->key, new_key);
 			env = env->next;
 		}
 		else
@@ -61,7 +61,6 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 	t_env	*rtv;
 
 	rtv = 0;
-
 	if (if_need_to_add(l_env, splited))
 		return (1);
 	if (find_key(l_env, splited[0]))
@@ -70,12 +69,14 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 		if (rtv->value)
 		{
 			free(rtv->value);
+			free(splited[0]);
 			rtv->flag = 1;
 			rtv->value = splited[1];
 		}
 		else
 		{
 			rtv->flag = 1;
+			free(splited[0]);
 			rtv->value = splited[1];
 		}
 		return (1);
@@ -99,7 +100,7 @@ void	export_cmd(t_env **l_env, char *str)
 	env->key = splited[0];
 	if (!if_key_already_exist(l_env, splited))
 	{
-		printf("key ckea\n");
+		//printf("key ckea\n");
 		if (splited[1])
 		{
 			env->flag = 1;
@@ -118,6 +119,7 @@ void	export_cmd(t_env **l_env, char *str)
 		env->next = NULL;
 		ft_lstadd_back(l_env, env);
 	}
+	free(splited);
 }
 
 void	only_export(t_env **node)
