@@ -45,6 +45,7 @@ typedef struct s_env	t_env;
 	t_env	*next;
 };
 //comands
+void	pwd_cmd(void);
 void	env_cmd(t_env *env);
 void    unset_cmd(t_env **l_env,char *key);
 void	export_cmd(t_env **l_env, char *str);
@@ -54,7 +55,7 @@ int		ft_strlen(char *str);
 int		pre_parsing(char *str);
 t_env	*ft_lstlast(t_env *lst);
 void    only_export(t_env **node);
-void	export_sortlist(t_env **env);
+void	export_no_args(t_env **env);
 int		cheack_back(char *str, int x);
 int		count_init( t_tokens **token);
 void	initializer(t_tokens **token);
@@ -73,5 +74,5 @@ int		check_redirect( t_tokens **token, int i);
 void	parsing_part_1(char *str, t_tokens **token);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char *str);
-
+void	one_node_free(t_env **rtv);
 # endif

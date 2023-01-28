@@ -13,3 +13,10 @@ void	matrix_free(char **env_split)
 	}
 	free(env_split);
 }
+
+void one_node_free(t_env **rtv)
+{
+	free((*rtv)->value);
+	free((*rtv)->key);
+	free((*rtv));
+}

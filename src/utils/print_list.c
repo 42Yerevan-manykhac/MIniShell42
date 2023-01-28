@@ -1,7 +1,7 @@
 #include "minishell.h"
 
 
-void	export_sortlist(t_env **env) // export_no_args()
+void	export_no_args(t_env **env) // export_no_args()
 {
 	t_env	*current = *env;
 	t_env	*index = NULL;  

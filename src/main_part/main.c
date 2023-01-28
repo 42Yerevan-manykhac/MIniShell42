@@ -23,16 +23,17 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
-	//heredoc(str);
+		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
+	//	only_export(&s_env);
+	//heredoc(str); //++done
+		//unset_cmd(&s_env, str);  // done
 		//redirection_input(str, 1);
-		export_cmd(&s_env,str); //(done( check only_export ))
-		env_cmd(s_env);
+		//export_no_args(&s_env);    ///anel stugel krkin nayel 
+		//env_cmd(s_env);
+		pwd_cmd();
+		cd_cmd(&s_env, &str);
 	dup2(in_copy, 0);
 		//gen_parsing(&token, &s_env, str);
-		//printf("\n\nstr = %s\n\n", str);
-		//unset_cmd(&s_env, str);
-	//	cd_cmd(&s_env, &str);
-		//sortlist(&s_env);
 		//parsing(str, token);
 	   // count_init( &token);
 		
