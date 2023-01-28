@@ -19,26 +19,37 @@ int	if_need_to_add(t_env **l_env, char **splited)
 {
 	int		len;
 	t_env	*rtv;
+	char    *tmp;
 
 	rtv = 0;
 	len = ft_strlen(splited[0]);
 	if (splited[0][len - 1] == '+')
 	{
-	
 		splited[0] = ft_strtrim(splited[0], "+");
 		if (find_key(l_env, splited[0]))
 		{
-		if (!splited[1])
-				return(1);
+			if (!splited[1])
+			{
+				free(splited[0]);
+				return (1);
+			}
 			rtv = get_env(l_env, splited[0]);
-			rtv->key = splited[0];
-			rtv->value = ft_strjoin(rtv->value, splited[1]);
+			free(splited[0]);
+			//rtv->key = splited[0];
+			if (!rtv->value)
+					rtv->value = splited[1];
+			else
+			{
+				tmp = rtv->value;
+				rtv->value = ft_strjoin(tmp, splited[1]);
+				free(splited[1]);
+				free(tmp);
+			}
 			return (1);
 		}
 	}
 	return (0);
 }
-
 
 int	find_key(t_env **l_env, char *new_key)
 {
@@ -48,11 +59,8 @@ int	find_key(t_env **l_env, char *new_key)
 	while (env)
 	{
 		if (ft_strcmp1(new_key, env->key) != 0 && env)
-		{
-
 			//printf("env == %s , new_key = %s\n",env->key, new_key);
 			env = env->next;
-		}
 		else
 			return (1);
 	}
@@ -78,9 +86,18 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 		}
 		else
 		{
-			rtv->flag = 1;
-			free(splited[0]);
-			//rtv->value = splited[1];
+			if (splited[1])
+			{
+				rtv->value = splited[1];
+				rtv->flag = 1;
+				free(splited[0]);
+			}
+			else
+			{
+				free(splited[0]);
+				rtv->flag = 1;
+			}
+			//free(rtv->value);
 		}
 		return (1);
 	}
@@ -97,24 +114,27 @@ void	export_cmd(t_env **l_env, char *str)
 
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
-	env = malloc(sizeof(t_env));
-	env->flag = 1;
+//	env->flag = 1;
 	splited = split_export(str);
+//	printf("spl[2] = %s\n", splited[2]);
 	if (!if_key_already_exist(l_env, splited))
 	{
+		env = malloc(sizeof(t_env));
 		env->key = splited[0];
 		if (splited[1])
-		{
+		{		
 			env->flag = 1;
 			env->value = splited[1];
 		}
 		else if (i && i == len - 1)
 		{
+				
 				env->flag = 1;
 				env->value = 0;
 		}
 		else
 		{
+				
 			env->flag = 0;
 			env->value = 0;
 		}

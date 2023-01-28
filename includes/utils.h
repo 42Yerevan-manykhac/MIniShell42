@@ -16,7 +16,6 @@
 char	*ft_itoa(int n);
 void	print_logo();
 int     ft_int_strchr(char *str, char c);
-char	**split_export(char *str);
 char	*ft_strchr(char *str, int c);
 char	*ft_strchr(char *str, int c);
 char	**split_export(char *str);
