@@ -22,12 +22,14 @@ int	if_need_to_add(t_env **l_env, char **splited)
 
 	rtv = 0;
 	len = ft_strlen(splited[0]);
-	printf("hi\n");
 	if (splited[0][len - 1] == '+')
 	{
+	
 		splited[0] = ft_strtrim(splited[0], "+");
 		if (find_key(l_env, splited[0]))
 		{
+		if (!splited[1])
+				return(1);
 			rtv = get_env(l_env, splited[0]);
 			rtv->key = splited[0];
 			rtv->value = ft_strjoin(rtv->value, splited[1]);
@@ -47,6 +49,7 @@ int	find_key(t_env **l_env, char *new_key)
 	{
 		if (ft_strcmp1(new_key, env->key) != 0 && env)
 		{
+
 			//printf("env == %s , new_key = %s\n",env->key, new_key);
 			env = env->next;
 		}
@@ -77,7 +80,7 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 		{
 			rtv->flag = 1;
 			free(splited[0]);
-			rtv->value = splited[1];
+			//rtv->value = splited[1];
 		}
 		return (1);
 	}
@@ -97,14 +100,13 @@ void	export_cmd(t_env **l_env, char *str)
 	env = malloc(sizeof(t_env));
 	env->flag = 1;
 	splited = split_export(str);
-	env->key = splited[0];
 	if (!if_key_already_exist(l_env, splited))
 	{
-		//printf("key ckea\n");
+		env->key = splited[0];
 		if (splited[1])
 		{
 			env->flag = 1;
-			env->value = ft_strdup(splited[1]);
+			env->value = splited[1];
 		}
 		else if (i && i == len - 1)
 		{
@@ -150,3 +152,7 @@ void	only_export(t_env **node)
 
 // note
 // aveli lava split anenq yst havasari heto nayeny valuenery u key eryyyy
+
+
+
+//parsingum nayel key = inchvorban+ kam tiv;**
