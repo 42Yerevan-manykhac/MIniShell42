@@ -25,7 +25,7 @@ int	find_end_of_single_quote(char *str, int i)
 	return (i);
 }
 
-char	*dolar_pars(char *str, t_env **env)
+void	dolar_pars(char **str, t_env **env)
 {
 	int		i;
 	int		x;
@@ -34,26 +34,27 @@ char	*dolar_pars(char *str, t_env **env)
 	(void)env;
 	i = 0;
 	x = 0;
-	while (str[i] && str[i])
+	printf("str =====> %s\n\n", *str);
+	while ((*str)[i] != 0)
 	{
-		if (str[i] == '\'')
-			i = find_end_of_single_quote(str, i);
-		if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1])
+		if ((*str)[i] == '\'')
+			i = find_end_of_single_quote(*str, i);
+		if ((*str)[i] == '$' && (*str)[i + 1] != ' ' && (*str)[i + 1])
 		{
 			x = ++i;
-			while (str[i] != ' ' && str[i] && str[i] != '$' && str[i] != '"')
+			while ((*str)[i] != ' ' && (*str)[i] && (*str)[i] != '$' && (*str)[i] != '"')
 				i++;
-			world = ft_substr(str, x, i - x);
+			world = ft_substr(*str, x, i - x);
 			back = getenv(world);
-			str = join_dolar_str(str, back, x, i - x + 1);
-			if (str[i] == '$')
+			*str = join_dolar_str(*str, back, x, i - x + 1);
+			if ((*str)[i] == '$')
 				i--;
-			free(world);
 			i = x - 1;
+			free(world);
 		}
 		i++;
 	}
-	printf("str = %s\n", str);
-	return (str);
+	//printf("str = %s\n", *str);
+	//return (str);
 }
 //dolar , export unset

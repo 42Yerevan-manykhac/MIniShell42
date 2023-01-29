@@ -24,16 +24,16 @@ int	main(int arg_nb, char **argv, char **env)
 		if (str)
 			add_history(str);
 		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
+		//env_cmd(s_env);
 	//	only_export(&s_env);
 	//heredoc(str); //++done
 		//unset_cmd(&s_env, str);  // done
 		//redirection_input(str, 1);
 		//export_no_args(&s_env);    ///anel stugel krkin nayel 
-		//env_cmd(s_env);
-		pwd_cmd();
-		cd_cmd(&s_env, &str);
+		//pwd_cmd();
+		//cd_cmd(&s_env, &str);
+		gen_parsing(&token, &s_env, &str);
 	dup2(in_copy, 0);
-		//gen_parsing(&token, &s_env, str);
 		//parsing(str, token);
 	   // count_init( &token);
 		

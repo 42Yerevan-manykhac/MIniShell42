@@ -35,7 +35,6 @@ int	if_need_to_add(t_env **l_env, char **splited)
 			}
 			rtv = get_env(l_env, splited[0]);
 			free(splited[0]);
-			//rtv->key = splited[0];
 			if (!rtv->value)
 					rtv->value = splited[1];
 			else
@@ -104,7 +103,6 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 	return (0);
 }
 
-
 void	export_cmd(t_env **l_env, char *str)
 {
 	int		i;
@@ -127,14 +125,12 @@ void	export_cmd(t_env **l_env, char *str)
 			env->value = splited[1];
 		}
 		else if (i && i == len - 1)
-		{
-				
+		{	
 				env->flag = 1;
 				env->value = 0;
 		}
 		else
 		{
-				
 			env->flag = 0;
 			env->value = 0;
 		}

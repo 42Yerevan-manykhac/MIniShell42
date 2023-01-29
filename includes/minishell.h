@@ -65,7 +65,7 @@ void	cd_cmd(t_env **l_env, char **str);
 void    redirection_input(char *file, int i);
 void	env_init(char **env, t_env **s_env);
 int		check_cmd( t_tokens **token, int i);
-char	*dolar_pars(char *str, t_env **env);
+void	dolar_pars(char **str, t_env **env);
 int     find_key(t_env **l_env, char *new_key);
 int		check_herdoc( t_tokens **token, int i);
 t_env   *get_env(t_env **l_env, char *new_key);
@@ -73,6 +73,6 @@ void	ft_lstadd_back(t_env **lst, t_env *new);
 int		check_redirect( t_tokens **token, int i);
 void	parsing_part_1(char *str, t_tokens **token);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-int		gen_parsing(t_tokens **token, t_env **env, char *str);
+int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
 # endif

@@ -56,29 +56,29 @@ int	syntax_pars_1(char c)
 	return (0);
 }
 
-int	syntax_pars(t_tokens **token)
+int	syntax_pars(char **str)
 {
-	t_tokens	*node;
-
-	node = *token;
-	if (syntax_pars_1(node->rdl[0]))
+	if (syntax_pars_1(*str[0]))
 		return (1);
-	if (syntax_pars_2(node->rdl))
+	if (syntax_pars_2(*str))
 		return (1);
 	return (0);
 }
 
-int	gen_parsing(t_tokens **token, t_env **env, char *str)
+int		gen_parsing(t_tokens **token, t_env **env, char **str)
 {
 	t_tokens	*node;
+	char	*tmp;
 	(void)env;
+	(void)str;
 	node = *token;
-	node->rdl = ft_strtrim(str, " ");
-	if (syntax_pars(token))
+	tmp = *str;
+	*str = ft_strtrim(tmp, " ");
+	free(tmp);
+	if (syntax_pars(str))
 		return (1);
-	//node->rdl = 
-	//node->rdl = dolar_pars(node->rdl, env);
-	printf("strrr => %s\n", node->rdl);
+	 dolar_pars(str, env);
+	printf("strrr => %s\n", *str);
 	 	//return (1);
 	return (0);
 }

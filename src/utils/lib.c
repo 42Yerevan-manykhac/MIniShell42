@@ -30,7 +30,6 @@ char	*ft_strtrim(char *s1, char *set)
 	while (len && ft_strrchr(set, s1[len]))
 		--len;
 	trm = ft_substr(s1, iff, len - iff + 1);
-	free(s1);
 	return (trm);
 }
 
