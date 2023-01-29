@@ -1,6 +1,14 @@
 
 #include "minishell.h"
 
+int go_until_spasce(char *str, int i)
+{
+	while (str[i] && str[i] == ' ')
+		i++;
+	while (str[i] && str[i] != ' ')
+		i++;
+	return (i);
+}
 char	*join_dolar_str(char *str, char *world, int x, int z)
 {
 	int	len_s;
@@ -32,13 +40,15 @@ void	dolar_pars(char **str, t_env **env)
 	char	*world;
 	char	*back;
 	(void)env;
+
 	i = 0;
 	x = 0;
-	printf("str =====> %s\n\n", *str);
 	while ((*str)[i] != 0)
 	{
 		if ((*str)[i] == '\'')
 			i = find_end_of_single_quote(*str, i);
+		if ((*str)[i] == '<' && (*str)[i + 1] && (*str)[i + 1] == '<' )
+			i = go_until_spasce(*str, i);
 		if ((*str)[i] == '$' && (*str)[i + 1] != ' ' && (*str)[i + 1])
 		{
 			x = ++i;
@@ -54,7 +64,5 @@ void	dolar_pars(char **str, t_env **env)
 		}
 		i++;
 	}
-	//printf("str = %s\n", *str);
-	//return (str);
 }
 //dolar , export unset

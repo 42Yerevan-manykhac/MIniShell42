@@ -67,11 +67,12 @@ int	syntax_pars(char **str)
 
 int		gen_parsing(t_tokens **token, t_env **env, char **str)
 {
-	t_tokens	*node;
+	//t_tokens	*node;
 	char	*tmp;
 	(void)env;
 	(void)str;
-	node = *token;
+	(void) token;
+	//node = *token;
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
