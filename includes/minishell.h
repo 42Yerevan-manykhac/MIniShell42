@@ -27,10 +27,11 @@ typedef struct s_tokens	t_tokens;
 
 struct s_tokens
 {
+    char		*rdl; //
     char		**cmd;
     char		**herdoc; //<<
     char		**redirect;  //>
-    char		*rdl;
+	int			*hrd_count;
 	t_count		count;
 	t_tokens	*next;
 };

@@ -33,6 +33,7 @@ int	main(int arg_nb, char **argv, char **env)
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
 		gen_parsing(&token, &s_env, &str);
+		printf("str ==> %s\n", str);
 	dup2(in_copy, 0);
 		//parsing(str, token);
 	   // count_init( &token);

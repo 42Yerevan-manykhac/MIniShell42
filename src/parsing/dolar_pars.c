@@ -9,19 +9,26 @@ int go_until_spasce(char *str, int i)
 		i++;
 	return (i);
 }
+
 char	*join_dolar_str(char *str, char *world, int x, int z)
 {
-	int	len_s;
-	char *new_str;
-	(void)z;
+	int		len_s;
+	char	*new_str;
+	char	*rtv;
+	char	*tmp;
 
 	len_s = ft_strlen(str);
 	new_str = ft_substr(str, 0, x - 1);
+	rtv = new_str;
 	if (world)
 		new_str = ft_strjoin(new_str, world);
-	new_str = ft_strjoin(new_str, ft_substr(str, x + z - 1, len_s));
+	free(rtv);
+	rtv = new_str;
+	tmp = ft_substr(str, x + z - 1, len_s);
+	new_str = ft_strjoin(new_str, tmp);
+	free(tmp);
+	free(rtv);
 	free(str);
-	str = new_str;
 	return (new_str);
 }
 
@@ -39,16 +46,18 @@ void	dolar_pars(char **str, t_env **env)
 	int		x;
 	char	*world;
 	char	*back;
+	char	*old_str;
 	(void)env;
 
 	i = 0;
 	x = 0;
+	old_str = *str;
 	while ((*str)[i] != 0)
 	{
 		if ((*str)[i] == '\'')
 			i = find_end_of_single_quote(*str, i);
 		if ((*str)[i] == '<' && (*str)[i + 1] && (*str)[i + 1] == '<' )
-			i = go_until_spasce(*str, i);
+			i = go_until_spasce(*str, i + 2);
 		if ((*str)[i] == '$' && (*str)[i + 1] != ' ' && (*str)[i + 1])
 		{
 			x = ++i;

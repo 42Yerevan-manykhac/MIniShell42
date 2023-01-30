@@ -1,5 +1,38 @@
-
 #include "minishell.h"
+
+int	ft_count_pipe(char **str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+
+	while (str[0][i])
+	{
+		if()
+		{
+
+		}
+	}
+	return (0);
+}
+
+void 	tokenization (char **tokenized,  char **str )
+{
+	int count_pipe;
+
+	count_pipe = 0;
+	count_pipe = ft_count_pipe(str);
+	(void) tokenized;
+	tokenized = ft_split(str[0], '|');
+	int i = 0;
+	while(tokenized[i]){
+printf("tokenized=> %s\n", tokenized[i]);
+i++;
+	}
+
+}
 
 int	check(int i, char *str, int *flg)
 {
@@ -67,19 +100,21 @@ int	syntax_pars(char **str)
 
 int		gen_parsing(t_tokens **token, t_env **env, char **str)
 {
-	//t_tokens	*node;
 	char	*tmp;
 	(void)env;
 	(void)str;
 	(void) token;
-	//node = *token;
+	char	**tokenized;
+	tokenized = NULL;
+	(void) tokenized;
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
-	 dolar_pars(str, env);
-	printf("strrr => %s\n", *str);
-	 	//return (1);
+	dolar_pars(str, env);
+	tokenization(tokenized, str);
+	//||printf("strrr => %s\n", *str);
+	//return (1);
 	return (0);
 }
