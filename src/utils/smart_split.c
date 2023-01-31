@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static size_t	word_count(char const *str, char delim)
+static size_t	word_count(char *str, char delim)
 {
 	size_t	prev_del;
 	size_t	i;
@@ -11,6 +11,10 @@ static size_t	word_count(char const *str, char delim)
 	prev_del = 1;
 	while (str[i])
 	{
+		if(str[i] && str[i]=='\"')
+			i = find_end_of_double_quote(str, i);
+		if(str[i] && str[i]=='\'')
+			i = find_end_of_single_quote(str, i);
 		if (str[i] == delim)
 			prev_del = 1;
 		else if (prev_del)
@@ -66,12 +70,13 @@ char	**smart_split(char *s, char c)
 	str = malloc(sizeof (char *) * (word_count(s, c) + 1));
 	if (str == 0)
 		return (0);
-	printf("WORD%zu\n", word_count(s, c));
-	while (++i < word_count(s, c))
+		printf("str = %s\n", s);
+	printf("WORD = %zu\n", word_count(s, c));
+	while (++i < word_count(s, c) - 1)
 	{
-		if(s[start] && s[start]=='\"')
-			i = find_end_of_double_quote(s, i);
-		if(s[start] && s[start]=='\'')
+		//if(s[start] && s[start]=='\"')
+		//	i = find_end_of_double_quote(s, i);
+		//if(s[start] && s[start]=='\'')
 			i = find_end_of_single_quote(s, i);
 		while (s[start] && s[start] == c)
 			start++;

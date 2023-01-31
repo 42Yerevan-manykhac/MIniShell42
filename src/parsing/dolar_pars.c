@@ -60,12 +60,12 @@ void	dolar_pars(char **str, t_env **env)
 	int		x;
 	char	*world;
 	char	*back;
-	char	*old_str;
+	//char	*old_str;
 	(void)env;
 
 	i = 0;
 	x = 0;
-	old_str = *str;
+	//old_str = *str;
 	while ((*str)[i] != 0)
 	{
 		if ((*str)[i] == '\'')

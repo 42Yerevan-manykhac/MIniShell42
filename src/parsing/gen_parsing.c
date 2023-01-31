@@ -7,8 +7,9 @@ int	check(int i, char *str, int *flg)
 	else if (str[i] == '\"')
 		i = find_end_of_double_quote(str, i);
 	if ((str[i] == '<' && str[i + 1] != '<')
-		|| (str[i] == '>' && str[i + 1] != '>') || str[i] == '|')
+		|| (str[i] == '>' && str[i + 1] != '>'))
 	{
+		printf("char = %c int = %d\n", str[i] , i);
 		i++;
 		if (cheack_back(str, i - 2) || cheack_front(str, &i))
 			*flg = 0;
