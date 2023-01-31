@@ -19,11 +19,14 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 
 	len_s = ft_strlen(str);
 	new_str = ft_substr(str, 0, x - 1);
+	printf("smt1 = %s\n", new_str);
 	rtv = new_str;
 	if (world)
+	{
 		new_str = ft_strjoin(new_str, world);
-	free(rtv);
+		free(rtv);
 	rtv = new_str;
+	}
 	tmp = ft_substr(str, x + z - 1, len_s);
 	new_str = ft_strjoin(new_str, tmp);
 	free(tmp);
@@ -37,6 +40,17 @@ int	find_end_of_single_quote(char *str, int i)
 	i++;
 	while (str[i] != '\'')
 		i++;
+
+	return (i);
+}
+
+int	find_end_of_double_quote(char *str, int i)
+{	
+	i++;
+	//	printf("SEG\n");
+	while (str[i] != '\"')
+		i++;
+	
 	return (i);
 }
 
