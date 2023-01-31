@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-static size_t	word_count(char *str, char delim)
+static int	word_count(char *str, char delim)
 {
-	size_t	prev_del;
-	size_t	i;
-	size_t	count;
+	int	prev_del;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -60,9 +60,9 @@ static void	*str_free(char **str, size_t i)
 
 char	**smart_split(char *s, char c)
 {
-	size_t	start;
-	size_t	end;
-	size_t	i;
+	int	start;
+	int	end;
+	int	i;
 	char	**str;
 
 	i = -1;
@@ -71,18 +71,35 @@ char	**smart_split(char *s, char c)
 	if (str == 0)
 		return (0);
 		printf("str = %s\n", s);
-	printf("WORD = %zu\n", word_count(s, c));
-	while (++i < word_count(s, c) - 1)
+	printf("WORD = %d\n", word_count(s, c));
+	while (++i < word_count(s, c) )
 	{
-		//if(s[start] && s[start]=='\"')
-		//	i = find_end_of_double_quote(s, i);
-		//if(s[start] && s[start]=='\'')
+		if(s[start] && s[start]=='\"')
+			i = find_end_of_double_quote(s, i);
+		if(s[start] && s[start]=='\'')
 			i = find_end_of_single_quote(s, i);
+		
 		while (s[start] && s[start] == c)
-			start++;
+		{
+		//	if(s[start] && s[start]=='\"')
+			//	start = find_end_of_double_quote(s, i);
+			//if(s[start] && s[start]=='\'')
+			//	start = find_end_of_single_quote(s, i);
+			//else
+				start++;
+		}
+		printf("strart ==> %d\n\n", start);
+		
 		end = start;
 		while (s[end] && s[end] != c)
+		{
+			if(s[end] && s[end] == '\"')
+				end = find_end_of_double_quote(s, end);
+			if(s[end] && s[end] == '\'')
+				end = find_end_of_single_quote(s, end);
+			else
 			end++;
+		}
 		str[i] = word_fill(s, start, end - start);
 		if (!str[i])
 			str_free(str, i);
