@@ -38,9 +38,8 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 int	find_end_of_single_quote(char *str, int i)
 {
 	i++;
-	while (str[i] != '\'')
+	while (str[i] != '\'' )
 		i++;
-
 	return (i);
 }
 
@@ -50,7 +49,6 @@ int	find_end_of_double_quote(char *str, int i)
 	//	printf("SEG\n");
 	while (str[i] != '\"')
 		i++;
-	
 	return (i);
 }
 

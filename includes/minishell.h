@@ -37,13 +37,13 @@ struct s_tokens
 	t_tokens	*next;
 };
 
-// typedef  struct	s_redirects
-// {
-// 	int		flag;
-// 	char	*pathname;
-// 	char	*del;
-// 	struct	s_redirects	*next;
-// } t_redirects;
+typedef  struct	s_redirects
+{
+	int		flag;
+	char	*pathname;
+	char	*del;
+	struct	s_redirects	*next;
+} t_redirects;
 
 
 typedef struct s_env	t_env;
@@ -73,8 +73,8 @@ void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void    heredoc(char *key);
 void 	tokenization(t_tokens **token, char **str );
-int	find_end_of_double_quote(char *str, int i);
-int	find_end_of_single_quote(char *str, int i);
+int		find_end_of_double_quote(char *str, int i);
+int		find_end_of_single_quote(char *str, int i);
 void	cd_cmd(t_env **l_env, char **str);
 void    redirection_input(char *file, int i);
 void	env_init(char **env, t_env **s_env);

@@ -10,7 +10,7 @@ int	cheack_front(char *str, int *x)
 			(*x)++;
 	while (!ft_strchr(METACHARS, str[*x]) && str[*x])
 		(*x)++;
-	if (*x - i - 1 <= 0)
+	if (*x - i <= 0)
 		return (1);
 	return (0);
 }

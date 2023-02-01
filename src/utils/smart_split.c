@@ -80,9 +80,9 @@ char	**smart_split(char *s, char c)
 				start = find_end_of_double_quote(s, i);
 			if(s[start] && s[start]=='\'')
 				start = find_end_of_single_quote(s, i);
-			else
 				start++;
 		}
+		
 		end = start;
 		while (s[end] && s[end] != c)
 		{
@@ -90,9 +90,9 @@ char	**smart_split(char *s, char c)
 				end = find_end_of_double_quote(s, end);
 			if(s[end] && s[end] == '\'')
 				end = find_end_of_single_quote(s, end);
-			else
 			end++;
 		}
+		
 		str[i] = word_fill(s, start, end - start);
 		printf("from smart split str[%d] = %s\n", i , str[i]);
 		if (!str[i])

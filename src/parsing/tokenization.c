@@ -1,5 +1,23 @@
 #include "minishell.h"
 
+int count_hrd(char **str)
+{
+	int i;
+	int count;
+	i = 0;
+	while (*str &&  str[0][i])
+	{
+		if (str[0][i] == '\'')
+				i = find_end_of_single_quote(*str, i);
+		else if (str[0][i] == '\"')
+				i = find_end_of_double_quote(*str, i);
+		if (str[0][i] == '<' && str[0][i + 1] && str[0][i + 1] == '<')
+		count++;
+		i++;
+	}
+	//printf("count = %d\n", count);
+	return (count);
+}
 void fill_t_token(t_tokens **token,char **tokenized)
 {
 	int i;
@@ -42,12 +60,16 @@ void 	tokenization(t_tokens **token, char **str )
 {
 	int		count_pipe;
 	char	**tokenized;
+	int		hrd_c;
 	(void)token;
     (void)count_pipe;
 	count_pipe = ft_count_pipe(str);
 	(void) tokenized;
     printf("smt = %d\n", count_pipe);
+	hrd_c = count_hrd(str);
+	printf("smtffff\n");
 	tokenized = smart_split(str[0], '|');
+	(void)hrd_c;
 	fill_t_token(token, tokenized);
 	int i = 0;
 	while(tokenized[i])
