@@ -75,16 +75,14 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	(void)env;
 	(void)str;
 	(void) token;
-	char	**tokenized;
-	tokenized = NULL;
-	(void) tokenized;
+
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
 	dolar_pars(str, env);
-	tokenization(token, tokenized, str);
+	tokenization(token, str);
 	//||printf("strrr => %s\n", *str);
 	//return (1);
 	return (0);

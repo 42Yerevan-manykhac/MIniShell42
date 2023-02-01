@@ -74,22 +74,15 @@ char	**smart_split(char *s, char c)
 	printf("WORD = %d\n", word_count(s, c));
 	while (++i < word_count(s, c) )
 	{
-		if(s[start] && s[start]=='\"')
-			i = find_end_of_double_quote(s, i);
-		if(s[start] && s[start]=='\'')
-			i = find_end_of_single_quote(s, i);
-		
 		while (s[start] && s[start] == c)
 		{
-		//	if(s[start] && s[start]=='\"')
-			//	start = find_end_of_double_quote(s, i);
-			//if(s[start] && s[start]=='\'')
-			//	start = find_end_of_single_quote(s, i);
-			//else
+			if(s[start] && s[start]=='\"')
+				start = find_end_of_double_quote(s, i);
+			if(s[start] && s[start]=='\'')
+				start = find_end_of_single_quote(s, i);
+			else
 				start++;
 		}
-		printf("strart ==> %d\n\n", start);
-		
 		end = start;
 		while (s[end] && s[end] != c)
 		{
@@ -101,6 +94,7 @@ char	**smart_split(char *s, char c)
 			end++;
 		}
 		str[i] = word_fill(s, start, end - start);
+		printf("from smart split str[%d] = %s\n", i , str[i]);
 		if (!str[i])
 			str_free(str, i);
 		start = end;

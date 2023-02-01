@@ -72,7 +72,7 @@ int		count_init( t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void    heredoc(char *key);
-void 	tokenization(t_tokens **token, char **tokenized, char **str );
+void 	tokenization(t_tokens **token, char **str );
 int	find_end_of_double_quote(char *str, int i);
 int	find_end_of_single_quote(char *str, int i);
 void	cd_cmd(t_env **l_env, char **str);
