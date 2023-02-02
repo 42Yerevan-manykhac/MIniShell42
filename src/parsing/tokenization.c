@@ -3,10 +3,18 @@
 int ft_count_tokens(char **token)
 {
 	int i;
+<<<<<<< HEAD
 	i = 0;
 	while (token[i])
 		i++;
 	return (i);
+=======
+
+	i = 0;
+	while (token[i])
+		i++;
+	return (0);
+>>>>>>> d11407443d959095b2350a28eed3a90710151cd1
 }
 
 int count_hrd(char **str)
@@ -72,12 +80,21 @@ void 	tokenization(t_tokens **token, char **str )
 	int		count_tokens;
 	char	**tokenized;
 	int		*hrd_c;
+<<<<<<< HEAD
 	
+=======
+	(void)count_pipe;
+>>>>>>> d11407443d959095b2350a28eed3a90710151cd1
 	hrd_c = 0;
 	count_pipe = ft_count_pipe(str);
 	hrd_c = malloc(sizeof(int));
 	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
+<<<<<<< HEAD
 	count_tokens = ft_count_tokens(tokenized);
 	fill_t_token(token, tokenized, hrd_c);
+=======
+	fill_t_token(token, tokenized, hrd_c);
+	
+>>>>>>> d11407443d959095b2350a28eed3a90710151cd1
 }

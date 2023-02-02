@@ -53,6 +53,8 @@ void	heredoc(char *key)
 	while (1)
 	{
 		hrd = readline("heredoc> ");
+		if(!hrd)
+			break;
 		if (ft_strcmp1(key, hrd) == 0)
 			break ;
 		write(fd, hrd, ft_strlen(hrd));

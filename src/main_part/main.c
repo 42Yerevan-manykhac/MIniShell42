@@ -25,9 +25,11 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
+		else
+			break;
 			//export_no_args(&s_env);
-		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
-		//env_cmd(s_env);
+		export_cmd(&s_env,str); //(done( check only_export ))//++ done
+		env_cmd(s_env);
 	//	only_export(&s_env);
 	//heredoc(str); //++done
 		//unset_cmd(&s_env, str);  // done
@@ -35,9 +37,14 @@ int	main(int arg_nb, char **argv, char **env)
 		//export_no_args(&s_env);    ///anel stugel krkin nayel 
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
+<<<<<<< HEAD
 		//gen_parsing(&token, &s_env, &str);
 		//printf("str ==> %s\n", str);
 
+=======
+	//	gen_parsing(&token, &s_env, &str);
+		printf("str ==> %s\n", str);
+>>>>>>> d11407443d959095b2350a28eed3a90710151cd1
 	dup2(in_copy, 0);
 		//parsing(str, token);
 	   // count_init( &token);
