@@ -28,4 +28,8 @@ char	*ft_strjoin(char *s1, char  *s2);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char *s, int start, int len);
 char	**smart_split(char *s, char c);
+int     ft_isdigit(int argument);
+void	ft_putstr_fd(char *s, int fd);
+long long	ft_atoi(const char *str);
+
 # endif

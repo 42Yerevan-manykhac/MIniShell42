@@ -33,6 +33,7 @@ struct s_tokens
     // char		**redirect;  //>
 	int			*hrd_count;
 	//t_redirects	*head_redct;
+	//int			*exit_code;
 	t_count		count;
 	t_tokens	*next;
 };
@@ -89,4 +90,5 @@ void	parsing_part_1(char *str, t_tokens **token);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
+int		exit_cmd(char **str);
 # endif

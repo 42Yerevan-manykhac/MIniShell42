@@ -94,7 +94,6 @@ char	**smart_split(char *s, char c)
 		}
 		
 		str[i] = word_fill(s, start, end - start);
-		printf("from smart split str[%d] = %s\n", i , str[i]);
 		if (!str[i])
 			str_free(str, i);
 		start = end;

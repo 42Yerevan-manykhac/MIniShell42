@@ -1,4 +1,4 @@
-// #include "minishell.h"
+ #include "minishell.h"
 
 
 // int	exit_cmd(char **str)
@@ -28,3 +28,79 @@
 // }
 
 // aaaaaaaa
+
+
+int exit_cmd(char **str)
+{
+    
+    long long num;
+     num = ft_atoi(str[1]);
+        printf("EXIT: %lld\n", num);
+    if(!str[1])
+    {
+        printf("exit\n");
+        exit(0); //hamapatasxan exit_code-ov
+    }
+     if(str[1] && (!ft_isdigit(str[1][0]) && str[1][0]!='-' &&  str[1][0]!='+'  )   )
+     {
+         ft_putstr_fd("exit\n", 2);
+         ft_putstr_fd("minishell:  exit: numeric argument required\n", 2); //bash: exit: f: numeric argument required
+         return (0);
+     }
+    if(str[2])
+    {
+         ft_putstr_fd("exit\n", 2);
+         ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+         return (0);
+    }
+
+if(str[1][0]=='-')
+{
+    if((ft_strlen(str[1])==20 && str[1][19]=='9') || ft_strlen(str[1])>20)
+      {
+         ft_putstr_fd("exit\n", 2);
+         ft_putstr_fd("minishell:  exit: numeric argument required\n", 2); //bash: exit: f: numeric argument required
+         return (0);
+     }
+     else
+     {
+        ft_putstr_fd("exit\n", 2);
+        exit(0); //hamapatasxan exit_code-ov //256-(num*(-1)%256)
+     }
+
+}
+
+
+else if(str[1][0]=='+')
+{
+    if((ft_strlen(str[1])==20 && (str[1][19]=='8' ||  str[1][19]=='9'))  ||  ft_strlen(str[1])>20)
+    {
+         ft_putstr_fd("exit\n", 2);
+        ft_putstr_fd("minishell:  exit: numeric argument required\n", 2); //bash: exit: f: numeric argument required
+        return (0);
+    }
+     else
+     {
+        ft_putstr_fd("exit\n", 2);
+        exit(0); //hamapatasxan exit_code-ov //num%256)
+     }
+}
+else {
+    if((ft_strlen(str[1])==19 && (str[1][19]=='8' ||  str[1][19]=='9'))  ||  ft_strlen(str[1])>19)
+    {
+         ft_putstr_fd("exit\n", 2);
+        ft_putstr_fd("minishell:  exit: numeric argument required\n", 2); //bash: exit: f: numeric argument required
+        return (0);
+    }
+     else
+     {
+        ft_putstr_fd("exit\n", 2);
+        exit(0); //hamapatasxan exit_code-ov //num%256)
+     }
+}
+
+    return (0);
+}
+
+
+

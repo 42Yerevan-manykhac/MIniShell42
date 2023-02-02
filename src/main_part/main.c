@@ -9,6 +9,8 @@ int	main(int arg_nb, char **argv, char **env)
 	int    in_copy;
 	t_tokens	*token;
 	t_env		*s_env;
+
+	char **splited;
 	(void)s_env;
 	(void)env;
 	print_logo();
@@ -33,13 +35,16 @@ int	main(int arg_nb, char **argv, char **env)
 		//export_no_args(&s_env);    ///anel stugel krkin nayel 
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
-		gen_parsing(&token, &s_env, &str);
-		printf("str ==> %s\n", str);
+		//gen_parsing(&token, &s_env, &str);
+		//printf("str ==> %s\n", str);
+
 	dup2(in_copy, 0);
 		//parsing(str, token);
 	   // count_init( &token);
 		
 		//env_cmd(s_env);
+	splited = ft_split(str, ' ');
+		exit_cmd(splited);
 		printf("\033[0;36m");  
 	free(str);
 	}

@@ -1,10 +1,21 @@
 #include "minishell.h"
 
+int ft_count_tokens(char **token)
+{
+	int i;
+	i = 0;
+	while (token[i])
+		i++;
+	return (i);
+}
+
 int count_hrd(char **str)
 {
 	int i;
 	int count;
+
 	i = 0;
+	count = 0;
 	while (*str &&  str[0][i])
 	{
 		if (str[0][i] == '\'')
@@ -15,10 +26,9 @@ int count_hrd(char **str)
 		count++;
 		i++;
 	}
-	//printf("count = %d\n", count);
 	return (count);
 }
-void fill_t_token(t_tokens **token,char **tokenized)
+void fill_t_token(t_tokens **token,char **tokenized, int *hrd_c)
 {
 	int i;
 	t_tokens *tk;
@@ -28,9 +38,9 @@ void fill_t_token(t_tokens **token,char **tokenized)
 	while (tokenized[i])
 	{
 		tk->rdl = tokenized[i];
+		tk->hrd_count = hrd_c;
 		if (tokenized[i + 1])
 			tk->next = malloc(sizeof(t_tokens));
-	printf("token == %s\n", tk->rdl);
 		tk = tk->next;
 		i++;
 	}
@@ -59,22 +69,15 @@ int	ft_count_pipe(char **str)
 void 	tokenization(t_tokens **token, char **str )
 {
 	int		count_pipe;
+	int		count_tokens;
 	char	**tokenized;
-	int		hrd_c;
-	(void)token;
-    (void)count_pipe;
-	(void) tokenized;
-	(void)hrd_c;
-
+	int		*hrd_c;
+	
+	hrd_c = 0;
 	count_pipe = ft_count_pipe(str);
-    printf("pip = %d\n", count_pipe);
-	hrd_c = count_hrd(str);
+	hrd_c = malloc(sizeof(int));
+	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
-	fill_t_token(token, tokenized);
-	int i = 0;
-	while(tokenized[i])
-	{
-		printf("tokenized=> %s\n", tokenized[i]);
-		i++;
-	}
+	count_tokens = ft_count_tokens(tokenized);
+	fill_t_token(token, tokenized, hrd_c);
 }
