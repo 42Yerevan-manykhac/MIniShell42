@@ -63,13 +63,13 @@ void 	tokenization(t_tokens **token, char **str )
 	int		hrd_c;
 	(void)token;
     (void)count_pipe;
-	count_pipe = ft_count_pipe(str);
 	(void) tokenized;
-    printf("smt = %d\n", count_pipe);
-	hrd_c = count_hrd(str);
-	printf("smtffff\n");
-	tokenized = smart_split(str[0], '|');
 	(void)hrd_c;
+
+	count_pipe = ft_count_pipe(str);
+    printf("pip = %d\n", count_pipe);
+	hrd_c = count_hrd(str);
+	tokenized = smart_split(str[0], '|');
 	fill_t_token(token, tokenized);
 	int i = 0;
 	while(tokenized[i])

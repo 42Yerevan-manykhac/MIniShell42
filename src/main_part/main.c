@@ -23,6 +23,7 @@ int	main(int arg_nb, char **argv, char **env)
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
+			//export_no_args(&s_env);
 		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
 		//env_cmd(s_env);
 	//	only_export(&s_env);
