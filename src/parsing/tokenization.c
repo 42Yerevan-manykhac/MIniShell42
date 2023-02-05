@@ -1,27 +1,4 @@
 #include "minishell.h"
-void cat_the_spaces(t_tokens **token)
-{
-	int 	i;
-	//int		j;
-	t_tokens *tok;
-
-	i = 0;
-//	j = 0;
-	tok = *token;
-	printf("tok = %s\n", tok->rdl);
-	while (tok)
-	{
-		while (tok->rdl[i])
-		{
-			if (tok->rdl[i] == '<' && tok->rdl[i + 1] == '<')
-				
-			printf("str[i] = %c\n",tok->rdl[i] );
-			i++;
-		}
-		i = 0; 
-		tok = tok->next;
-	}
-}
 
 int ft_count_tokens(char **token)
 {
@@ -56,27 +33,29 @@ void fill_t_token(t_tokens **token,char **tokenized, int *hrd_c)
 {
 	int i;
 	t_tokens *tk;
-
+printf("baba\n");
 	i = 0;
 	tk = *token;
 	while (tokenized[i])
 	{
 		tk->rdl = tokenized[i];
+			printf("token = %s\n", tokenized[i]);
 		tk->hrd_count = hrd_c;
-			printf("smt = %d\n", i);
+		tk->cmd =  (char **)malloc(sizeof(char *));
+		tk->head_redct = malloc(sizeof(t_redirects));
+		tk->next = NULL;
 		if (tokenized[i + 1])
 		{
+			printf("from fill t_token\n");
+
 			tk->next = malloc(sizeof(t_tokens));
 			tk = tk->next;
-			tk->next = NULL;
+		//	tk->next = NULL;
 			i++;
 		}
 		else 
 			break;
-		//tk = tk->next;
-		//i++;
 	}
-	//tk->next = NULL;
 }
 
 int	ft_count_pipe(char **str)
@@ -112,12 +91,15 @@ void 	tokenization(t_tokens **token, char **str )
 	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
 	//count_tokens = ft_count_tokens(tokenized);
+	printf("stex\n");
 	fill_t_token(token, tokenized, hrd_c);
+	printf("mi ban \n");
+	smart_smart_split(token);
 	// while ((*token))
 	// {
-	// 	printf("mi ban\n");
 	// 	printf("tok = %s\n", (*token)->rdl);
 	// 	(*token) = (*token)->next;
+	// 	//printf("tok = %s\n", (*token)->rdl);
+
 	// }
-	cat_the_spaces(token);
 }

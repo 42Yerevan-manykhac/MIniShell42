@@ -22,6 +22,15 @@ struct	s_count
     int	count_herdoc; //<<
 	int	count_redirect;
 };
+typedef  struct s_redirects t_redirects;
+
+struct	s_redirects
+{
+	int		flag;     //< = 1, << =2,  > = 3 >> = 4
+	//char	*pathname;
+	char	*del;
+	struct	s_redirects	*next;
+} ;
 
 typedef struct s_tokens	t_tokens;
 
@@ -32,19 +41,12 @@ struct s_tokens
     // char		**herdoc; //<<
     // char		**redirect;  //>
 	int			*hrd_count;
-	//t_redirects	*head_redct;
+	t_redirects	*head_redct;
 	//int			*exit_code;
-	t_count		count;
+	//t_count		count;
 	t_tokens	*next;
 };
 
-typedef  struct	s_redirects
-{
-	int		flag;
-	char	*pathname;
-	char	*del;
-	struct	s_redirects	*next;
-} t_redirects;
 
 
 typedef struct s_env	t_env;
@@ -63,6 +65,7 @@ void    unset_cmd(t_env **l_env,char *key);
 void	export_cmd(t_env **l_env, char *str);
 
 //
+void free_t_list(t_tokens **token);
 int		ft_strlen(char *str);
 int		pre_parsing(char *str);
 t_env	*ft_lstlast(t_env *lst);
@@ -70,6 +73,7 @@ void    only_export(t_env **node);
 void	export_no_args(t_env **env);
 int		cheack_back(char *str, int x);
 int		count_init( t_tokens **token);
+void smart_smart_split(t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void    heredoc(char *key);

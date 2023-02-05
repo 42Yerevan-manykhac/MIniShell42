@@ -38,9 +38,14 @@ int	main(int arg_nb, char **argv, char **env)
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
 		gen_parsing(&token, &s_env, &str);
+		while (token)
+		{
+			printf("tok00 = %s\n", token->rdl);
+			token = token->next;
+		}
 		//printf("str ==> %s\n", str);
 	//	gen_parsing(&token, &s_env, &str);
-		printf("str ==> %s\n", str);
+		//printf("str ==> %s\n", str);
 	dup2(in_copy, 0);
 		//parsing(str, token);
 	   // count_init( &token);
@@ -48,7 +53,8 @@ int	main(int arg_nb, char **argv, char **env)
 		//env_cmd(s_env);
 	//splited = ft_split(str, ' ');
 		//exit_cmd(splited);
-		printf("\033[0;36m");  
+		printf("\033[0;36m"); 
+	free_t_list(&token);
 	free(str);
 	}
 	return (0);

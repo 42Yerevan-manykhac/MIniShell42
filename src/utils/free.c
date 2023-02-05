@@ -20,3 +20,25 @@ void one_node_free(t_env **rtv)
 	free((*rtv)->key);
 	free((*rtv));
 }
+
+void free_t_list(t_tokens **token)
+{
+	int	i;
+
+	i = 0;
+	//free((*token)->hrd_count);
+	while ((*token))
+	{
+		if ((*token)->rdl)
+			free((*token)->rdl);
+		while ((*token)->cmd[i])
+		{
+			free((*token)->cmd[i]);
+			i++;
+		}
+		free((*token)->cmd);
+		free(token);
+		i = 0;
+	}
+
+}
