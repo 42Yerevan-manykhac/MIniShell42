@@ -29,77 +29,127 @@ int count_hrd(char **str)
 	}
 	return (count);
 }
-void fill_t_token(t_tokens **token,char **tokenized, int *hrd_c)
+t_redirects *new_t_redirects(int flag, char *del, char *pathname)
+{
+	t_redirects *new_red;
+
+	new_red = malloc(sizeof(t_redirects));
+	new_red->flag = flag;
+	new_red->del = del;
+	new_red->pathname = pathname;
+	return (new_red);
+}
+
+void	t_redirects_add_back(t_redirects **head, t_redirects *new_node)
+{
+	t_redirects	*tmp;
+
+	tmp = *head;
+	if (tmp == NULL)
+	{
+		*head = new_node;
+		return ;
+	}
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_node;
+}
+
+t_tokens	*new_t_tokens(char *rdl, char **cmd, int *hrd_count)
+{
+	t_tokens	*new_node;
+(void)cmd;
+	new_node = malloc(sizeof(t_tokens));;
+	new_node->rdl = rdl;
+	new_node->cmd = malloc(sizeof(char **));
+	new_node->hrd_count = hrd_count;
+	//printf("hrd = %d\n", (*new_node->hrd_count));
+	new_node->head_redct = NULL;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+void	t_tokens_add_back(t_tokens **head, t_tokens *new_node)
+{
+	t_tokens	*tmp;
+
+	tmp = *head;
+	if (tmp == NULL)
+	{
+		*head = new_node;
+		return ;
+	}
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new_node;
+}
+
+
+void fill_t_token(t_tokens **token ,char **tokenized, int *hrd_c)
 {
 	int i;
-	t_tokens *tk;
-printf("baba\n");
+
 	i = 0;
-	tk = *token;
 	while (tokenized[i])
 	{
-		tk->rdl = tokenized[i];
-			printf("token = %s\n", tokenized[i]);
-		tk->hrd_count = hrd_c;
-		tk->cmd =  (char **)malloc(sizeof(char *));
-		tk->head_redct = malloc(sizeof(t_redirects));
-		tk->next = NULL;
-		if (tokenized[i + 1])
-		{
-			printf("from fill t_token\n");
-
-			tk->next = malloc(sizeof(t_tokens));
-			tk = tk->next;
-		//	tk->next = NULL;
-			i++;
-		}
-		else 
-			break;
+		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c));
+		//printf("rdl = %s\n", (*token)->rdl);
+		i++;
 	}
 }
 
-int	ft_count_pipe(char **str)
+int	ft_count_pipe(char *str)
 {
 	int	count;
 	int	i;
 
 	i = 0;
 	count = 0;
-	while (str[0][i])
+	while (str[i])
 	{
-        if (str[0][i] == '\'')
-		    i = find_end_of_single_quote(*str, i);
-	    else if (str[0][i] == '\"')
-		    i = find_end_of_double_quote(*str, i);
-		if (str[0][i] == '|')
+        if (str[i] == '\'')
+		    i = find_end_of_single_quote(str, i);
+	    else if (str[i] == '\"')
+		    i = find_end_of_double_quote(str, i);
+		if (str[i] == '|')
 			count++;
 		i++;
 	}
 	return (count);
 }
-
-void 	tokenization(t_tokens **token, char **str )
+void check_error(char **tokenized,char *str)
 {
-	//int		count_pipe;
-	//int		count_tokens;
+	int		count_pipe;
+	int		count_tokens;
+
+	count_pipe = ft_count_pipe(str);
+	count_tokens = ft_count_tokens(tokenized);
+	if (count_pipe && count_tokens - 1 != count_pipe )
+	{
+		write(2, "Minishell: syntax error near unexpected token `|'\n", 50);
+		exit(1);
+	}
+
+}
+void 	tokenization(t_tokens **token, char **str)
+{
 	char	**tokenized;
-	int		*hrd_c;	
+	int		*hrd_c;
 
 	hrd_c = 0;
-	//count_pipe = ft_count_pipe(str);
 	hrd_c = malloc(sizeof(int));
 	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
-	//count_tokens = ft_count_tokens(tokenized);
-	printf("stex\n");
+	check_error(tokenized, str[0]);
+	// printf("stex\n");
 	fill_t_token(token, tokenized, hrd_c);
-	printf("mi ban \n");
+	// printf("mi ban \n");
 	smart_smart_split(token);
-	// while ((*token))
+	// while (*token)
 	// {
-	// 	printf("tok = %s\n", (*token)->rdl);
-	// 	(*token) = (*token)->next;
+	// 	if ((*token)->rdl) printf("tok = %s\n", (*token)->rdl);
+	// 	*token = (*token)->next;
 	// 	//printf("tok = %s\n", (*token)->rdl);
-
+//free(hrd_c);
 	// }
 }

@@ -1,4 +1,19 @@
 #include "minishell.h"
+
+void ft_fill_red(t_tokens **token, int flag, char *str)
+{
+   // static int rld = 0;
+    t_tokens *tk;
+
+    tk = *token;
+    tk->head_redct = malloc(sizeof(t_redirects));
+    tk->head_redct->del = str;
+     printf("red=%s\n",  tk->head_redct->del);
+    tk->head_redct->flag = flag;
+    tk->head_redct->next = NULL;
+    // tk->head_redct =  tk->head_redct->next;
+}
+
 int any_quote(char *str,int i)
 {
      if (str[i] == '\'')
@@ -8,7 +23,7 @@ int any_quote(char *str,int i)
     return (i);
 }
 
-void ft_smart_sub(t_tokens **token, char *str)
+void ft_smart_sub(t_tokens **token, char *rdl)
 {
     int i;
     int j;
@@ -19,50 +34,45 @@ void ft_smart_sub(t_tokens **token, char *str)
     cmd = 0;
     i = 0;
     j = 0;
-    while (str[i])
+    while (rdl[i])
     {
-        //i = any_quote(str, i);
-        if (str[i] != '>' && str[i] != '<' && str[i] != ' ')
+        if (rdl[i] != '>' && rdl[i] != '<' && rdl[i] != ' ')
         {
-            while (str[i] && str[i] != ' ' && str[i] != '>' && str[i] != '<')
+            while (rdl[i] && rdl[i] != ' ' && rdl[i] != '>' && rdl[i] != '<')
+            {
+                i = any_quote(rdl, i);
                 i++;
-            tk->cmd[cmd] = ft_substr(str, j, i);
-            printf("cmd=%s, int=%d\n", tk->cmd[cmd], cmd);
+            }
+            tk->cmd[cmd] = ft_substr(rdl, j, i);
+            printf("i = %d, j = %d\n", i, j);
+             printf("cmd=%s, int=%d\n", tk->cmd[cmd], cmd);
             cmd++;
         }
         j = i;
-        // if(str[i] == '\"' && str[i] == '\'')
+        // if(rdl[i] == '\"' && rdl[i] == '\'')
         // {
-        //     i = any_quote(str, i);
-        //     tk->cmd[i] = ft_substr(str, j, i);
+        //     i = any_quote(rdl, i);
+        //     tk->cmd[i] = ft_substr(rdl, j, i);
         // }
         j = i;
-        if (str[i] == '>' && str[i + 1] != '>')
+        if (rdl[i] == '>' && rdl[i + 1] != '>')
         {
-            while (str[i] && str[i] != ' ')
+            while (rdl[i] && rdl[i] != ' ')
                 i++;
-                printf("gg\n");
-            tk->head_redct->del = ft_substr(str, j, i);
-             printf("red=%s\n",  tk->head_redct->del);
-            tk->head_redct->flag = 3;
-            tk->head_redct->next = NULL;
-            tk->head_redct =  tk->head_redct->next;
-
+            ft_fill_red(token, 3, ft_substr(rdl, j, i));
         }
-        if (str[i] == '<' && str[i + 1] == '<')
+        if (rdl[i] == '<' && rdl[i + 1] == '<')
         {
-            while (str[i] && str[i] != ' ')
+            while (rdl[i] && rdl[i] != ' ')
                 i++;
-            tk->head_redct->del = ft_substr(str, j, i);
-            tk->head_redct->flag = 2;
-            tk->head_redct->next = NULL;
-             tk->head_redct =  tk->head_redct->next;
+            ft_fill_red(token, 3, ft_substr(rdl, j, i));
+            tk->head_redct->del = ft_substr(rdl, j, i);
         }
-        if (str[i] == '>')
+        if (rdl[i] == '>')
         {
-            while (str[i] && str[i] != ' ')
+            while (rdl[i] && rdl[i] != ' ')
                 i++;
-            tk->head_redct->del = ft_substr(str, j, i);
+            tk->head_redct->del = ft_substr(rdl, j, i);
             tk->head_redct->flag = 1;
             tk->head_redct->next = NULL;
              tk->head_redct =  tk->head_redct->next;
@@ -81,40 +91,3 @@ void smart_smart_split(t_tokens **token)
         tk= tk->next;
     }    
 }
-
-// while (tk->rdl[i])
-//         {
-//             if (tk->rdl[i] == '\'')
-// 		    i = find_end_of_single_quote(tk->rdl, i);
-// 	        else if (tk->rdl[i] == '\"')
-// 		    i = find_end_of_double_quote(tk->rdl, i);
-//             if (tk->rdl[i] != '>' && tk->rdl[i] != '<')
-//             {
-//                 while (tk->rdl[i] && tk->rdl[i] != ' ' && tk->rdl[i] != '>' && tk->rdl[i] != '<')
-//                     i++;
-//                 tk->cmd[cmd] = ft_substr(tk->rdl, j, i);
-//                 printf("cmd =>%s, int = %d\n",  tk->cmd[cmd], cmd);
-//                 cmd++;
-//             }
-//             j = i;
-//             if (tk->rdl[i] == '\'')
-// 		    i = find_end_of_single_quote(tk->rdl, i);
-// 	        else if (tk->rdl[i] == '\"')
-// 		    i = find_end_of_double_quote(tk->rdl, i);
-//             if (tk->rdl[i] == '>' && tk->rdl[i + 1] != '>')
-//             {
-//                 while (tk->rdl[i] != ' ')
-//                     i++;
-//             }
-//              if (tk->rdl[i] == '<' && tk->rdl[i + 1] == '<')
-//             {
-//                 while (tk->rdl[i] != ' ')
-//                     i++;
-//             }
-//              if (tk->rdl[i] == '>')
-//             {
-//                 while (tk->rdl[i] != ' ')
-//                     i++;
-//             }
-//              i++;
-//         }

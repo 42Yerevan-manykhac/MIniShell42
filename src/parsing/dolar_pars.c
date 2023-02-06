@@ -19,7 +19,7 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 
 	len_s = ft_strlen(str);
 	new_str = ft_substr(str, 0, x - 1);
-	printf("smt1 = %s\n", new_str);
+	// printf("smt1 = %s\n", new_str);
 	rtv = new_str;
 	if (world)
 	{

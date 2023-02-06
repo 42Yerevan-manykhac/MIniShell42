@@ -24,21 +24,31 @@ void one_node_free(t_env **rtv)
 void free_t_list(t_tokens **token)
 {
 	int	i;
+	t_tokens *tk;
 
 	i = 0;
-	//free((*token)->hrd_count);
+	tk = *token;
+	//if ((*token)->hrd_count)
+		//free((*token)->hrd_count);
 	while ((*token))
 	{
-		if ((*token)->rdl)
-			free((*token)->rdl);
-		while ((*token)->cmd[i])
+		if (tk->rdl)
 		{
-			free((*token)->cmd[i]);
-			i++;
+			free(tk->rdl);
+			tk->rdl = NULL;
 		}
-		free((*token)->cmd);
-		free(token);
-		i = 0;
+		if ((*token)->cmd && (*token)->cmd[i])
+		{
+			while ((*token)->cmd[i])
+			{
+				//free((*token)->cmd[i]);
+				i++;
+			}
+			//(*token)->cmd = NULL;
+		}
+		// i = 0;
+		//free((*token)->cmd);
+		(*token) = (*token)->next;
 	}
-
+	//free(token);
 }

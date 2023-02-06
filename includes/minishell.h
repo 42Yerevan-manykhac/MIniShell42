@@ -5,7 +5,7 @@
 # include "utils.h"
 # include <stdio.h>
 # include <stdlib.h>
- #include <fcntl.h>
+ #include <fcntl.h> 
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -27,7 +27,7 @@ typedef  struct s_redirects t_redirects;
 struct	s_redirects
 {
 	int		flag;     //< = 1, << =2,  > = 3 >> = 4
-	//char	*pathname;
+	char	*pathname;
 	char	*del;
 	struct	s_redirects	*next;
 } ;
@@ -36,14 +36,10 @@ typedef struct s_tokens	t_tokens;
 
 struct s_tokens
 {
-    char		*rdl; //
+    char		*rdl;
     char		**cmd;
-    // char		**herdoc; //<<
-    // char		**redirect;  //>
 	int			*hrd_count;
 	t_redirects	*head_redct;
-	//int			*exit_code;
-	//t_count		count;
 	t_tokens	*next;
 };
 
@@ -59,6 +55,7 @@ typedef struct s_env	t_env;
 	t_env	*next;
 };
 //comands
+int		exit_cmd(char **c);
 void	pwd_cmd(void);
 void	env_cmd(t_env *env);
 void    unset_cmd(t_env **l_env,char *key);
@@ -81,6 +78,7 @@ void 	tokenization(t_tokens **token, char **str );
 int		find_end_of_double_quote(char *str, int i);
 int		find_end_of_single_quote(char *str, int i);
 void	cd_cmd(t_env **l_env, char **str);
+int		check_longlongd(char *str);
 void    redirection_input(char *file, int i);
 void	env_init(char **env, t_env **s_env);
 int		check_cmd( t_tokens **token, int i);
@@ -94,5 +92,4 @@ void	parsing_part_1(char *str, t_tokens **token);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
-int		exit_cmd(char **str);
 # endif

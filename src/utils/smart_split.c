@@ -70,8 +70,8 @@ char	**smart_split(char *s, char c)
 	str = malloc(sizeof (char *) * (word_count(s, c) + 1));
 	if (str == 0)
 		return (0);
-		printf("str = %s\n", s);
-	printf("WORD = %d\n", word_count(s, c));
+	// 	printf("str = %s\n", s);
+	// printf("WORD = %d\n", word_count(s, c));
 	while (++i < word_count(s, c) )
 	{
 		while (s[start] && s[start] == c)

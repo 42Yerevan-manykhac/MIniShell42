@@ -29,7 +29,7 @@ void	 redirection_input(char *file, int i) //  cat < filename
 	int	fd;
 
 	fd = open(file, O_RDONLY, 0644);
-	printf("fd == %d\n\n", fd);
+	// printf("fd == %d\n\n", fd);
 	if (fd < 0)
 	{
 		printf("error\n");
@@ -68,6 +68,4 @@ void	heredoc(char *key)
 	close(fd);
 	unlink(file);
 	free(file);
-
-	//printf("heyyyyyy\n");
 }

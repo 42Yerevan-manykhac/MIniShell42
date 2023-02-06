@@ -14,6 +14,7 @@
 # define OOO "\033[0m"
 
 char	*ft_itoa(int n);
+long long	ft_atoi(const char *str);
 void	print_logo();
 int     ft_int_strchr(char *str, char c);
 char	*ft_strchr(char *str, int c);
@@ -28,8 +29,9 @@ char	*ft_strjoin(char *s1, char  *s2);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char *s, int start, int len);
 char	**smart_split(char *s, char c);
-int     ft_isdigit(int argument);
+//int     ft_isdigit(int argument);
+char	*ft_cat_str(char *s);
+int     ft_isdigit(char *str);
 void	ft_putstr_fd(char *s, int fd);
-long long	ft_atoi(const char *str);
 
 # endif
