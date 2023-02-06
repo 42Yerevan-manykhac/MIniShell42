@@ -6,8 +6,9 @@ void	matrix_free(char **env_split)
 	int	j;
 
 	j = 0;
-	while (env_split[j])
+	while ( env_split && env_split[j])
 	{
+		//printf("lala = %s\n", env_split[j]);
 		free(env_split[j]);
 		j++;
 	}

@@ -10,17 +10,20 @@ char **t_env_to_matrix(t_env **env)
 
     i = 0;
     l_env = *env;
-    new_env = malloc(sizeof(char **));
-    while (l_env->value)
+    new_env = malloc(sizeof(char *));
+    while (l_env && l_env->key)
     {
         tmp = ft_strjoin(l_env->key,"=");
         new_env[i] = ft_strjoin(tmp, l_env->value);
         l_env = l_env->next;
         printf("new = %s\n", new_env[i]);
         i++;
-        printf("\n tmp = %s\n", tmp);
-         free(tmp);
+        free(tmp);
     }
+    new_env[i] = 0;
+     i = 0;
+    //  while (new_env[i])
+    //     printf("str = %s\n", new_env[i++]);
     return (new_env);
 }
 
@@ -45,7 +48,13 @@ void execv_cmd(t_env **env, char **str)
         printf("path = %s\n", splited_path[i]);
          i++;
     }
+    free(new_str);
     mx_env = t_env_to_matrix(env);
-    
+    i = 0;
+     while (mx_env[i])
+        printf("str = %s\n", mx_env[i++]);
     printf("path = %s\n", path->value);
+    i = 0;
+    matrix_free(mx_env);
+    matrix_free(splited_path);
 }
