@@ -11,6 +11,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_env		*s_env;
 
 	//char **splited;
+	(void)token;
 	(void)s_env;
 	(void)env;
 	// print_logo();
@@ -27,6 +28,7 @@ int	main(int arg_nb, char **argv, char **env)
 		else
 			break;
 			//export_no_args(&s_env);
+			execv_cmd(&s_env, &str);
 		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
 		//env_cmd(s_env);
 	//	only_export(&s_env);
@@ -36,7 +38,7 @@ int	main(int arg_nb, char **argv, char **env)
 		//export_no_args(&s_env);    ///anel stugel krkin nayel 
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
-		gen_parsing(&token, &s_env, &str);
+		//gen_parsing(&token, &s_env, &str);
 		// while (token)
 		// {
 		// 	printf("tok00 = %s\n", token->rdl);
