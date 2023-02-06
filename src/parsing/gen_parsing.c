@@ -82,7 +82,7 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 		return (1);
 	dolar_pars(str, env);
 	tokenization(token, str);
-	printf("strrr => %s\n", *str);
+	//printf("strrr => %s\n", *str);
 	//return (1);
 	return (0);
 }

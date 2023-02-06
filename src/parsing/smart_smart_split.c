@@ -1,11 +1,12 @@
 #include "minishell.h"
 
-void ft_fill_red(t_tokens **token, int flag, char *str)
+void ft_fill_red(t_tokens *tk, int flag, char *str)
 {
-   // static int rld = 0;
-    t_tokens *tk;
 
-    tk = *token;
+   // static int rld = 0;
+   // t_tokens *tk;
+
+    //tk = *token;
     tk->head_redct = malloc(sizeof(t_redirects));
     tk->head_redct->del = str;
      printf("red=%s\n",  tk->head_redct->del);
@@ -16,24 +17,25 @@ void ft_fill_red(t_tokens **token, int flag, char *str)
 
 int any_quote(char *str,int i)
 {
-     if (str[i] == '\'')
+    if (str[i] == '\'')
 		i = find_end_of_single_quote(str, i);
 	else if (str[i] == '\"')
 		    i = find_end_of_double_quote(str, i);
     return (i);
 }
 
-void ft_smart_sub(t_tokens **token, char *rdl)
+void ft_smart_sub(t_tokens *tk, char *rdl)
 {
     int i;
     int j;
     int cmd;
 
-    t_tokens *tk;
-    tk = *token;
+    //t_tokens *tk;
+    //tk = *token;
     cmd = 0;
     i = 0;
     j = 0;
+    printf(",TKK,%s\n", tk->rdl);
     while (rdl[i])
     {
         if (rdl[i] != '>' && rdl[i] != '<' && rdl[i] != ' ')
@@ -57,15 +59,15 @@ void ft_smart_sub(t_tokens **token, char *rdl)
         j = i;
         if (rdl[i] == '>' && rdl[i + 1] != '>')
         {
-            while (rdl[i] && rdl[i] != ' ')
+            while (rdl[i] && rdl[i] != ' '  && rdl[i] != '\''  && rdl[i] != '\"')
                 i++;
-            ft_fill_red(token, 3, ft_substr(rdl, j, i));
+            ft_fill_red(tk, 3, ft_substr(rdl, j, i));
         }
         if (rdl[i] == '<' && rdl[i + 1] == '<')
         {
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-            ft_fill_red(token, 3, ft_substr(rdl, j, i));
+            ft_fill_red(tk, 3, ft_substr(rdl, j, i));
             tk->head_redct->del = ft_substr(rdl, j, i);
         }
         if (rdl[i] == '>')
@@ -87,7 +89,8 @@ void smart_smart_split(t_tokens **token)
     tk = *token;
     while (tk)
     {
-        ft_smart_sub(token, tk->rdl);
+
+        ft_smart_sub(tk, tk->rdl);
         tk= tk->next;
     }    
 }

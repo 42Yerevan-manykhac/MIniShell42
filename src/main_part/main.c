@@ -10,7 +10,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_tokens	*token;
 	t_env		*s_env;
 
-	char **splited;
+	//char **splited;
 	(void)s_env;
 	(void)env;
 	// print_logo();
@@ -19,6 +19,7 @@ int	main(int arg_nb, char **argv, char **env)
 	while (1)
 	{
 		// in_copy = dup(0);
+		 //printf("INCOPY%d\n", in_copy);
 		str = readline ("Minishell$> ");
 		printf("\033[0;35m");
 		if (str)
@@ -50,12 +51,12 @@ int	main(int arg_nb, char **argv, char **env)
 		
 		//env_cmd(s_env);
 
-	splited = ft_split(str, ' ');
+	//splited = ft_split(str, ' ');
 
-		exit_cmd(splited);
+		//exit_cmd(splited);
 	//	printf("\033[0;36m"); 
 	 //free_t_list(&token);
-	matrix_free(splited);
+	//matrix_free(splited);
 	 free(str);
 	}
 	return (0);

@@ -93,7 +93,6 @@ void fill_t_token(t_tokens **token ,char **tokenized, int *hrd_c)
 	while (tokenized[i])
 	{
 		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c));
-		//printf("rdl = %s\n", (*token)->rdl);
 		i++;
 	}
 }
@@ -117,7 +116,7 @@ int	ft_count_pipe(char *str)
 	}
 	return (count);
 }
-void check_error(char **tokenized,char *str)
+int check_error(char **tokenized,char *str)
 {
 	int		count_pipe;
 	int		count_tokens;
@@ -127,9 +126,9 @@ void check_error(char **tokenized,char *str)
 	if (count_pipe && count_tokens - 1 != count_pipe )
 	{
 		write(2, "Minishell: syntax error near unexpected token `|'\n", 50);
-		exit(1);
+		return (1);
 	}
-
+return (0);
 }
 void 	tokenization(t_tokens **token, char **str)
 {
@@ -141,15 +140,14 @@ void 	tokenization(t_tokens **token, char **str)
 	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
 	check_error(tokenized, str[0]);
-	// printf("stex\n");
 	fill_t_token(token, tokenized, hrd_c);
-	// printf("mi ban \n");
 	smart_smart_split(token);
-	// while (*token)
-	// {
-	// 	if ((*token)->rdl) printf("tok = %s\n", (*token)->rdl);
-	// 	*token = (*token)->next;
-	// 	//printf("tok = %s\n", (*token)->rdl);
+	while (*token)
+	{
+		if ((*token)->rdl) 
+		printf("tok = %s\n", (*token)->rdl);
+		*token = (*token)->next;
+		//printf("tok = %s\n", (*token)->rdl);
 //free(hrd_c);
-	// }
+	}
 }
