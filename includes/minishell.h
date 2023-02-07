@@ -75,7 +75,7 @@ void smart_smart_split(t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
 void    heredoc(char *key);
-void execv_cmd(t_env **env, char **str);
+void execve_cmd(t_env **env, char **str);
 void 	tokenization(t_tokens **token, char **str );
 int		find_end_of_double_quote(char *str, int i);
 int		find_end_of_single_quote(char *str, int i);

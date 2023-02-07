@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-void    cheack_access(char **path, char **mx_env)
+void    cheack_access(char **path,char **str, char **mx_env)
 {
     int i;
 
@@ -9,7 +9,7 @@ void    cheack_access(char **path, char **mx_env)
     while (*path[i])
     {
         if (!access(path[i], F_OK))
-            execv(path[i], mx_env);
+            execve(path[i], str, mx_env);
         i++;
     }
 }
@@ -36,7 +36,7 @@ char    **t_env_to_matrix(t_env **env)
     return (new_env);
 }
 
-void execv_cmd(t_env **env, char **str)
+void execve_cmd(t_env **env, char **str)
 {
     t_env *path;
     char **splited_path;
@@ -58,7 +58,12 @@ void execv_cmd(t_env **env, char **str)
     }
     free(new_str);
     mx_env = t_env_to_matrix(env);
-    cheack_access(splited_path,mx_env);
+    int pid = 0;
+    pid = fork();
+    if (pid == 0)
+        cheack_access(splited_path, str, mx_env);
+    usleep(5000);
+    printf("lslsl\n");
     matrix_free(mx_env);
     matrix_free(splited_path);
 }

@@ -10,7 +10,7 @@ int	main(int arg_nb, char **argv, char **env)
 	t_tokens	*token;
 	t_env		*s_env;
 
-	//char **splited;
+	char **splited;
 	(void)token;
 	(void)s_env;
 	(void)env;
@@ -28,7 +28,8 @@ int	main(int arg_nb, char **argv, char **env)
 		else
 			break;
 			//export_no_args(&s_env);
-			execv_cmd(&s_env, &str);
+			splited = ft_split(str, ' ');
+			execve_cmd(&s_env, splited);
 		//export_cmd(&s_env,str); //(done( check only_export ))//++ done
 		//env_cmd(s_env);
 	//	only_export(&s_env);
