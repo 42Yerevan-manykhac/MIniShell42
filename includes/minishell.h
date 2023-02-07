@@ -62,6 +62,7 @@ void    unset_cmd(t_env **l_env,char *key);
 void	export_cmd(t_env **l_env, char *str);
 
 //
+int env_len(t_env **l_env);
 void free_t_list(t_tokens **token);
 int		ft_strlen(char *str);
 int		pre_parsing(char *str);
