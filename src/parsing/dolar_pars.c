@@ -70,6 +70,9 @@ void	dolar_pars(char **str, t_env **env)
 			i = find_end_of_single_quote(*str, i);
 		if ((*str)[i] == '<' && (*str)[i + 1] && (*str)[i + 1] == '<' )
 			i = go_until_spasce(*str, i + 2);
+		if ((*str)[i] == '$' && (*str)[i + 1] == '?')
+			i = i + 2;
+			//printf("ls= %c\n",(*str)[i] );
 		if ((*str)[i] == '$' && (*str)[i + 1] != ' ' && (*str)[i + 1])
 		{
 			x = ++i;

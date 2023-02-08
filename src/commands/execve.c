@@ -62,8 +62,7 @@ void execve_cmd(t_env **env, char **str)
     pid = fork();
     if (pid == 0)
         cheack_access(splited_path, str, mx_env);
-    usleep(5000);
-    printf("lslsl\n");
+    wait(NULL);
     matrix_free(mx_env);
     matrix_free(splited_path);
 }

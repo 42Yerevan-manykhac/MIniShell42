@@ -89,12 +89,13 @@ int exit_cmd(char **c)
     long long num;
     if(!c[1])
     {
+		//exit_code = 5 ;
         printf("exit\n");
         exit(0); //hamapatasxan exit_code-ov
     }
         if(c[2]  && ft_isdigit(c[1]) )
     {
-         ft_putstr_fd("exit\n", 2);
+         ft_putstr_fd("\n", 2);
          ft_putstr_fd("minishell: exit: too many arguments\n", 2);
          return (0); //durs chi galis // statusy poxel 1
     }

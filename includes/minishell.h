@@ -14,6 +14,8 @@
 
 # define METACHARS " |&()<>;"
 
+extern int	exit_code;
+
 typedef struct s_count	t_count;
 
 struct	s_count
