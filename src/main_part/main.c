@@ -41,8 +41,9 @@ int	main(int arg_nb, char **argv, char **env)
 		//export_no_args(&s_env);    ///anel stugel krkin nayel 
 		//pwd_cmd();
 		//cd_cmd(&s_env, &str);
-		printf("main str = %s\n", str);
+		//printf("main str = %s\n", str);
 		gen_parsing(&token, &s_env, &str);
+			running(&token, &s_env);
 		// while (token)
 		// {
 		// 	printf("tok00 = %s\n", token->rdl);

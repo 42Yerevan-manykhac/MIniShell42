@@ -88,6 +88,9 @@ int	ft_strcmp(char *str, char *cmd)
 	return (0);
 }
 
+
+
+
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ptr;
@@ -96,6 +99,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
+	if(!s1)
+		return (s2);
 	ptr = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!ptr)
 		return (NULL);

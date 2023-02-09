@@ -37,6 +37,7 @@ t_redirects *new_t_redirects(int flag, char *del, char *pathname)
 	new_red->flag = flag;
 	new_red->del = del;
 	new_red->pathname = pathname;
+	new_red->next = NULL;
 	return (new_red);
 }
 
@@ -62,6 +63,7 @@ t_tokens	*new_t_tokens(char *rdl, char **cmd, int *hrd_count)
 	new_node = malloc(sizeof(t_tokens));;
 	new_node->rdl = rdl;
 	new_node->cmd = malloc(sizeof(char **));
+	new_node->cmd = NULL;//manyana avelacrel
 	new_node->hrd_count = hrd_count;
 	//printf("hrd = %d\n", (*new_node->hrd_count));
 	new_node->head_redct = NULL;
@@ -142,12 +144,12 @@ void 	tokenization(t_tokens **token, char **str)
 	check_error(tokenized, str[0]);
 	fill_t_token(token, tokenized, hrd_c);
 	smart_smart_split(token);
-	while (*token)
-	{
-		if ((*token)->rdl) 
-		printf("tok = %s\n", (*token)->rdl);
-		*token = (*token)->next;
-		//printf("tok = %s\n", (*token)->rdl);
-//free(hrd_c);
-	}
+// 	while (*token)
+// 	{
+// 		if ((*token)->rdl) 
+// 		printf("tok = %s\n", (*token)->rdl);
+// 		*token = (*token)->next;
+// 		//printf("tok = %s\n", (*token)->rdl);
+// //free(hrd_c);
+// 	}
 }

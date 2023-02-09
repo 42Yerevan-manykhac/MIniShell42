@@ -17,3 +17,40 @@
 // 	if (ft_strcmp1(str[0], "unset"))
 // 		unset_cmd(t_env **l_env,char *new_key);
 // }
+
+void running(t_tokens **tk, t_env **l_env)
+{
+(void)l_env;
+t_env *env;
+t_tokens *token;
+token =*tk;
+env = *l_env;
+	while (token)
+	{	
+        if(token->cmd[0])
+           { 
+  
+                	if (!ft_strcmp1(token->cmd[0], "exit"))
+                        exit_cmd(token->cmd);
+                    if (!ft_strcmp1(token->cmd[0], "pwd"))
+                		pwd_cmd();
+                	if (!ft_strcmp1(token->cmd[0], "env"))
+                    {
+                        printf("\n\nprint 1\n\n");
+                		env_cmd(env);
+                    }
+                	if (!ft_strcmp1(token->cmd[0], "export") && !token->cmd[1])
+                		only_export(l_env);
+                	if (!ft_strcmp1(token->cmd[0], "export"))
+                		export_cmd(l_env,token->cmd[1]);
+                	// if (!ft_strcmp1(token->cmd[0], "cd"))
+                	// 	cd_cmd(l_env, token->cmd);
+                	// if (!ft_strcmp(token->cmd[0], "echo"))
+                	// 	echo_cmd(token->cmd);
+                	if (!ft_strcmp1(token->cmd[0], "unset"))
+                		unset_cmd(l_env, token->cmd[1]);
+                                    
+           }
+		token=token->next;
+	}
+}

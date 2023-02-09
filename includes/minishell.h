@@ -96,4 +96,8 @@ void	parsing_part_1(char *str, t_tokens **token);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
+void	echo_cmd(char **str);
+void running(t_tokens **token, t_env **l_env);
+t_redirects *new_t_redirects(int flag, char *del, char *pathname);
+void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
 # endif
