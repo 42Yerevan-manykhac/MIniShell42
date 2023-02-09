@@ -112,9 +112,7 @@ void	export_cmd(t_env **l_env, char *str)
 
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
-//	env->flag = 1;
 	splited = split_export(str);
-//	printf("spl[2] = %s\n", splited[2]);
 	if (!if_key_already_exist(l_env, splited))
 	{
 		env = malloc(sizeof(t_env));

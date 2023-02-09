@@ -62,7 +62,7 @@ int	main(int arg_nb, char **argv, char **env)
 
 		//exit_cmd(splited);
 	//	printf("\033[0;36m"); 
-	 //free_t_list(&token);
+	 free_t_list(&token);
 	//matrix_free(splited);
 	 free(str);
 	}
