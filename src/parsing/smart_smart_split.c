@@ -25,6 +25,37 @@ int any_quote(char *str, int i)
 }
 
 
+char *ignore_quote(char *str)
+{
+    int i = 0;
+    int j = 0;
+    char *tmp;
+
+    tmp = NULL;
+    while(str[i])
+    {
+        if(str[i]=='\'' || str[i]=='\"' ) // e"x"it // i= 5; j = 2
+        j++;
+    i++;
+    }
+    tmp = malloc(sizeof(char *) * (i-j+2));
+    i = 0;
+    j = 0;
+    while(str[i])
+    {
+        if(str[i]!='\'' && str[i]!='\"')
+        {
+            tmp[j]  = str[i];
+            j++;
+        }
+        i++;
+    }
+        printf(",TMP,%s\n", tmp);
+free(str);
+    return(tmp);
+}
+
+
 void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert) 
 {
     char    *tmp;
@@ -86,6 +117,7 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
         }
         else 
         {
+            printf("MTA\n");
             j = i;
             while (rdl[i]!='<' && rdl[i]!='>' &&  rdl[i]!='\0')
             {
@@ -99,8 +131,9 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
         }
     }
     printf(",TMP,%s\n", tmp);
-    
-         (*hert)->cmd = smart_split(tmp, ' ');
+
+    if(tmp)
+         (*hert)->cmd = smart_split(ignore_quote(tmp), ' ');
 }
 void smart_smart_split(t_tokens **token)
 {
@@ -108,8 +141,8 @@ void smart_smart_split(t_tokens **token)
     tk = *token;
     while (tk)
     {
-     
         ft_smart_sub(token, tk->rdl, &tk);
+        printf("MMMMMM\n");
         tk = tk->next;
     }
 }

@@ -33,5 +33,6 @@ char	**smart_split(char *s, char c);
 char	*ft_cat_str(char *s);
 int     ft_isdigit(char *str);
 void	ft_putstr_fd(char *s, int fd);
+char *ignore_quote(char *str);
 
 # endif

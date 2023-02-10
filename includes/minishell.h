@@ -11,6 +11,7 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <string.h>
+# include <termios.h>
 
 # define METACHARS " |&()<>;"
 
@@ -100,4 +101,8 @@ void	echo_cmd(char **str);
 void running(t_tokens **token, t_env **l_env);
 t_redirects *new_t_redirects(int flag, char *del, char *pathname);
 void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
+void    ft_signal_handling(int sig);
+void	handleterm(int s);
+void    handle_ctrl_d(int sig);
+
 # endif

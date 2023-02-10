@@ -68,4 +68,5 @@ void	heredoc(char *key)
 	close(fd);
 	unlink(file);
 	free(file);
+
 }

@@ -25,39 +25,43 @@ t_env *env;
 t_tokens *token;
 token =*tk;
 env = *l_env;
+
+while (token)
+{
+	while (token->head_redct)
+	{
+		if (token->head_redct && token->head_redct->flag == 2)
+		{
+			printf("dle == %s\n",token->head_redct->del );
+			heredoc(token->head_redct->del);
+			
+		}
+		token->head_redct = token->head_redct->next;
+	}
+	token=token->next;
+}
+
+token = *tk;
 	while (token)
 	{	
-        if(token->cmd[0])
-           { 
-  
-                	if (ft_strcmp(token->cmd[0], "exit"))
-                        exit_cmd(token->cmd);
-                    if (ft_strcmp(token->cmd[0], "pwd"))
-                		pwd_cmd();
-                	else if (!ft_strcmp1(token->cmd[0], "env"))
-                    {
-                      //  printf("\n\nstr -------> %s\n\n",token->cmd[0]);
-                		env_cmd(env);
-                    }
-					// printf("\n\nstr1 -------> %s\n\n",token->cmd[0]);
-                	if (ft_strcmp(token->cmd[0], "export") && !token->cmd[1])
-                		only_export(l_env);
-						// printf("\n\nstr2 -------> %s\n\n",token->cmd[0]);
-                	if (ft_strcmp(token->cmd[0], "export"))
-                		export_cmd(l_env,token->cmd[1]);
-						// printf("\n\nstr3-------> %s\n\n",token->cmd[0]);
-                	if (ft_strcmp(token->cmd[0], "cd"))
-                		cd_cmd(l_env, token->cmd);
-				//	 printf("\n\nstr4 -------> %s\n\n",token->cmd[0]);
-                	if (ft_strcmp(token->cmd[0], "echo"))
-					{
-
-						 //printf("\n\nstr5 -------> %s\n\n",token->cmd[0]);
-                		echo_cmd(token->cmd);
-					}
-						if (!ft_strcmp1(token->cmd[0], "unset"))
-							unset_cmd(l_env, token->cmd[1]);
-                                    
+         if(token->cmd)
+        {
+			if (ft_strcmp(token->cmd[0], "exit"))
+				exit_cmd(token->cmd);
+			if (ft_strcmp(token->cmd[0], "pwd"))
+				pwd_cmd();
+			if (ft_strcmp(token->cmd[0], "env"))
+				env_cmd(env);
+			if (ft_strcmp(token->cmd[0], "export") && !token->cmd[1])
+				only_export(l_env);
+			if (ft_strcmp(token->cmd[0], "export"))
+				export_cmd(l_env,token->cmd[1]);
+			if (ft_strcmp(token->cmd[0], "cd"))
+				cd_cmd(l_env, token->cmd);
+			if (ft_strcmp(token->cmd[0], "echo"))
+				echo_cmd(token->cmd);
+			if (ft_strcmp(token->cmd[0], "unset"))
+				unset_cmd(l_env, token->cmd[1]);                 
            }
 		token=token->next;
 	}

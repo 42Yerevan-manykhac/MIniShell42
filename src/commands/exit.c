@@ -93,6 +93,13 @@ int exit_cmd(char **c)
         printf("exit\n");
         exit(0); //hamapatasxan exit_code-ov
     }
+	if(!ft_isdigit(c[1]))
+	{
+		 ft_putstr_fd("exit\n", 2);
+         ft_putstr_fd("minishell: exit: numeric argument required\n", 2);
+		 exit(0); //hamapatasxan exit_code-ov
+	}
+
         if(c[2]  && ft_isdigit(c[1]) )
     {
          ft_putstr_fd("\n", 2);
