@@ -73,6 +73,7 @@ t_env	*ft_lstlast(t_env *lst);
 void    only_export(t_env **node);
 void	export_no_args(t_env **env);
 int		cheack_back(char *str, int x);
+void dollar_harcakan();
 int		count_init( t_tokens **token);
 void smart_smart_split(t_tokens **token);
 void	initializer(t_tokens **token);
@@ -104,5 +105,6 @@ void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
 void    ft_signal_handling(int sig);
 void	handleterm(int s);
 void    handle_ctrl_d(int sig);
+void	interrogatory(char **str);
 
 # endif

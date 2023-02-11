@@ -19,9 +19,35 @@ void	unset_cmd(t_env **l_env, char *new_key)
 
 void	echo_cmd(char **str)
 {
-	if (ft_strcmp1(str[1],"-n") == 0)
-		printf("%s",str[2]);
-	else 
-		printf("%s\n",str[2]);
+	int i;
+
+	i = 0;
+	if (ft_strcmp(str[1], "-n"))
+	{
+		if (str[2])
+		{
+			i = 2;
+			while(ft_strcmp(str[i], "-n"))
+					i++;
+			while(str[i])
+			{
+				printf("%s ",str[i]);
+					i++;
+			}
+		}
+	}
+	else
+	{
+		if (str[1])
+		{
+			i = 1;
+			while(str[i])
+			{
+			printf("%s ",str[i]);
+			i++;
+			}
+			printf("\n");
+		}
+	}
 }
 //Volodyayi case-ery chnayel

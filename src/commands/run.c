@@ -25,14 +25,13 @@ t_env *env;
 t_tokens *token;
 token =*tk;
 env = *l_env;
-
+(void) env;
 while (token)
 {
 	while (token->head_redct)
 	{
 		if (token->head_redct && token->head_redct->flag == 2)
 		{
-			printf("dle == %s\n",token->head_redct->del );
 			heredoc(token->head_redct->del);
 			
 		}
@@ -61,7 +60,8 @@ token = *tk;
 			if (ft_strcmp(token->cmd[0], "echo"))
 				echo_cmd(token->cmd);
 			if (ft_strcmp(token->cmd[0], "unset"))
-				unset_cmd(l_env, token->cmd[1]);                 
+				unset_cmd(l_env, token->cmd[1]);
+			//else execve_cmd(l_env, token->cmd);               
            }
 		token=token->next;
 	}

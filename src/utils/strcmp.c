@@ -62,11 +62,16 @@ int	ft_strcmp(char *str, char *cmd)
 	int	j;
 	int	len;
 	int	flag;
+	int len2;
+
 
 	flag = 0;
 	i = 0;
 	j = 0;
 	len = ft_strlen(cmd);
+	len2 = ft_strlen(str);
+	if(len!=len2)
+	return (0);
 	while (cmd && str && cmd[j] && str[i])
 	{
 		while (str[i] == cmd[j])
@@ -118,6 +123,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
 
 int	ft_strcmp1(char *s1, char *s2)
 {

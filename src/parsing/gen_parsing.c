@@ -89,10 +89,12 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
-	dolar_pars(str, env);
-	printf("PPPPPP%s\n", str[0]);
+	printf("str1 => %s\n", str[0]);
+	//dolar_pars(str, env);
+	interrogatory(str);
+
+	printf("str => %s\n", str[0]);
 	tokenization(token, str);
-	printf("ZZZZZZ\n");
 	// printf("str=>%s\n", str[0]);
 	return (0);
 }

@@ -31,7 +31,6 @@ void    handle_ctrl_d(int sig)
     tcgetattr(0, &_term);
     if (sig == 0)
     {
-        printf("mta stex\n");
         _term.c_cflag &= ~ECHOCTL;
         tcsetattr(0, TCSANOW, &_term);
     }
