@@ -3,7 +3,7 @@ BLUE = '\x1b[36m'
 YELLOW= '\x1b[32m'
 MAGENTA ='\x1b[35m'
 
-PREFIX = $(shell find ${HOME} -name lm-readline 2>/dev/null)
+#PREFIX = $(shell find ${HOME} -name lm-readline 2>/dev/null)
 NAME		= minishell
 SRCS		= $(wildcard src/*/*.c)
 #SRCS		+= $(wildcard src/*.c)
@@ -13,18 +13,18 @@ CFLAGS		=  -Wall -Wextra -Werror #-fsanitize=address #-lreadline
 RM			= rm -f
 CC			= cc
 
-INCLUDES_READLINE = -I./lm-readline/include
+#INCLUDES_READLINE = -I./lm-readline/include
 
-LINKERS	= -lreadline -L./lm-readline/lib 
+#LINKERS	= -lreadline -L./lm-readline/lib 
 
 %.o:%.c
-	$(CC) $(CFLAGS) -I $(INCLUDES) $(INCLUDES_READLINE) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCLUDES) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME) : $(OBJS)
 		@echo $(NONE)$(BLUE) "\n\t\t🤹 Compiling $(NAME)... \n" $(NONE)
-		$(CC) $(CFLAGS) -I $(INCLUDES) $(INCLUDES_READLINE) $(LINKERS) $(OBJS) -o $(NAME)  -lreadline
+		$(CC) $(CFLAGS) -I $(INCLUDES)  $(OBJS) -o $(NAME)  -lreadline
 		@echo $(NONE)$(BLUE)"\n\t\t😱 Compiled   $(NAME)\n"$(NONE)
 
 clean	:
@@ -36,8 +36,8 @@ fclean	: 	clean
 			$(RM) $(NAME)  
 			rm -rf ~/LIbrary/Caches
 
-readline:
-	cd readline-master && make clean && bash ./configure --prefix=$(PREFIX) && make && make install
+#readline:
+#	cd readline-master && make clean && bash ./configure --prefix=$(PREFIX) && make && make install
 
 re		:fclean all
 .PHONY: all clean fclean re

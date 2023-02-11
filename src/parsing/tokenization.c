@@ -81,9 +81,14 @@ void	t_tokens_add_back(t_tokens **head, t_tokens *new_node)
 		*head = new_node;
 		return ;
 	}
+	int i = 0;
 	while (tmp->next)
+	{
+	printf("count = %d\n", i);
 		tmp = tmp->next;
+	}
 	tmp->next = new_node;
+	printf("UUUUUU1\n");
 }
 
 
@@ -92,9 +97,12 @@ void fill_t_token(t_tokens **token ,char **tokenized, int *hrd_c)
 	int i;
 
 	i = 0;
+	printf("hrd count = %d\n",(*hrd_c));
 	while (tokenized[i])
 	{
+		printf("i = %d\n", i);
 		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c));
+		printf("lalalal\n ");
 		i++;
 	}
 }
@@ -142,7 +150,9 @@ void 	tokenization(t_tokens **token, char **str)
 	*hrd_c = count_hrd(str);
 	tokenized = smart_split(str[0], '|');
 	check_error(tokenized, str[0]);
+	printf("LLLLLL\n");
 	fill_t_token(token, tokenized, hrd_c);
+	printf("HHHHHHH\n");
 	smart_smart_split(token);
 // 	while (*token)
 // 	{

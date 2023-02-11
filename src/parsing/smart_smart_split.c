@@ -5,10 +5,10 @@
 void ft_fill_red(t_tokens **token, int flag, char *str)
 {
 
-    t_tokens *tk;
+    //t_tokens *tk;
     t_redirects *red = NULL;
     
-    tk = *token;
+    //tk = *token;
     red = new_t_redirects(flag, str, NULL);
 
     t_redirects_add_back(&(*token)->head_redct, red);
@@ -61,10 +61,10 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
     char    *tmp;
     int i;
     int j;
-    int k;
+    //int k;
 
     tmp= NULL;
-    k = 0;
+   // k = 0;
     i = 0;
     j = 0;
 

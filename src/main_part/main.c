@@ -17,15 +17,15 @@ int	main(int arg_nb, char **argv, char **env)
 	(void)env;
 	// print_logo();
 	s_env = malloc(sizeof(t_env));
-	ft_signal_handling(0);
+	//ft_signal_handling(0);
 	env_init(env, &s_env);
 	while (1)
 	{
 		in_copy = dup(0);
 		 //printf("INCOPY%d\n", in_copy);
 		str = readline ("Minishell$> ");
-		if(str == 0)
-			handleterm(0);
+		// if(str == 0)
+		// 	handleterm(0);
 		// printf("\033[0;35m");
 		if (str)
 			add_history(str);

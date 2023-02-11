@@ -26,7 +26,7 @@ void free_t_list(t_tokens **token)
 	int	i;
 	t_tokens *tk;
 	t_redirects *hrd;
-
+(void) hrd;
 	i = 0;
 	tk = *token;
 	if ((*token)->hrd_count)
