@@ -100,6 +100,7 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
 void	echo_cmd(char **str);
 void running(t_tokens **token, t_env **l_env);
+char	*join_dolar_str(char *str, char *world, int x, int z);
 t_redirects *new_t_redirects(int flag, char *del, char *pathname);
 void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
 void    ft_signal_handling(int sig);

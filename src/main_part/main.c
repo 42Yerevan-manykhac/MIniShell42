@@ -38,8 +38,8 @@ int	main(int arg_nb, char **argv, char **env)
 		dup2(in_copy, 0);
 	
 	printf("\033[0;36m"); 
-	 free_t_list(&token);
-	 free(str);
+	// free_t_list(&token);
+	 //free(str);
 	}
 	return (0);
 }

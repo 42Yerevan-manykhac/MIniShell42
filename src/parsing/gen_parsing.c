@@ -6,25 +6,25 @@ int	check(int i, char *str, int *flg)
 		i = find_end_of_single_quote(str, i);
 	else if (str[i] == '\"')
 		i = find_end_of_double_quote(str, i);
-	if (str[i] == '<' && str[i + 1] != '<')
+	if (str[i] && str[i] == '<' && str[i + 1] && str[i + 1] != '<')
 	{
 		i++;
 		if (cheack_back(str, i - 2) || cheack_front(str, &i))
 			*flg = 0;
 	}
-	else if ((str[i] == '>' && str[i + 1] != '>'))
+	else if (str[i] && str[i] == '>' &&  str[i + 1]&& str[i + 1] != '>')
 	{
 		i++;
 		if (cheack_front(str, &i))
 			*flg = 0;
 	}
-	else if ((str[i] == '>' && str[i + 1] == '>'))
+	else if (str[i] && str[i] == '>' && str[i + 1] && str[i + 1] == '>')
 	{
 		i += 2;
 		if (cheack_front(str, &i))
 			*flg = 0;
 	}
-	else if (str[i] == '<' && str[i + 1] == '<')
+	else if (str[i] && str[i] == '<' && str[i + 1]  && str[i + 1]== '<')
 	{
 		i += 2;
 		if (cheack_front(str, &i))
@@ -49,6 +49,7 @@ int	syntax_pars_2(char *str)
 	{
 		exit_code = 1;
 		write(2, "Minishell: syntax error near unexpected token `newline'\n", 58);
+		printf("cheack\n");
 		return (1);
 	}
 	return (0);
@@ -63,6 +64,7 @@ int	syntax_pars_1(char c)
 		write(2, "Minishell: syntax error near unexpected token `", 48);
 		write(2, &c, 1);
 		write(2, " '\n", 3);
+			printf("zilina\n");
 		return (1);
 	}
 	return (0);
@@ -89,11 +91,9 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
-	printf("str1 => %s\n", str[0]);
-	//dolar_pars(str, env);
+	//printf("from gen\n");
+	dolar_pars(str, env);
 	interrogatory(str);
-
-	printf("str => %s\n", str[0]);
 	tokenization(token, str);
 	// printf("str=>%s\n", str[0]);
 	return (0);

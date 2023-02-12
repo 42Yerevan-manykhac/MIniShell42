@@ -19,7 +19,6 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 
 	len_s = ft_strlen(str);
 	new_str = ft_substr(str, 0, x - 1);
-	// printf("smt1 = %s\n", new_str);
 	rtv = new_str;
 	if (world)
 	{
@@ -32,6 +31,7 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 	free(tmp);
 	free(rtv);
 	free(str);
+	printf("toc = %s\n", new_str);
 	return (new_str);
 }
 
@@ -80,8 +80,10 @@ void	dolar_pars(char **str, t_env **env)
 			world = ft_substr(*str, x, i - x);
 			back = getenv(world);
 			*str = join_dolar_str(*str, back, x, i - x + 1);
+			printf("fsdf1\n");
 			if ((*str)[i] == '$')
 				i--;
+			printf("fsdf\n");
 			i = x - 1;
 			free(world);
 		}
