@@ -31,7 +31,6 @@ char	*join_dolar_str(char *str, char *world, int x, int z)
 	free(tmp);
 	free(rtv);
 	free(str);
-	printf("toc = %s\n", new_str);
 	return (new_str);
 }
 
@@ -58,12 +57,10 @@ void	dolar_pars(char **str, t_env **env)
 	int		x;
 	char	*world;
 	char	*back;
-	//char	*old_str;
 	(void)env;
 
 	i = 0;
 	x = 0;
-	//old_str = *str;
 	while ((*str)[i] != 0)
 	{
 		if ((*str)[i] == '\'')
@@ -80,10 +77,8 @@ void	dolar_pars(char **str, t_env **env)
 			world = ft_substr(*str, x, i - x);
 			back = getenv(world);
 			*str = join_dolar_str(*str, back, x, i - x + 1);
-			printf("fsdf1\n");
 			if ((*str)[i] == '$')
 				i--;
-			printf("fsdf\n");
 			i = x - 1;
 			free(world);
 		}

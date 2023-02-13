@@ -23,23 +23,25 @@ int	main(int arg_nb, char **argv, char **env)
 	while (1)
 	{
 		in_copy = dup(0);
-		 //printf("INCOPY%d\n", in_copy);
 		str = readline ("Minishell$> ");
-		 if(str == 0)
+		if(str == 0)
 		 	handleterm(0);
-		 printf("\033[0;35m");
+		printf("\033[0;35m");
 		if (str)
 			add_history(str);
 		else
 			break;
+		//rl_catch_signals = 0;
 		gen_parsing(&token, &s_env, &str);
 		running(&token, &s_env);
-		//dollar_harcakan();
 		dup2(in_copy, 0);
 	
 	printf("\033[0;36m"); 
-	// free_t_list(&token);
-	 //free(str);
+	// printf("rdl = %s\n", token->rdl);
+	// free(token->rdl);
+	// printf("rdl2 = %s\n", token->rdl);
+	free_t_list(&token);
+	free(str);
 	}
 	return (0);
 }

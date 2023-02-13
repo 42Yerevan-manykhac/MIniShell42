@@ -60,35 +60,42 @@ t_tokens	*new_t_tokens(char *rdl, char **cmd, int *hrd_count)
 {
 	t_tokens	*new_node;
 (void)cmd;
-	new_node = malloc(sizeof(t_tokens));;
+(void)hrd_count;
+
+	new_node = malloc(sizeof(t_tokens));
 	new_node->rdl = rdl;
-	new_node->cmd = malloc(sizeof(char **));
-	new_node->cmd = NULL;//manyana avelacrel
-	new_node->hrd_count = hrd_count;
-	//printf("hrd = %d\n", (*new_node->hrd_count));
-	new_node->head_redct = NULL;
+	// new_node->cmd = malloc(sizeof(char **));
+	 new_node->cmd = NULL;//manyana avelacrel
+	// new_node->hrd_count = hrd_count;
+	// new_node->head_redct = NULL;
 	new_node->next = NULL;
 	return (new_node);
 }
 
-void	t_tokens_add_back(t_tokens **head, t_tokens *new_node)
+t_tokens	*ft_lstlast1(t_tokens *lst)
 {
-	t_tokens	*tmp;
-
-	tmp = *head;
-	if (tmp == NULL)
+	if (lst == NULL)
+		return (0);
+	while (lst)
 	{
-		*head = new_node;
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	t_tokens_add_back(t_tokens **head, t_tokens *new)
+{
+	t_tokens	*node;
+
+	node = *head;
+	if (!node)
+	{
+		*head = new;
 		return ;
 	}
-	int i = 0;
-	while (tmp->next)
-	{
-	printf("count = %d\n", i);
-		tmp = tmp->next;
-	}
-	tmp->next = new_node;
-	printf("UUUUUU1\n");
+	ft_lstlast1(node)->next = new;
 }
 
 
@@ -97,7 +104,7 @@ void fill_t_token(t_tokens **token ,char **tokenized, int *hrd_c)
 	int i;
 
 	i = 0;
-	while (tokenized[i])
+	while (tokenized && tokenized[i])
 	{
 		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c));
 		i++;
@@ -141,20 +148,14 @@ void 	tokenization(t_tokens **token, char **str)
 {
 	char	**tokenized;
 	int		*hrd_c;
-
+(void)token;
+(void)str;
 	hrd_c = 0;
-	hrd_c = malloc(sizeof(int));
-	*hrd_c = count_hrd(str);
-	tokenized = smart_split(str[0], '|');
+//	hrd_c = malloc(sizeof(int));
+//	*hrd_c = count_hrd(str);
+	 tokenized = smart_split(*str, '|');
 	check_error(tokenized, str[0]);
 	fill_t_token(token, tokenized, hrd_c);
+	free(tokenized);
 	smart_smart_split(token);
-// 	while (*token)
-// 	{
-// 		if ((*token)->rdl) 
-// 		printf("tok = %s\n", (*token)->rdl);
-// 		*token = (*token)->next;
-// 		//printf("tok = %s\n", (*token)->rdl);
-// //free(hrd_c);
-// 	}
 }

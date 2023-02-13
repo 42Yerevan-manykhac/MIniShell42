@@ -49,7 +49,6 @@ int	syntax_pars_2(char *str)
 	{
 		exit_code = 1;
 		write(2, "Minishell: syntax error near unexpected token `newline'\n", 58);
-		printf("cheack\n");
 		return (1);
 	}
 	return (0);
@@ -64,7 +63,6 @@ int	syntax_pars_1(char c)
 		write(2, "Minishell: syntax error near unexpected token `", 48);
 		write(2, &c, 1);
 		write(2, " '\n", 3);
-			printf("zilina\n");
 		return (1);
 	}
 	return (0);
@@ -84,7 +82,7 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	char	*tmp;
 	(void)env;
 	(void)str;
-	(void) token;
+	(void)token;
 
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
@@ -92,9 +90,8 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	if (syntax_pars(str))
 		return (1);
 	//printf("from gen\n");
-	dolar_pars(str, env);
+	//dolar_pars(str, env);
 	interrogatory(str);
 	tokenization(token, str);
-	// printf("str=>%s\n", str[0]);
 	return (0);
 }

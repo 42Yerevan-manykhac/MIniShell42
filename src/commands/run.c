@@ -43,6 +43,7 @@ while (token)
 token = *tk;
 	while (token)
 	{	
+		//printf("cmd = %s\n\n", token->cmd[0]);
          if(token->cmd)
         {
 			if (ft_strcmp(token->cmd[0], "exit"))

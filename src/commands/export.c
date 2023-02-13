@@ -156,7 +156,7 @@ void	only_export(t_env **node)
 // export a=54 b=65 c=46
 // export a
 // export a=
-// export a=env=env=env=env=env
+// export a=en`v=env=env=env=env
 // export a+=2
 // errornery export a!#$%%^&=54, 34567asad=54, a++=54
 
@@ -169,4 +169,4 @@ void	only_export(t_env **node)
 
 
 
-//parsingum nayel key = inchvorban+ kam tiv;**
+//parsingum nayel key = inchvorban+ kam tiv;**	``

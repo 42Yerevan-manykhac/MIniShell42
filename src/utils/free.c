@@ -23,46 +23,42 @@ void one_node_free(t_env **rtv)
 
 void free_t_list(t_tokens **token)
 {
-	int	i;
-	t_tokens *tk;
-	t_redirects *hrd;
-(void) hrd;
+	(void) *token;
+ 	int	i;
+	t_tokens *next;
+	t_redirects *hrd_next;
+
 	i = 0;
-	tk = *token;
 	if ((*token)->hrd_count)
 		free((*token)->hrd_count);
 	while ((*token))
 	{
-		if (tk->rdl)
-		{
-			free(tk->rdl);
-			//tk->rdl = NULL;
-		}
-		if ((*token)->cmd && (*token)->cmd[i])
+		next = (*token)->next;
+		if ((*token)->rdl)
+			free((*token)->rdl);
+		if ((*token)->cmd)
 		{
 			while ((*token)->cmd[i])
 			{
 				free((*token)->cmd[i]);
-				i++;
+					i++;
 			}
-			//(*token)->cmd = NULL;
 		}
-	if ((*token)->head_redct)
-	{
-		while ((*token)->head_redct)
+		if ((*token)->head_redct)
 		{
-			if ((*token)->head_redct->del)
-				free((*token)->head_redct->del);
-			if ((*token)->head_redct->pathname)
-				free((*token)->head_redct->pathname);
-			hrd = (*token)->head_redct->next;
+			while ((*token)->head_redct)
+			{
+				hrd_next = (*token)->head_redct->next;
+				if ((*token)->head_redct->del)
+					free((*token)->head_redct->del);
+				free((*token)->head_redct);
+				(*token)->head_redct = hrd_next;
+			}
 			free((*token)->head_redct);
-			//free((*token)->head_redct);
+			(*token)->head_redct = NULL;
 		}
+		free(*token);
+		(*token) = next;
 	}
-		// i = 0;
-		free((*token)->cmd);
-		(*token) = (*token)->next;
-	}
-	//free(token);
+	token = NULL;
 }

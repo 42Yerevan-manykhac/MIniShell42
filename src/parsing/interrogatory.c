@@ -17,4 +17,5 @@ void	interrogatory(char **str)
         }
          else i++;
     }
+	free (num);
 }

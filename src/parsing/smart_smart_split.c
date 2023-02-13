@@ -1,18 +1,12 @@
 #include "minishell.h"
 
-
-
 void ft_fill_red(t_tokens **token, int flag, char *str)
 {
-
     //t_tokens *tk;
     t_redirects *red = NULL;
-    
     //tk = *token;
     red = new_t_redirects(flag, str, NULL);
-
     t_redirects_add_back(&(*token)->head_redct, red);
-
 }
 
 int any_quote(char *str, int i)
@@ -24,29 +18,30 @@ int any_quote(char *str, int i)
     return (i);
 }
 
-
 char *ignore_quote(char *str)
 {
-    int i = 0;
-    int j = 0;
-    char *tmp;
+    int		i;
+    int		j;
+    char	*tmp;
 
     tmp = NULL;    // exit
+	i = 0;
+	j = 0;
     while(str[i])
     {
-        if(str[i]=='\'' || str[i]=='\"' ) // e"x"it // i= 5; j = 2
-        j++;
+        if (str[i]=='\'' || str[i]=='\"' ) // e"x"it // i= 5; j = 2
+        	j++;
     i++;
     }
-    tmp = malloc(sizeof(char *) * (i-j+1));
-    tmp[i-j] = 0;
+    tmp = malloc(sizeof(char *) * (i - j + 1));
+    tmp[i - j] = 0;
     i = 0;
     j = 0;
     while(str[i])
     {
-        if(str[i]!='\'' && str[i]!='\"')
+        if(str[i] != '\'' && str[i] != '\"')
         {
-            tmp[j]  = str[i];
+            tmp[j] = str[i];
             j++;
         }
         i++;
@@ -59,13 +54,14 @@ char *ignore_quote(char *str)
 void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert) 
 {
     char    *tmp;
+	// char	*smt;
+	// char 	*ptr;
     int i;
     int j;
-  
-    tmp= NULL;
-    i = 0;
+	(void)tk;
     j = 0;
-
+    i = 0;
+    tmp= NULL;
     while (rdl[i])
     {
         while (rdl[i] && rdl[i] == ' ')
@@ -78,7 +74,7 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-            ft_fill_red(tk, 2, ft_substr(rdl, j, i - j));
+           ft_fill_red(tk, 2, ft_substr(rdl, j, i - j));
         }
         else if(rdl[i] && rdl[i + 1] && rdl[i] == '>' && rdl[i + 1] == '>')
         {
@@ -88,7 +84,7 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-            ft_fill_red(tk, 4, ft_substr(rdl, j, i - j));
+           ft_fill_red(tk, 4, ft_substr(rdl, j, i - j));
         }
 
          else if(rdl[i] && rdl[i] == '>' )
@@ -99,7 +95,7 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-            ft_fill_red(tk, 3, ft_substr(rdl, j, i - j));
+           ft_fill_red(tk, 3, ft_substr(rdl, j, i - j));
         }
          else if(rdl[i] && rdl[i] == '<' )
         {
@@ -114,22 +110,29 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
         else 
         {
             j = i;
-            while (rdl[i]!='<' && rdl[i]!='>' &&  rdl[i]!='\0')
+            while (rdl[i] != '<' && rdl[i] != '>' &&  rdl[i] != '\0')
             {
                 if (rdl[i] == '\'')
                     i = find_end_of_single_quote(rdl, i);
                 else if (rdl[i] == '\"')
                     i = find_end_of_double_quote(rdl, i);
                     i++;
-            }
-          tmp= ft_strjoin(tmp, ft_substr(rdl, j, i - j));
+			}
+              tmp= ft_strjoin(tmp, ft_substr(rdl, j, i - j));
+			//free(ptr);
+			//free(smt);
         }
     }
    
 (void)hert;
     if(tmp)
-         (*hert)->cmd = smart_split(ignore_quote(tmp), ' ');
+	{
+		 (*hert)->cmd = smart_split(ignore_quote(tmp), ' ');
+		//free(tmp);
+		//free(smt);
+	}
 }
+
 void smart_smart_split(t_tokens **token)
 {
     t_tokens *tk;
