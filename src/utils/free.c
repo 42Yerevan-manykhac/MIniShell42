@@ -24,15 +24,17 @@ void one_node_free(t_env **rtv)
 void free_t_list(t_tokens **token)
 {
 	(void) *token;
+	
  	int	i;
 	t_tokens *next;
 	t_redirects *hrd_next;
-
+(void)hrd_next;
 	i = 0;
-	if ((*token)->hrd_count)
-		free((*token)->hrd_count);
+
+
 	while ((*token))
 	{
+		i = 0;
 		next = (*token)->next;
 		if ((*token)->rdl)
 			free((*token)->rdl);
@@ -44,12 +46,17 @@ void free_t_list(t_tokens **token)
 					i++;
 			}
 		}
+
+	//printf("not INSIDE if %s\n",(*token)->head_redct->del);
 		if ((*token)->head_redct)
 		{
+			
+			printf("INSIDE if\n");
 			while ((*token)->head_redct)
 			{
 				hrd_next = (*token)->head_redct->next;
 				if ((*token)->head_redct->del)
+				
 					free((*token)->head_redct->del);
 				free((*token)->head_redct);
 				(*token)->head_redct = hrd_next;
@@ -57,8 +64,13 @@ void free_t_list(t_tokens **token)
 			free((*token)->head_redct);
 			(*token)->head_redct = NULL;
 		}
+
+
+		next = (*token)->next;
+	free((*token)->cmd);
 		free(*token);
-		(*token) = next;
+		(*token) =next;
 	}
+		//free(*token);
 	token = NULL;
 }

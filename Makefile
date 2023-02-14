@@ -9,7 +9,7 @@ SRCS		= $(wildcard src/*/*.c)
 #SRCS		+= $(wildcard src/*.c)
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= ./includes -I ./readlian/include
-CFLAGS		=  -Wall -Wextra -Werror #-fsanitize=address -g #-ggdb3#-lreadline  
+CFLAGS		=  -Wall -Wextra -Werror -fsanitize=address -g #-ggdb3#-lreadline  
 RD			= ${shell find ${HOME} -name readlian 2>/dev/null}
 RM			= rm -f
 CC			= cc

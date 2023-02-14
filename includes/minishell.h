@@ -107,5 +107,6 @@ void    ft_signal_handling(int sig);
 void	handleterm(int s);
 void    handle_ctrl_d(int sig);
 void	interrogatory(char **str);
+char	**smart_split1(char *s, char c);
 
 # endif

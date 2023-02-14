@@ -26,7 +26,7 @@ static int	word_count(char *str, char delim)
 	return (count);
 }
 
-static char	*word_fill(const char *s, size_t start, size_t len)
+static char	*word_fill( char *s, size_t start, size_t len)
 {
 	size_t	i;
 	char	*word;
@@ -40,6 +40,8 @@ static char	*word_fill(const char *s, size_t start, size_t len)
 		word[i] = s[start + i];
 		i++;
 	}
+//	free(s);
+	printf("---->>>>>>>>>>%s\n", s);
 	word[i] = 0;
 	return (word);
 }
@@ -70,8 +72,7 @@ char	**smart_split(char *s, char c)
 	str = malloc(sizeof (char *) * (word_count(s, c) + 1));
 	if (str == 0)
 		return (0);
-	// 	printf("str = %s\n", s);
-	// printf("WORD = %d\n", word_count(s, c));
+
 	while (++i < word_count(s, c) )
 	{
 		while (s[start] && s[start] == c)
@@ -93,7 +94,8 @@ char	**smart_split(char *s, char c)
 			end++;
 		}
 		
-		str[i] = word_fill(s, start, end - start);
+		str[i] = word_fill(s, start, end - start);//pchanuma stexic heto
+	
 		if (!str[i])
 			str_free(str, i);
 		start = end;
@@ -101,3 +103,5 @@ char	**smart_split(char *s, char c)
 	str[i] = 0;
 	return (str);
 }
+
+

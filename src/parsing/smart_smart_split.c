@@ -5,6 +5,7 @@ void ft_fill_red(t_tokens **token, int flag, char *str)
     //t_tokens *tk;
     t_redirects *red = NULL;
     //tk = *token;
+
     red = new_t_redirects(flag, str, NULL);
     t_redirects_add_back(&(*token)->head_redct, red);
 }
@@ -55,13 +56,14 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
 {
     char    *tmp;
 	// char	*smt;
-	// char 	*ptr;
+	 char 	*ptr;
     int i;
     int j;
 	(void)tk;
     j = 0;
     i = 0;
     tmp= NULL;
+	(void)ptr;
     while (rdl[i])
     {
         while (rdl[i] && rdl[i] == ' ')
@@ -75,6 +77,7 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             while (rdl[i] && rdl[i] != ' ')
                 i++;
            ft_fill_red(tk, 2, ft_substr(rdl, j, i - j));
+	
         }
         else if(rdl[i] && rdl[i + 1] && rdl[i] == '>' && rdl[i + 1] == '>')
         {
@@ -119,17 +122,18 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
                     i++;
 			}
               tmp= ft_strjoin(tmp, ft_substr(rdl, j, i - j));
-			//free(ptr);
-			//free(smt);
+		
         }
     }
-   
+
 (void)hert;
     if(tmp)
 	{
-		 (*hert)->cmd = smart_split(ignore_quote(tmp), ' ');
-		//free(tmp);
-		//free(smt);
+		ptr= ignore_quote(tmp);
+		//tmp = ptr;
+		(*hert)->cmd = smart_split(ptr, ' ');
+		free(ptr);
+	
 	}
 }
 
@@ -142,4 +146,5 @@ void smart_smart_split(t_tokens **token)
         ft_smart_sub(token, tk->rdl, &tk);
         tk = tk->next;
     }
+//	printf("het rect = %s\n", )
 }
