@@ -26,6 +26,8 @@ t_tokens *token;
 token =*tk;
 env = *l_env;
 (void) env;
+
+
 while (token)
 {
 	while (token->head_redct)
@@ -35,9 +37,15 @@ while (token)
 			heredoc(token->head_redct->del);
 			
 		}
-		token->head_redct = token->head_redct->next;
+		if(token->head_redct->next)
+			token->head_redct = token->head_redct->next;
+		else
+			 break;
 	}
-	token=token->next;
+	if(token->next)
+		token=token->next;
+	else 
+		break;
 }
 
 token = *tk;
@@ -66,4 +74,5 @@ token = *tk;
            }
 		token=token->next;
 	}
+	// token = *tk;
 }

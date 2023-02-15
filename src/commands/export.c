@@ -113,6 +113,7 @@ void	export_cmd(t_env **l_env, char *str)
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
 	splited = split_export(str);
+	export_pars(splited[0]);
 	if (!if_key_already_exist(l_env, splited))
 	{
 		env = malloc(sizeof(t_env));

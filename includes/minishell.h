@@ -65,6 +65,7 @@ void    unset_cmd(t_env **l_env,char *key);
 void	export_cmd(t_env **l_env, char *str);
 
 //
+int export_pars(char *str);
 int env_len(t_env **l_env);
 void free_t_list(t_tokens **token);
 int		ft_strlen(char *str);
@@ -108,5 +109,6 @@ void	handleterm(int s);
 void    handle_ctrl_d(int sig);
 void	interrogatory(char **str);
 char	**smart_split1(char *s, char c);
+void ft_fill_red(t_tokens **token, int flag, char *str);
 
 # endif

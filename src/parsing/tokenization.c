@@ -29,6 +29,31 @@ int count_hrd(char **str)
 	}
 	return (count);
 }
+
+
+void ft_fill_red(t_tokens **token, int flag, char *str)// 
+{
+
+
+    t_tokens *tk;
+    t_redirects *red = NULL;
+    tk = *token;
+	
+	if((*token)->head_redct->flag==0)
+	{
+		(*token)->head_redct->del = str;
+		(*token)->head_redct->flag = flag;
+		(*token)->head_redct->pathname = NULL;
+		(*token)->head_redct->next = NULL;
+	}
+	else 
+	{
+		red = new_t_redirects(flag, str, NULL);
+		t_redirects_add_back(&(tk)->head_redct, red);
+	}
+}
+
+
 t_redirects *new_t_redirects(int flag, char *del, char *pathname)
 {
 	t_redirects *new_red;
@@ -43,19 +68,19 @@ t_redirects *new_t_redirects(int flag, char *del, char *pathname)
 
 void t_redirects_add_back(t_redirects **head, t_redirects *new_node)
 {
-	printf("------fffffff-----\n");
 	t_redirects *tmp;
 
 	tmp = *head;
-	if (tmp == NULL)
+	if ((*head)->flag==0)
 	{
+	
 		*head = new_node;
 		return;
 	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_node;
-	printf("------f-----%s\n", (*head)->del);
+
 }
 
 t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count)
@@ -71,6 +96,12 @@ t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count)
 	new_node->cmd = NULL; // manyana avelacrel
 	// new_node->hrd_count = hrd_count;
 	new_node->head_redct = NULL;
+	new_node->head_redct = malloc(sizeof(t_redirects));
+	new_node->head_redct->flag = 0;
+	new_node->head_redct->del = NULL;
+	new_node->head_redct->pathname = NULL;
+	new_node->head_redct->next = NULL;
+
 
 	new_node->next = NULL;
 	return (new_node);
@@ -133,6 +164,7 @@ int ft_count_pipe(char *str)
 	}
 	return (count);
 }
+
 int check_error(char **tokenized, char *str)
 {
 	int count_pipe;
@@ -147,6 +179,7 @@ int check_error(char **tokenized, char *str)
 	}
 	return (0);
 }
+
 void tokenization(t_tokens **token, char **str)
 {
 	char **tokenized;

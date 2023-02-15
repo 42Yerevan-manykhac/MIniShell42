@@ -1,4 +1,3 @@
-
 #include "minishell.h"
 
 int go_until_spasce(char *str, int i)

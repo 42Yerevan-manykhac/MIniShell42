@@ -2,20 +2,16 @@ NONE='\033[0m'
 BLUE = '\x1b[36m'
 YELLOW= '\x1b[32m'
 MAGENTA ='\x1b[35m'
-
-#PREFIX = $(shell find ${HOME} -name lm-readline 2>/dev/null)
 NAME		= minishell
 SRCS		= $(wildcard src/*/*.c)
 #SRCS		+= $(wildcard src/*.c)
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= ./includes -I ./readlian/include
-CFLAGS		=  -Wall -Wextra -Werror -fsanitize=address -g #-ggdb3#-lreadline  
+CFLAGS		=  -Wall -Wextra -Werror #-fsanitize=address -g #-ggdb3#-lreadline  
 RD			= ${shell find ${HOME} -name readlian 2>/dev/null}
 RM			= rm -f
 CC			= cc
 LINKER		= -L./readlian/lib -lreadline
-
-#INCLUDES_READLINE = -I./lm-readline/include
 
 
 %.o:%.c
@@ -40,8 +36,6 @@ fclean	: 	clean
 install:
 	cd readline-master && make clean && ./configure --prefix=${RD} && make && make install
 
-#readline:
-#	cd readline-master && make clean && bash ./configure --prefix=$(PREFIX) && make && make install
 
 re		:fclean all
 .PHONY: all clean fclean re

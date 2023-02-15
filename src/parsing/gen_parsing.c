@@ -93,5 +93,6 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	//dolar_pars(str, env);
 	interrogatory(str);
 	tokenization(token, str);
+	
 	return (0);
 }

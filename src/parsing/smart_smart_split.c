@@ -1,14 +1,6 @@
 #include "minishell.h"
 
-void ft_fill_red(t_tokens **token, int flag, char *str)
-{
-    //t_tokens *tk;
-    t_redirects *red = NULL;
-    //tk = *token;
 
-    red = new_t_redirects(flag, str, NULL);
-    t_redirects_add_back(&(*token)->head_redct, red);
-}
 
 int any_quote(char *str, int i)
 {
@@ -139,11 +131,15 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
 
 void smart_smart_split(t_tokens **token)
 {
+
+
+	
     t_tokens *tk;
     tk = *token;
     while (tk)
     {
         ft_smart_sub(token, tk->rdl, &tk);
+		
         tk = tk->next;
     }
 //	printf("het rect = %s\n", )
