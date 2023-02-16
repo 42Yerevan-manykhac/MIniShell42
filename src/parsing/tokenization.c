@@ -174,6 +174,7 @@ int check_error(char **tokenized, char *str)
 	count_tokens = ft_count_tokens(tokenized);
 	if (count_pipe && count_tokens - 1 != count_pipe)
 	{
+		exit_code = 258;
 		write(2, "Minishell: syntax error near unexpected token `|'\n", 50);
 		return (1);
 	}

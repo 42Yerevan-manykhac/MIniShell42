@@ -14,7 +14,7 @@
 # include <termios.h>
 
 # define METACHARS " |&()<>;"
-
+# define METAE	"-!@#$^&*()"
 extern int	exit_code;
 
 typedef struct s_count	t_count;
@@ -100,6 +100,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		gen_parsing(t_tokens **token, t_env **env, char **str);
 void	one_node_free(t_env **rtv);
 void	echo_cmd(char **str);
+int		ft_strcrcmp(char *str, char c);
 void running(t_tokens **token, t_env **l_env);
 char	*join_dolar_str(char *str, char *world, int x, int z);
 t_redirects *new_t_redirects(int flag, char *del, char *pathname);

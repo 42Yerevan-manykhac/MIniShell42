@@ -38,7 +38,6 @@ int	main(int arg_nb, char **argv, char **env)
 		// printf("------%d\n", (token)->head_redct->flag);
 		dup2(in_copy, 0);
 		printf("\033[0;36m"); 
-		printf("--------ghghgh-----\n");
 	printf("------%d\n", (token)->head_redct->flag);
 		// printf("------%d\n", (token)->head_redct->flag);
 		free_t_list(&token);

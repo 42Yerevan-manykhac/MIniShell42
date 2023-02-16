@@ -84,4 +84,3 @@ void	dolar_pars(char **str, t_env **env)
 		i++;
 	}
 }
-//dolar , export unset

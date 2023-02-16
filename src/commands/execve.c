@@ -1,17 +1,54 @@
 
 #include "minishell.h"
 
-void    cheack_access(char **path,char **str, char **mx_env)
+
+int execve_print(char *str, int z)
+{
+	(void)str;
+	exit_code = z;
+	printf("bash: %s: command not found\n", str);
+	return (1);
+}
+
+void else_wait()
+{
+	int num;
+	(void)num;
+	wait(&num);
+	if (WIFEXITED(num))
+		exit_code = WEXITSTATUS(num);
+	
+}
+int    cheack_access(char **path,char **str, char **mx_env)
 {
     int i;
+	int flag;
 
     i = 0;
+	flag = 0;
     while (*path[i])
     {
+		printf("fds\n");
         if (!access(path[i], F_OK))
-            execve(path[i], str, mx_env);
+		{
+			printf("1fds\n");
+            if (execve(path[i], str, mx_env) == -1)
+			{
+				printf("fds");
+			flag = 1;
+
+			}
+		}
+		else flag = 1;
         i++;
     }
+	printf("Vahee %d\n",flag );
+	if (flag)
+	{
+		execve_print(str[0], 127);
+		return (1);
+	}
+	return (0);
 }
 
 char    **t_env_to_matrix(t_env **env)
@@ -62,7 +99,7 @@ void execve_cmd(t_env **env, char **str)
     pid = fork();
     if (pid == 0)
         cheack_access(splited_path, str, mx_env);
-    usleep(2500);
+	else else_wait();
     matrix_free(mx_env);
     matrix_free(splited_path);
 }

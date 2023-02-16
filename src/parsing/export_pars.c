@@ -16,16 +16,16 @@ int export_pars(char *str)
 	i = 0;
 	len = 0;
 	len = ft_strlen(str);
-	if (!(str[0] >= 'a' && str[0] <= 'z') &&
-		!(str[0] >= 'A' && str[0] <= 'Z'))
-		{
+	if (!(str[0] >= 'a' && str[0] <= 'z') 
+	&& !(str[0] >= 'A' && str[0] <= 'Z'))
+	{
 			export_print(str, 1);
 			return (1);
-		}
-	while (i <= len - 1)
+	}
+	while (i < len)
 	{
-		if ((str[i] == '+' || str[i] == '-') && (ft_strcmp(METACHARS, &str[i])))
-		{//grel
+		if ((ft_strcrcmp(METAE, str[i]) || (str[i] == '+' && i != len -1)))
+		{
 			export_print(str, 1);
 			return (1);
 		}
