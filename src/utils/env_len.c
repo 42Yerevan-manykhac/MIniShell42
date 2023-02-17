@@ -14,3 +14,13 @@ int env_len(t_env **l_env)
     }
     return (count);
 }
+
+int matrix_len(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}

@@ -53,7 +53,7 @@ token = *tk;
 				echo_cmd(token->cmd);
 			if (ft_strcmp(token->cmd[0], "unset"))
 				unset_cmd(l_env, token->cmd[1]);
-			else execve_cmd(l_env, token->cmd);               
+			//else execve_cmd(l_env, token->cmd);               
            }
 		token=token->next;
 	}

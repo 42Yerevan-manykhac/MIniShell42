@@ -110,6 +110,7 @@ void	handleterm(int s);
 void    handle_ctrl_d(int sig);
 void	interrogatory(char **str);
 char	**smart_split1(char *s, char c);
+int matrix_len(char **str);
 void ft_fill_red(t_tokens **token, int flag, char *str);
 
 # endif
