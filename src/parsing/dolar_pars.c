@@ -44,7 +44,6 @@ int	find_end_of_single_quote(char *str, int i)
 int	find_end_of_double_quote(char *str, int i)
 {	
 	i++;
-	//	printf("SEG\n");
 	while (str[i] != '\"')
 		i++;
 	return (i);

@@ -142,5 +142,4 @@ void smart_smart_split(t_tokens **token)
 		
         tk = tk->next;
     }
-//	printf("het rect = %s\n", )
 }

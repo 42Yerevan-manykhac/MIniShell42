@@ -29,7 +29,6 @@ void	 redirection_input(char *file, int i) //  cat < filename
 	int	fd;
 
 	fd = open(file, O_RDONLY, 0644);
-	// printf("fd == %d\n\n", fd);
 	if (fd < 0)
 	{
 		printf("error\n");
@@ -53,8 +52,8 @@ void	heredoc(char *key)
 	while (1)
 	{
 		hrd = readline("heredoc> ");
-		if(!hrd)
-			break;
+		if (!hrd)
+			break ;
 		if (ft_strcmp1(key, hrd) == 0)
 			break ;
 		write(fd, hrd, ft_strlen(hrd));
@@ -68,5 +67,4 @@ void	heredoc(char *key)
 	close(fd);
 	unlink(file);
 	free(file);
-
 }

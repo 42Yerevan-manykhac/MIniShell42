@@ -69,6 +69,7 @@ int export_pars(char *str);
 int env_len(t_env **l_env);
 void free_t_list(t_tokens **token);
 int		ft_strlen(char *str);
+void print_error(char *cmd, char *str, int code);
 int		pre_parsing(char *str);
 t_env	*ft_lstlast(t_env *lst);
 void    only_export(t_env **node);
@@ -112,5 +113,6 @@ void	interrogatory(char **str);
 char	**smart_split1(char *s, char c);
 int matrix_len(char **str);
 void ft_fill_red(t_tokens **token, int flag, char *str);
+int execve_print(char *str, int z);
 
 # endif

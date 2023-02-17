@@ -1,17 +1,10 @@
 #include "minishell.h"
-
-
-void running(t_tokens **tk, t_env **l_env)
+void call_heredoc(t_tokens **tk)
 {
-(void)l_env;
-t_env *env;
-t_tokens *token;
-token =*tk;
-env = *l_env;
-(void) env;
+	t_tokens *token;
+	token =*tk;
 
-
-while (token)
+	while (token)
 {
 	while (token->head_redct)
 	{
@@ -30,13 +23,21 @@ while (token)
 	else 
 		break;
 }
+}
 
-token = *tk;
+void running(t_tokens **tk, t_env **l_env)
+{
+	t_env		*env;
+	t_tokens	*token;
+
+	token = *tk;
+	env = *l_env;
+	token = *tk;
+	call_heredoc(tk);
 	while (token)
-	{	
-		//printf("cmd = %s\n\n", token->cmd[0]);
-         if(token->cmd)
-        {
+	{
+		if (token->cmd && token->cmd[0])
+		{
 			if (ft_strcmp(token->cmd[0], "exit"))
 				exit_cmd(token->cmd);
 			if (ft_strcmp(token->cmd[0], "pwd"))
@@ -46,16 +47,23 @@ token = *tk;
 			if (ft_strcmp(token->cmd[0], "export") && !token->cmd[1])
 				only_export(l_env);
 			if (ft_strcmp(token->cmd[0], "export"))
-				export_cmd(l_env,token->cmd[1]);
+				export_cmd(l_env, token->cmd[1]);
 			if (ft_strcmp(token->cmd[0], "cd"))
 				cd_cmd(l_env, token->cmd);
 			if (ft_strcmp(token->cmd[0], "echo"))
 				echo_cmd(token->cmd);
 			if (ft_strcmp(token->cmd[0], "unset"))
 				unset_cmd(l_env, token->cmd[1]);
-			//else execve_cmd(l_env, token->cmd);               
-           }
-		token=token->next;
+			else 
+				execve_cmd(l_env, token->cmd);
+		}
+		else
+		   	if (!token->cmd || (token->cmd && !token->cmd[0]))
+			{
+				//print_error("", "command not found", 127);
+				return ;
+			} 
+			token=token->next;
 	}
 	// token = *tk;
 }

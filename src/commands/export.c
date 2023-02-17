@@ -58,7 +58,6 @@ int	find_key(t_env **l_env, char *new_key)
 	while (env)
 	{
 		if (ft_strcmp1(new_key, env->key) != 0 && env)
-			//printf("env == %s , new_key = %s\n",env->key, new_key);
 			env = env->next;
 		else
 			return (1);
@@ -96,7 +95,6 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 				free(splited[0]);
 				rtv->flag = 1;
 			}
-			//free(rtv->value);
 		}
 		return (1);
 	}
@@ -154,20 +152,3 @@ void	only_export(t_env **node)
 		curr = curr->next;
 	}
 }
-// export a=54 b=65 c=46
-// export a
-// export a=
-// export a=en`v=env=env=env=env
-// export a+=2
-// errornery export a!#$%%^&=54, 34567asad=54, a++=54
-
-// env)a export um pahume - a  (chi tpvum env um) eshutyun1 a
-// 2)a= export um pahuma - a="" (tpvuma env um a=) eshutyun2
-// bayc ete anum es 2 heto env mnuma a="" eshutyun3
-
-// note
-// aveli lava split anenq yst havasari heto nayeny valuenery u key eryyyy
-
-
-
-//parsingum nayel key = inchvorban+ kam tiv;**	``
