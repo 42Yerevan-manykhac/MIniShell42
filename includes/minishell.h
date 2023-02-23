@@ -42,6 +42,7 @@ struct s_tokens
     char		*rdl;
     char		**cmd;
 	int			*hrd_count;
+	int 		token_count;
 	t_redirects	*head_redct;
 	t_tokens	*next;
 };
@@ -111,8 +112,12 @@ void	handleterm(int s);
 void    handle_ctrl_d(int sig);
 void	interrogatory(char **str);
 char	**smart_split1(char *s, char c);
-int matrix_len(char **str);
-void ft_fill_red(t_tokens **token, int flag, char *str);
-int execve_print(char *str, int z);
+int 	matrix_len(char **str);
+void	ft_fill_red(t_tokens **token, int flag, char *str);
+int		execve_print(char *str, int z);
+void	running_pipe(t_tokens **token, t_env **env);
+int    cheack_access(char **path,char **str, char **mx_env);
+char    **t_env_to_matrix(t_env **env);
+void 	create_the_paths(char **splited_path, char *new_str);
 
 # endif

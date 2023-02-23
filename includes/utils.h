@@ -34,5 +34,6 @@ char	*ft_cat_str(char *s);
 int     ft_isdigit(char *str);
 void	ft_putstr_fd(char *s, int fd);
 char *ignore_quote(char *str);
+void *ft_calloc(int c, int s);
 
 # endif

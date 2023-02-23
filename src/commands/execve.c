@@ -47,7 +47,7 @@ int    cheack_access(char **path,char **str, char **mx_env)
         if (dup)
 			execve(dup, str, mx_env);
 		else
-			print_error(str[0], "command not found", 127);
+			print_error(str[0], "command not found\n", 127);
 	return (0);
 }
 
@@ -63,7 +63,7 @@ char    **t_env_to_matrix(t_env **env)
     new_env = malloc(sizeof(char *) *  env_len(env) + 1);
     while (l_env && l_env->key && l_env->value)
     {
-        tmp = ft_strjoin(l_env->key,"=");
+        tmp = ft_strjoin(l_env->key, "=");
         new_env[i] = ft_strjoin(tmp, l_env->value);
         l_env = l_env->next;
         i++;
@@ -91,7 +91,10 @@ void execve_cmd(t_env **env, char **str)
     int pid = 0;
     pid = fork();
     if (pid == 0)
+	{
         cheack_access(splited_path, str, mx_env);
+		exit(0); // exiti codery dzel
+	}
 	else
 		else_wait();
     matrix_free(mx_env);

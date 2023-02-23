@@ -83,7 +83,7 @@ void t_redirects_add_back(t_redirects **head, t_redirects *new_node)
 
 }
 
-t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count)
+t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
 {
 	t_tokens *new_node;
 	(void)cmd;
@@ -102,7 +102,7 @@ t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count)
 	new_node->head_redct->pathname = NULL;
 	new_node->head_redct->next = NULL;
 
-
+	new_node->token_count = count_token;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -133,14 +133,14 @@ void t_tokens_add_back(t_tokens **head, t_tokens *new)
 	ft_lstlast1(node)->next = new;
 }
 
-void fill_t_token(t_tokens **token, char **tokenized, int *hrd_c)
+void fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_token)
 {
 	int i;
 
 	i = 0;
 	while (tokenized && tokenized[i])
 	{
-		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c));
+		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c, count_token));
 		i++;
 	}
 }
@@ -171,6 +171,8 @@ int check_error(char **tokenized, char *str)
 	int count_tokens;
 
 	count_pipe = ft_count_pipe(str);
+
+
 	count_tokens = ft_count_tokens(tokenized);
 	if (count_pipe && count_tokens - 1 != count_pipe)
 	{
@@ -185,14 +187,19 @@ void tokenization(t_tokens **token, char **str)
 {
 	char **tokenized;
 	int *hrd_c;
+	int count_token;
 	(void)token;
 	(void)str;
 	hrd_c = 0;
 	//	hrd_c = malloc(sizeof(int));
 	//	*hrd_c = count_hrd(str);
 	tokenized = smart_split(*str, '|');
+	count_token = matrix_len(tokenized);
+
+ 
 	check_error(tokenized, str[0]);
-	fill_t_token(token, tokenized, hrd_c);
+	fill_t_token(token, tokenized, hrd_c, count_token);
+	//printf("TTT%d\n", (*token)->token_count);
 	free(tokenized);
 	smart_smart_split(token);
 }
