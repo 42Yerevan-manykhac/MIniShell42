@@ -22,6 +22,7 @@ int	main(int arg_nb, char **argv, char **env)
 	s_env = malloc(sizeof(t_env));
 	// ft_signal_handling(0);
 	env_init(env, &s_env);
+	shell_level(&s_env);
 	while (1)
 	{
 		in_copy = dup(0);
@@ -29,17 +30,13 @@ int	main(int arg_nb, char **argv, char **env)
 		str = readline ("Minishell$> ");
 		// if(str == 0)
 		//  	handleterm(0);
-		printf("smt\n");
 		printf("\033[0;35m");
 		if (str)
 			add_history(str);
 		else
 			break;
-				printf("smt1\n");
 		//rl_catch_signals = 0;
 		gen_parsing(&token, &s_env, &str);
-	//	printf("TTT%d\n", token->token_count);
-		printf("SEG\n");
 		if (token)
 		{
 			if (token->token_count > 1)
@@ -47,7 +44,6 @@ int	main(int arg_nb, char **argv, char **env)
 			else	
 				running(&token, &s_env);
 		}
-			printf("smt2\n");
 		dup2(in_copy, 0);
 		dup2(out_copy,1);
 		printf("\033[0;36m"); 
@@ -56,3 +52,6 @@ int	main(int arg_nb, char **argv, char **env)
 	}
 	return (0);
 }
+
+
+// redirectionneri qanaky hashvel u verjni depqum dup anel

@@ -24,6 +24,7 @@ void	redirection_output_append(char *file, int i) // >>
 
 
 //Redirecting Input
+
 void	 redirection_input(char *file, int i) //  cat < filename
 {
 	int	fd;
@@ -32,6 +33,7 @@ void	 redirection_input(char *file, int i) //  cat < filename
 	if (fd < 0)
 	{
 		printf("error\n");
+		close(fd);
 		return ;
 	}
 	if	(i)
@@ -41,7 +43,7 @@ void	 redirection_input(char *file, int i) //  cat < filename
 
 //heredoc
 
-void	heredoc(char *key)
+void	heredoc(char *key, int i)
 {
 	char	*file;
 	char	*hrd;
@@ -62,9 +64,12 @@ void	heredoc(char *key)
 	}
 	free(hrd);
 	close(fd);
-	fd = open(file, O_RDONLY);
-	dup2(fd, 0);
-	close(fd);
+	if (i)
+	{
+		fd = open(file, O_RDONLY);
+		dup2(fd, 0);
+		close(fd);
+	}
 	unlink(file);
 	free(file);
 }

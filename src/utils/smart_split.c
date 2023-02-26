@@ -41,7 +41,6 @@ static char	*word_fill( char *s, size_t start, size_t len)
 		i++;
 	}
 //	free(s);
-	printf("---->>>>>>>>>>%s\n", s);
 	word[i] = 0;
 	return (word);
 }

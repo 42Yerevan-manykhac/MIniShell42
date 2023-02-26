@@ -21,9 +21,10 @@ typedef struct s_count	t_count;
 
 struct	s_count
 {
-    int	count_cmd;
     int	count_herdoc; //<<
-	int	count_redirect;
+	int	count_1;
+	int count_3;
+	int count_4;
 };
 typedef  struct s_redirects t_redirects;
 
@@ -33,7 +34,7 @@ struct	s_redirects
 	char	*pathname;
 	char	*del;
 	struct	s_redirects	*next;
-} ;
+};
 
 typedef struct s_tokens	t_tokens;
 
@@ -68,6 +69,7 @@ void	export_cmd(t_env **l_env, char *str);
 //
 int export_pars(char *str);
 int env_len(t_env **l_env);
+void shell_level(t_env **env);
 void free_t_list(t_tokens **token);
 int		ft_strlen(char *str);
 void print_error(char *cmd, char *str, int code);
@@ -81,7 +83,10 @@ int		count_init( t_tokens **token);
 void smart_smart_split(t_tokens **token);
 void	initializer(t_tokens **token);
 int		cheack_front(char *str, int *x);
-void    heredoc(char *key);
+void	redirection_output(char *file, int i);
+void	redirection_output_append(char *file, int i);
+void	 redirection_input(char *file, int i);
+void    heredoc(char *key, int i);
 void execve_cmd(t_env **env, char **str);
 void 	tokenization(t_tokens **token, char **str );
 int		find_end_of_double_quote(char *str, int i);

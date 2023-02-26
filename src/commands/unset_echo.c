@@ -43,11 +43,12 @@ void	echo_cmd(char **str)
 			i = 1;
 			while(str[i])
 			{
-			printf("%s ",str[i]);
-			i++;
+				printf("%s ",str[i]);
+				i++;
 			}
 			printf("\n");
 		}
+		else printf("\n");
 	}
 }
 //Volodyayi case-ery chnayel

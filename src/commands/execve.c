@@ -29,25 +29,32 @@ void else_wait()
 int    cheack_access(char **path,char **str, char **mx_env)
 {
     int i;
-	int flag;
-//	int len;
+	char *dup1;
 	char *dup;
 
+	i = 0;
 	dup = NULL;
-    i = 0;
-	flag = 0;
+	dup1 = NULL;
     while (path[i])
     {
         if (access(path[i], F_OK) == 0)
-		{
 			dup = ft_strdup(path[i]);
+		else
+		{
+			if (dup1)
+				free(dup1);
+				dup1 = ft_strdup(str[0]);
 		}
         i++;
     }
-        if (dup)
-			execve(dup, str, mx_env);
-		else
-			print_error(str[0], "command not found\n", 127);
+	if (dup)
+		execve(dup, str, mx_env);
+	else if (dup1)
+			execve(dup1, str, mx_env);
+	else
+		print_error(str[0], "command not found\n", 127);
+	free(dup);
+	dup = NULL;
 	return (0);
 }
 
