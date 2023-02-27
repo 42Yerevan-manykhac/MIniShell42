@@ -44,6 +44,8 @@ struct s_tokens
     char		**cmd;
 	int			*hrd_count;
 	int 		token_count;
+	//int			istream;
+	//int			ostream;
 	t_redirects	*head_redct;
 	t_tokens	*next;
 };

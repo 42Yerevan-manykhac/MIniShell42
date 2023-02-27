@@ -38,6 +38,8 @@ void fd_close(int (*fd)[2], int count)
 	}
 }
 
+
+
 void	child_pr(int (*fd)[2], int i, int count)
 {
 	if(i == 0)

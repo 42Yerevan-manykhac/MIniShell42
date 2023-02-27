@@ -62,23 +62,53 @@ void call_heredoc(t_tokens **tk, int len)
 			break;
 	}
 }
+void do_the_job(t_tokens **tk, t_count *len)
+{
+	t_tokens *token;
+	int one;
+	int three;
+	int four;
+
+	one = 1;
+	three = 1;
+	four = 1;
+	token = *tk;
+	if (token->head_redct->flag == 1)
+	{
+		printf("one = %d\n", one);
+		if (one++ == len->count_1)
+			redirection_input(token->head_redct->del, 1);
+		else
+			redirection_input(token->head_redct->del, 0);
+	}
+	if (token->head_redct->flag == 3)
+	{
+		if (three++ == len->count_3)
+			redirection_output(token->head_redct->del, 1);
+		else 
+			redirection_output(token->head_redct->del, 0);
+	}
+	if (token->head_redct->flag == 4)
+	{
+		if (four++ == len->count_3)
+			redirection_output_append(token->head_redct->del, 1);
+		else 
+			redirection_output_append(token->head_redct->del, 0);
+	}	
+}
 
 void call_redirections(t_tokens **tk, t_count *len)
 {
 	t_tokens	*token;
 	int			i;
 	token = *tk;
+	i = 1;
 	printf("len = %d\n", len->count_1);
 	while (token)
 	{
 		while (token->head_redct)
 			{
-				if (token->head_redct->flag == 1)
-					redirection_input(token->head_redct->del, 1);
-				if (token->head_redct->flag == 3)
-					redirection_output(token->head_redct->del, 1);
-				if (token->head_redct->flag == 4)
-					redirection_output_append(token->head_redct->del, 1);
+				do_the_job(&token, len);
 				if (token->head_redct->next)
 				token->head_redct = token->head_redct->next;
 				else

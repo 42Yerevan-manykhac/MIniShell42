@@ -8,7 +8,10 @@ void	redirection_output(char *file, int i) //>
 
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (i)
+	{
 		dup2(fd, 1);
+		printf("smt\n");
+	}
 	close(fd);
 }
 
@@ -17,8 +20,10 @@ void	redirection_output_append(char *file, int i) // >>
 	int	fd;
 
 	fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
-	if (i)
+	if (i){
 		dup2(fd, 1); // 1 = stdout
+		printf("smt\n");
+	}
 	close(fd);
 }
 
