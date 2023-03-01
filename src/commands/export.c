@@ -25,7 +25,9 @@ int	if_need_to_add(t_env **l_env, char **splited)
 	len = ft_strlen(splited[0]);
 	if (splited[0][len - 1] == '+')
 	{
+		tmp = splited[0];
 		splited[0] = ft_strtrim(splited[0], "+");
+		free(tmp);
 		if (find_key(l_env, splited[0]))
 		{
 			if (!splited[1])

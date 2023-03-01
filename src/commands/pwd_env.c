@@ -1,10 +1,16 @@
 #include "minishell.h"
 
-void	pwd_cmd(void)
+void	pwd_cmd(t_env **l_env)
 {
-	char	cwd[256];
+	//char	cwd[256];
+	//t_env	*env;
+	t_env	*tmp;
 
-	printf("%s\n", getcwd(cwd, sizeof(cwd)));
+
+	//env = *t_env;
+	tmp = get_env(l_env, "PWD");
+	printf("%s\n", tmp->value);
+	
 }
 
 void	env_cmd(t_env *env)

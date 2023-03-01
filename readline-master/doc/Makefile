@@ -22,7 +22,7 @@ topdir = ..
 srcdir = .
 
 
-prefix = /Users/manykhac/Desktop/Minishell/readlian
+prefix = /Users/lter-zak/Desktop/MIniShell42/readlian
 
 datarootdir = ${prefix}/share
 
@@ -49,7 +49,7 @@ RM = rm -f
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
-BUILD_DIR = /Users/manykhac/Desktop/Minishell/readline-master
+BUILD_DIR = /Users/lter-zak/Desktop/MIniShell42/readline-master
 TEXINPUTDIR = $(srcdir)
 
 MAKEINFO    = LANGUAGE= makeinfo

@@ -71,11 +71,6 @@ void free_t_list(t_tokens **token)
 
 		//	(*token)->head_redct = NULL;
 		}
-
-
-
-
-
 		next = (*token)->next;
 	free((*token)->cmd);
 

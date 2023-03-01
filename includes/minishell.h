@@ -50,8 +50,6 @@ struct s_tokens
 	t_tokens	*next;
 };
 
-
-
 typedef struct s_env	t_env;
 
  struct	s_env
@@ -61,9 +59,10 @@ typedef struct s_env	t_env;
     int     flag;
 	t_env	*next;
 };
+
 //comands
 int		exit_cmd(char **c);
-void	pwd_cmd(void);
+void	pwd_cmd(t_env **t_env);
 void	env_cmd(t_env *env);
 void    unset_cmd(t_env **l_env,char *key);
 void	export_cmd(t_env **l_env, char *str);
@@ -126,5 +125,10 @@ void	running_pipe(t_tokens **token, t_env **env);
 int    cheack_access(char **path,char **str, char **mx_env);
 char    **t_env_to_matrix(t_env **env);
 void 	create_the_paths(char **splited_path, char *new_str);
+void running_p(t_tokens **tk, t_env **l_env, int (*fd)[2], int i);
+void	child_pr(int (*fd)[2], int i, int count);
+void call_heredoc(t_tokens **tk, int len);
+t_count *count_all(t_tokens **tk);
+void call_redirections(t_tokens **tk, t_count *len);
 
 # endif

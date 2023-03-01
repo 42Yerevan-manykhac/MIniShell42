@@ -42,7 +42,7 @@ int	main(int arg_nb, char **argv, char **env)
 			if (token->token_count > 1)
 				running_pipe(&token, &s_env);
 			else	
-				running(&token, &s_env);
+				running(&token, &s_env );
 		}
 		dup2(in_copy, 0);
 		dup2(out_copy,1);

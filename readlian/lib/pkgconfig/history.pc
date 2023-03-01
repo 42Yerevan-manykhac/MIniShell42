@@ -1,4 +1,4 @@
-prefix=/Users/manykhac/Desktop/Minishell/readlian
+prefix=/Users/lter-zak/Desktop/MIniShell42/readlian
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

@@ -48,12 +48,15 @@ int    cheack_access(char **path,char **str, char **mx_env)
         i++;
     }
 	if (dup)
+	{
 		execve(dup, str, mx_env);
+		free(dup);
+	}
 	else if (dup1)
-			execve(dup1, str, mx_env);
-	else
-		print_error(str[0], "command not found\n", 127);
-	free(dup);
+		{
+			print_error(str[0], "command not found", 127);
+			free(dup1);
+		}
 	dup = NULL;
 	return (0);
 }
@@ -95,6 +98,7 @@ void execve_cmd(t_env **env, char **str)
 	create_the_paths(splited_path, new_str);
     free(new_str);
     mx_env = t_env_to_matrix(env);
+//	usleep(20000);
     int pid = 0;
     pid = fork();
     if (pid == 0)

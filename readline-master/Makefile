@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/manykhac/Desktop/Minishell/readline-master
+BUILD_DIR = /Users/lter-zak/Desktop/MIniShell42/readline-master
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/manykhac/Desktop/Minishell/readlian
+prefix = /Users/lter-zak/Desktop/MIniShell42/readlian
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share

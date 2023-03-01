@@ -32,7 +32,7 @@ datarootdir = ${prefix}/share
 srcdir = .
 VPATH = ..
 topdir = ..
-BUILD_DIR = /Users/manykhac/Desktop/Minishell/readline-master
+BUILD_DIR = /Users/lter-zak/Desktop/MIniShell42/readline-master
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -52,7 +52,7 @@ SHELL = /bin/sh
 host_os = darwin18.7.0
 host_vendor = apple
 
-prefix = /Users/manykhac/Desktop/Minishell/readlian
+prefix = /Users/lter-zak/Desktop/MIniShell42/readlian
 exec_prefix = ${prefix}
 includedir = ${prefix}/include
 bindir = ${exec_prefix}/bin
