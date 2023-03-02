@@ -13,10 +13,13 @@ int any_quote(char *str, int i)
 
 char *ignore_quote(char *str)
 {
+	// printf(",%s,\n", str);
     int		i;
     int		j;
     char	*tmp;
+	int flag;
 
+	flag = -1;
     tmp = NULL;    // exit
 	i = 0;
 	j = 0;
@@ -26,11 +29,51 @@ char *ignore_quote(char *str)
         	j++;
     i++;
     }
+
+
+
+	// while(str[i])
+    // {
+    //     if (str[i]=='\"' ) // e"x"it // i= 5; j = 2
+	// 	{
+    //     	j++;
+	// 		flag = 2;
+	// 	} else if(str[i]=='\'')
+	// 	{
+	// 		j++;
+	// 		flag = 1;
+	// 	}
+
+    // i++;
+    // }
     tmp = malloc(sizeof(char *) * (i - j + 1));
     tmp[i - j] = 0;
     i = 0;
     j = 0;
-    while(str[i])
+// 	if(flag==2)
+//     {while(str[i] )
+//     {
+//         if(str[i] != '\"')
+//         {
+//             tmp[j] = str[i];
+//             j++;
+//         }
+//         i++;
+//     } 
+// 	}
+
+// 	if(flag==1)
+//   {while(str[i] )
+//     {
+//         if(str[i] != '\'')
+//         {
+//             tmp[j] = str[i];
+//             j++;
+//         }
+//         i++;
+//     } 
+//   }
+	while(str[i])
     {
         if(str[i] != '\'' && str[i] != '\"')
         {
@@ -40,6 +83,7 @@ char *ignore_quote(char *str)
         i++;
     } 
     free(str);
+		// printf(",%s,\n", tmp);
     return(tmp);
 }
 
@@ -121,10 +165,10 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
 (void)hert;
     if(tmp)
 	{
-		ptr= ignore_quote(tmp);
+		//ptr= ignore_quote(tmp);
 		//tmp = ptr;
-		(*hert)->cmd = smart_split(ptr, ' ');
-		free(ptr);
+		(*hert)->cmd = smart_split(tmp, ' ');
+		free(tmp);
 	
 	}
 }

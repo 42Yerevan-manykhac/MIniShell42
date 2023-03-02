@@ -95,19 +95,23 @@ int exit_cmd(char **c)
     }
 	if(!ft_isdigit(c[1]))
 	{
+		printf("AYOOO\n");
 		 ft_putstr_fd("exit\n", 2);
          ft_putstr_fd("minishell: exit: numeric argument required\n", 2);
-		 exit(0); //hamapatasxan exit_code-ov
+		 exit(255); //hamapatasxan exit_code-ov
 	}
 
         if(c[2]  && ft_isdigit(c[1]) )
     {
-         ft_putstr_fd("\n", 2);
+
+         ft_putstr_fd("exit\n", 2);
          ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+		 exit_code = 1;
          return (0); //durs chi galis // statusy poxel 1
     }
          if(c[2]  && !ft_isdigit(c[1]) )
     {
+	
          ft_putstr_fd("exit\n", 2);
          ft_putstr_fd("minishell: exit: numeric argument required\n", 2);
          exit(255);
@@ -128,10 +132,12 @@ int exit_cmd(char **c)
     {
      ft_putstr_fd("exit\n", 2);
 	exit(num%256); //hamapatasxan exit_code-ov //num%256)
+	exit_code = num%256;
     }
  }
  else 
  {
+		
     ft_putstr_fd("exit\n", 2);
     ft_putstr_fd("minishell:  exit: numeric argument required\n", 2); //bash: exit: f: numeric argument required
     exit(255);

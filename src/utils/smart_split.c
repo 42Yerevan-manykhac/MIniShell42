@@ -2,6 +2,7 @@
 
 static int	word_count(char *str, char delim)
 {
+	// printf(",,%s\n", str);
 	int	prev_del;
 	int	i;
 	int	count;
@@ -11,6 +12,7 @@ static int	word_count(char *str, char delim)
 	prev_del = 1;
 	while (str[i])
 	{
+		//  printf("VOCH\n");
 		if(str[i] && str[i]=='\"')
 			i = find_end_of_double_quote(str, i);
 		if(str[i] && str[i]=='\'')

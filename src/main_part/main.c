@@ -37,6 +37,9 @@ int	main(int arg_nb, char **argv, char **env)
 			break;
 		//rl_catch_signals = 0;
 		gen_parsing(&token, &s_env, &str);
+	
+
+
 		if (token)
 		{
 			if (token->token_count > 1)

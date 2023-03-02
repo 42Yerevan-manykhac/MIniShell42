@@ -84,14 +84,18 @@ int		gen_parsing(t_tokens **token, t_env **env, char **str)
 	(void)str;
 	(void)token;
 
+t_tokens *tk;
+
+tk = *token;
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
+	// printf(",,%s\n", *str);
     dolar_pars(str, env);
-	interrogatory(str);
+	interrogatory(str);		
 	tokenization(token, str);
-	
+	// printf("AYO\n");
 	return (0);
 }

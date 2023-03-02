@@ -130,5 +130,6 @@ void	child_pr(int (*fd)[2], int i, int count);
 void call_heredoc(t_tokens **tk, int len);
 t_count *count_all(t_tokens **tk);
 void call_redirections(t_tokens **tk, t_count *len);
+void ftft(t_tokens **token);
 
 # endif

@@ -98,7 +98,6 @@ void execve_cmd(t_env **env, char **str)
 	create_the_paths(splited_path, new_str);
     free(new_str);
     mx_env = t_env_to_matrix(env);
-//	usleep(20000);
     int pid = 0;
     pid = fork();
     if (pid == 0)

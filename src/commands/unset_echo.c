@@ -19,11 +19,43 @@ void	unset_cmd(t_env **l_env, char *new_key)
 
 void	echo_cmd(char **str)
 {
-	int i;
 
+	// printf(",,%s\n", str[3]);
+	int i;
+	int flag;
+
+	flag = -1;
 	i = 0;
-	if (ft_strcmp(str[1], "-n"))
+	if(str[1] && str[1][i]=='-')
 	{
+		
+		i++;
+		while(str[1][i]){
+			if(str[1][i]=='n')
+				i++;
+				else {
+					flag = 1;
+					break;
+				}	
+
+
+		if(i!=2)	flag= 0;
+		}
+	}
+if(flag==0)
+	{
+
+		i = 2;
+			while(str[i])
+			{
+				printf("%s ",str[i]);
+					i++;
+			}
+	}
+
+	else if (ft_strcmp(str[1], "-n"))
+	{
+	i = 0;
 		if (str[2])
 		{
 			i = 2;
@@ -38,6 +70,9 @@ void	echo_cmd(char **str)
 	}
 	else
 	{
+
+
+
 		if (str[1])
 		{
 			i = 1;

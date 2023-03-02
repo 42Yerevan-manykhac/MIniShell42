@@ -193,13 +193,30 @@ void tokenization(t_tokens **token, char **str)
 	hrd_c = 0;
 	//	hrd_c = malloc(sizeof(int));
 	//	*hrd_c = count_hrd(str);
+
 	tokenized = smart_split(*str, '|');
+
 	count_token = matrix_len(tokenized);
 
- 
 	check_error(tokenized, str[0]);
 	fill_t_token(token, tokenized, hrd_c, count_token);
 	//printf("TTT%d\n", (*token)->token_count);
 	free(tokenized);
 	smart_smart_split(token);
+	ftft(token);
+}
+void ftft(t_tokens **token){
+	int i = 0;
+	   t_tokens *tk;
+    tk = *token;
+    while (tk)
+    {
+		i = 0;
+	while(tk->cmd[i]){
+
+        tk->cmd[i]=ignore_quote(tk->cmd[i]);
+		i++;
+	}
+        tk = tk->next;
+    }
 }
