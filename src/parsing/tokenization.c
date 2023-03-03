@@ -203,7 +203,7 @@ void tokenization(t_tokens **token, char **str)
 	//printf("TTT%d\n", (*token)->token_count);
 	free(tokenized);
 	smart_smart_split(token);
-	ftft(token);
+	//ftft(token);
 }
 void ftft(t_tokens **token){
 	int i = 0;
@@ -212,11 +212,11 @@ void ftft(t_tokens **token){
     while (tk)
     {
 		i = 0;
-	while(tk->cmd[i]){
-
-        tk->cmd[i]=ignore_quote(tk->cmd[i]);
-		i++;
-	}
+		while(tk->cmd[i])
+		{
+			tk->cmd[i] = ignore_quote(tk->cmd[i]);
+			i++;
+		}
         tk = tk->next;
     }
 }

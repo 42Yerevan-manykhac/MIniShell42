@@ -5,10 +5,10 @@ int	cheack_front(char *str, int *x)
 {
 	int	i;
 
-	i = *x;
-	while (str[*x] == ' ')
+	while (str[*x] && str[*x] == ' ')
 			(*x)++;
-	while (!ft_strchr(METACHARS, str[*x]) && str[*x])
+	i = *x;
+	while (str[*x] && !ft_strchr(METACHARS, str[*x]))
 		(*x)++;
 	if (*x - i <= 0)
 		return (1);
@@ -18,8 +18,9 @@ int	cheack_front(char *str, int *x)
 int	cheack_back(char *str, int x)
 {
 	int	i;
-
-	while (str[x] == ' ')
+	if (x == 0)
+		return (1);
+	while (str[x] && str[x] == ' ')
 			x--;
 	i = x;
 	while (!ft_strchr(METACHARS, str[x]) && str[i])

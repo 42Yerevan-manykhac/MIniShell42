@@ -64,7 +64,7 @@ void	dolar_pars(char **str, t_env **env)
 	i = 0;
 	x = 0;
 	// printf(",,%s\n", *str);
-	while ((*str)[i] != 0)
+	while ((*str)[i])
 	{
 
 		
