@@ -13,15 +13,7 @@ void handleterm(int s)
     (void)s;
     write(1, "\n", 1);
     rl_on_new_line();
-    rl_redisplay();
-}
-
-void    ft_signal_handling(int sig)
-{
-    (void)sig;
-    handle_ctrl_d(sig);
-    signal(SIGQUIT, SIG_IGN);
-    signal(SIGINT, handleterm);
+    rl_redisplay();	
 }
 
 void    handle_ctrl_d(int sig)
@@ -35,6 +27,14 @@ void    handle_ctrl_d(int sig)
         tcsetattr(0, TCSANOW, &_term);
     }
 }
+void    ft_signal_handling(int sig)
+{
+    (void)sig;
+    handle_ctrl_d(sig);
+    signal(SIGQUIT, SIG_IGN);
+   	signal(SIGINT, handleterm);
+}
+
 
 
 // struct termios {

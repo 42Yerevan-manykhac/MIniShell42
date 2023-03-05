@@ -20,7 +20,7 @@ int	main(int arg_nb, char **argv, char **env)
 	(void)env;
 	//print_logo();
 	s_env = malloc(sizeof(t_env));
-	// ft_signal_handling(0);
+	ft_signal_handling(0);
 	env_init(env, &s_env);
 	shell_level(&s_env);
 	while (1)
@@ -28,15 +28,16 @@ int	main(int arg_nb, char **argv, char **env)
 		in_copy = dup(0);
 		out_copy = dup(1);
 		str = readline ("Minishell$> ");
-		// if(str == 0)
+		// if (str == 0)
 		//  	handleterm(0);
-		printf("\033[0;35m");
+		// printf("\033[0;35m");
 		if (str)
 			add_history(str);
 		else
 			break;
 		//rl_catch_signals = 0;
 		gen_parsing(&token, &s_env, &str);
+		
 		if (token)
 		{
 			if (token->token_count > 1)
@@ -46,6 +47,8 @@ int	main(int arg_nb, char **argv, char **env)
 		}
 		dup2(in_copy, 0);
 		dup2(out_copy,1);
+		close(in_copy);
+		close(out_copy);
 		printf("\033[0;36m"); 
 		free_t_list(&token);
 		free(str);

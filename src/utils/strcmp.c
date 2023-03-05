@@ -10,7 +10,6 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-
 char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
@@ -62,24 +61,19 @@ int	ft_strcmp(char *str, char *cmd)
 	int	j;
 	int	len;
 	int	flag;
-	int len2;
-
 
 	flag = 0;
 	i = 0;
 	j = 0;
 	len = ft_strlen(cmd);
-	len2 = ft_strlen(str);
-	if(len!=len2)
-	return (0);
+	if (len != ft_strlen(str))
+		return (0);
 	while (cmd && str && cmd[j] && str[i])
 	{
-		while (str[i] == cmd[j])
+		while (str[i++] == cmd[j++])
 		{
 			if (j == len - 1)
 				return (1);
-			i++;
-			j++;
 		}
 		if (j == 0)
 				flag = 1;
@@ -92,40 +86,6 @@ int	ft_strcmp(char *str, char *cmd)
 	}
 	return (0);
 }
-
-
-
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	char	*ptr;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	if(!s1)
-		return (s2);
-	if (!s2)
-		return (s1);
-	ptr = (char *)malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!ptr)
-		return (NULL);
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		ptr[i] = s2[j];
-		i++;
-		j++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
-
 
 int	ft_strcmp1(char *s1, char *s2)
 {

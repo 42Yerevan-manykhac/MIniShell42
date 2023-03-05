@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int ft_strcrcmp(char *str, char c)
+int	ft_strcrcmp(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -66,4 +66,3 @@ int	ft_int_strchr(char *str, char c)
 	}
 	return (0);
 }
-

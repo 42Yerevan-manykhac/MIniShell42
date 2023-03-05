@@ -2,7 +2,6 @@
 
 static int	word_count(char *str, char delim)
 {
-	// printf(",,%s\n", str);
 	int	prev_del;
 	int	i;
 	int	count;
@@ -12,10 +11,9 @@ static int	word_count(char *str, char delim)
 	prev_del = 1;
 	while (str[i])
 	{
-		//  printf("VOCH\n");
-		if(str[i] && str[i]=='\"')
+		if (str[i] && str[i] == '\"')
 			i = find_end_of_double_quote(str, i);
-		if(str[i] && str[i]=='\'')
+		if (str[i] && str[i] == '\'')
 			i = find_end_of_single_quote(str, i);
 		if (str[i] == delim)
 			prev_del = 1;
@@ -84,7 +82,6 @@ char	**smart_split(char *s, char c)
 				start = find_end_of_single_quote(s, i);
 				start++;
 		}
-		
 		end = start;
 		while (s[end] && s[end] != c)
 		{
@@ -94,9 +91,7 @@ char	**smart_split(char *s, char c)
 				end = find_end_of_single_quote(s, end);
 			end++;
 		}
-		
 		str[i] = word_fill(s, start, end - start);//pchanuma stexic heto
-	
 		if (!str[i])
 			str_free(str, i);
 		start = end;
@@ -104,5 +99,4 @@ char	**smart_split(char *s, char c)
 	str[i] = 0;
 	return (str);
 }
-
 

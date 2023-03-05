@@ -10,6 +10,7 @@ void	update_oldpwd(t_env **l_env)
 	free(env->value);
 	env->value = ft_strdup(get_env(l_env, "PWD")->value);
 }
+
 void	update_pwd(t_env **l_env)
 {
 	t_env	*env;

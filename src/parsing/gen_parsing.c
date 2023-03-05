@@ -33,8 +33,7 @@ int	check(int i, char *str, int *flg)
 		{
 			i++;
 			if (cheack_front(str, &i))
-			*flg = 0;
-
+				*flg = 0;
 		}
 		else if (str[i + 1] && str[i + 1] == '>')
 		{
@@ -43,8 +42,6 @@ int	check(int i, char *str, int *flg)
 				*flg = 0;
 		}
 	}
-	else
-		i++;
 	return (i);
 }
 
@@ -59,9 +56,9 @@ int	syntax_pars_2(char *str)
 	while (str[i])
 	{
 		i = check(i, str, &flg);
-		if (i == 0)
+		if (!flg)
 			break;
-			i++;
+		i++;
 	}
 	if (flg == 0)
 	{

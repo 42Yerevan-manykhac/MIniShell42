@@ -37,18 +37,17 @@ static char	*is_zero(char *str)
 
 char	*ft_itoa(int n)
 {
-
-	int	len;
+	int		len;
 	char	*str;
 	long	w;
 
 	w = n;
 	len = itoa_len(w);
 	if (n == 0)
-    {
-    str = (char *)malloc(sizeof(char) * (2));
+	{
+		str = (char *)malloc(sizeof(char) * (2));
 		return (is_zero(str));
-    }
+	}
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
@@ -65,5 +64,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
-

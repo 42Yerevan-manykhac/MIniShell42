@@ -1,21 +1,21 @@
 #include "minishell.h"
 
-int env_len(t_env **l_env)
+int	env_len(t_env **l_env)
 {
-    t_env   *env;
-    int     count;
+	t_env	*env;
+	int		count;
 
-    count = 0;
-    env = *l_env;
-    while (env)
-    {
-        env = env->next;
-        count++;
-    }
-    return (count);
+	count = 0;
+	env = *l_env;
+	while (env)
+	{
+		env = env->next;
+		count++;
+	}
+	return (count);
 }
 
-int matrix_len(char **str)
+int	matrix_len(char **str)
 {
 	int	i;
 

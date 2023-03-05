@@ -19,8 +19,6 @@ void	unset_cmd(t_env **l_env, char *new_key)
 
 void	echo_cmd(char **str)
 {
-
-	// printf(",,%s\n", str[3]);
 	int i;
 	int flag;
 
@@ -70,9 +68,6 @@ if(flag==0)
 	}
 	else
 	{
-
-
-
 		if (str[1])
 		{
 			i = 1;

@@ -1,12 +1,13 @@
 #include "minishell.h"
 
-
-void	export_no_args(t_env **env) // export_no_args()
+void	export_no_args(t_env **env)
 {
-	t_env	*current = *env;
-	t_env	*index = NULL;  
+	t_env	*current;
+	t_env	*index;
 	char	*temp;
 
+	current = *env;
+	index = NULL;
 	if (env == NULL)
 		return ;
 	while (current != NULL)

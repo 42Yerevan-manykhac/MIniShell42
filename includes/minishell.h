@@ -14,7 +14,7 @@
 # include <termios.h>
 
 # define METACHARS " |&()<>;"
-# define METAE	"-!@#$^&*()"
+# define METAE	"-.!@#$^&*()}{"
 extern int	exit_code;
 
 typedef struct s_count	t_count;
@@ -122,7 +122,7 @@ int 	matrix_len(char **str);
 void	ft_fill_red(t_tokens **token, int flag, char *str);
 int		execve_print(char *str, int z);
 void	running_pipe(t_tokens **token, t_env **env);
-int    cheack_access(char **path,char **str, char **mx_env);
+char	*cheack_access(char **path,char **str, char **mx_env);
 char    **t_env_to_matrix(t_env **env);
 void 	create_the_paths(char **splited_path, char *new_str);
 void running_p(t_tokens **tk, t_env **l_env, int (*fd)[2], int i);
@@ -131,5 +131,9 @@ void call_heredoc(t_tokens **tk, int len);
 t_count *count_all(t_tokens **tk);
 void call_redirections(t_tokens **tk, t_count *len);
 void ftft(t_tokens **token);
+int ft_count_pipe(char *str);
+int	check_error(char **tokenized, char *str);
+void execve_cmd2(t_env **env, char **str);
+int	ft_count_tokens(char **token);
 
 # endif

@@ -1,7 +1,5 @@
 #include "minishell.h"
 
-
-
 int any_quote(char *str, int i)
 {
     if (str[i] == '\'')

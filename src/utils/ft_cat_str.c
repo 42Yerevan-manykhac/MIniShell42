@@ -11,7 +11,7 @@ char	*ft_cat_str1(char *s, int i, int flag)
 		return (NULL);
 	if (flag == 1)
 		str[j++] = '-';
-	else if (flag == 2) 
+	else if (flag == 2)
 			str[j++] = '+';
 	while (s[i] && i < ft_strlen(s))
 		str[j++] = s[i++];

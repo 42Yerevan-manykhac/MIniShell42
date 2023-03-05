@@ -2,8 +2,8 @@
 
 long long	ft_atoi(const char *str)
 {
-	int	i;
-	int	n;
+	int			i;
+	int			n;
 	long long	result;
 
 	result = 0;

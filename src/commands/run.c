@@ -163,7 +163,6 @@ void  running(t_tokens **tk, t_env **l_env)
 		}
 			token=token->next;
 	}
-	// token = *tk;
 	free(all_count);
 }
 
@@ -171,19 +170,25 @@ void running_p(t_tokens **tk, t_env **l_env, int (*fd)[2], int i)
 {
 	t_env		*env;
 	t_tokens	*token;
-	//t_count		*all_count;
+	t_count		*all_count;
 	env = *l_env;
 	token = *tk;
 
-	// all_count = NULL;
-	// all_count = count_all(tk);
+	(void)fd;
+	(void)i;
+	//printf("VVV = %s\n", token->cmd[0]);
+	all_count = NULL;
+	all_count = count_all(tk);
 	// call_heredoc(tk , all_count->count_herdoc);
 	// call_redirections(tk, all_count);
-	child_pr(fd, i, token->token_count);
-	while (token)
-	{
-		if (token->cmd && token->cmd[0])
+	printf("--cmd0-- = %s\n", token->cmd[0]);
+	 //child_pr(fd, i, token->token_count);
+	//while (token)	
+	//{
+		while (token->cmd && token->cmd[0])
 		{
+			printf("--cmd-- = %s\n", token->cmd[0]);
+			//fprintf(stderr, "------\n");
 			if (ft_strcmp(token->cmd[0], "exit"))
 				exit_cmd(token->cmd);
 			else if (ft_strcmp(token->cmd[0], "pwd"))
@@ -200,16 +205,23 @@ void running_p(t_tokens **tk, t_env **l_env, int (*fd)[2], int i)
 				echo_cmd(token->cmd);
 			else if (ft_strcmp(token->cmd[0], "unset"))
 				unset_cmd(l_env, token->cmd[1]);
-			else 
-				execve_cmd(l_env, token->cmd);
-		}
-		else
-		   	if (!token->cmd || (token->cmd && !token->cmd[0]))
+			else
 			{
-				print_error("", "command not found", 127);
-				return ;
-			} 
+				//printf("token->cmd = %s\n", token->cmd[0]);
+				//printf("----0000--\n");
+				execve_cmd2(l_env, token->cmd);
+				//printf("----111--\n");
+			}
 			token=token->next;
+		}
+		// else
+		//    	if (!token->cmd || (token->cmd && !token->cmd[0]))
+		// 	{
+		// 		print_error("", "command not found", 127);
+		// 		return ;
+		// 	} 
+		
+		
 	}
 	// token = *tk;
-}
+//}

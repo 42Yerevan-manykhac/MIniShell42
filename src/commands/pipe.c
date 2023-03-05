@@ -28,9 +28,9 @@ void child_error(int i, pid_t *child )
 void fd_close(int (*fd)[2], int count)
 {
 	int i;
-	i = 0;
 
-	while(i < count)
+	i = 0;
+	while(i < count - 1)
 	{
 		close(fd[i][0]);
 		close(fd[i][1]);
@@ -43,9 +43,13 @@ void fd_close(int (*fd)[2], int count)
 void	child_pr(int (*fd)[2], int i, int count)
 {
 	if(i == 0)
+	{
 		dup2(fd[0][1], 1);
+	}
 	else if (i == count - 1)
-		dup2(fd[i - 1][0], 0);
+	{
+		dup2(0, fd[i - 1][0]);
+	}
 	else
 	{
 		dup2(fd[i - 1][0], 0);
@@ -54,67 +58,156 @@ void	child_pr(int (*fd)[2], int i, int count)
 	fd_close(fd, count);
 }
 
-// void	execve_for_pipes(t_tokens **token, t_env **env)
-// {
-// 	t_env *path;
-//     char **splited_path;
-//     char *new_str;
-//     char **mx_env;
-//     int i;
 
-//     i = 0;
-//     path = get_env(env, "PATH");
-//     splited_path = ft_split(path->value, ':');
-//     new_str = ft_strjoin("/", (*token)->cmd[0]);
-// 	create_the_paths(splited_path, new_str);
-//     free(new_str);
-//     mx_env = t_env_to_matrix(env);
-//     cheack_access(splited_path, (*token)->cmd, mx_env);
-// 	exit(0); // exiti codery dzel
-//     matrix_free(mx_env);
-//     matrix_free(splited_path);
+// void	running_pipe(t_tokens **token, t_env **env)
+// {
+// 	int			(*fd)[2];
+// 	int			i;
+// 	pid_t		*child;
+// 	t_tokens	*tk;
+// 	t_count		*all_count;
+// 	tk = *token;
+
+// 	i = 0;
+// 	all_count = NULL;
+// 	all_count = count_all(token);
+// 	child = malloc(sizeof(int)* (*token)->token_count);
+// 	fd = ft_calloc(sizeof(int *), (*token)->token_count - 1);
+// 	ft_pipe_call(fd, (*token)->token_count);
+// 	while (tk)
+// 	{
+// 		child[i] = fork();
+// 		if (child[i] == -1)
+// 		{
+// 			child_error(i, child );// petqa 
+// 			break;
+// 		}
+// 		else if(child[i] == 0)
+// 		{
+// 			printf("i = %d\n", i);
+// 			printf("--tok--=>%s\n", (*token)->cmd[0]);
+// 			child_pr(fd, i, (*token)->token_count);
+// 			//exit(0);// eli petq a dzel
+// 			// if (i == 0)
+// 			// 	close(fd[0][1]);
+// 			// else if ((*token)->token_count - 1 == 1)
+// 			// 	close(fd[0][0]);
+// 			// else
+// 			// 	{
+// 			// 		close(fd[i - 1][0]);
+// 			// 		close(fd[i][1]);
+// 			// 	}
+// 			running_p(&tk, env, fd, i);
+// 		}
+// 	i++;
+// 		tk = tk->next;
+// 	}
+// 	// 	while(++i < 3)
+// 	// {
+// 	// 	close(fd[i][0]);
+// 	// 	close(fd[i][1]);
+// 	// }
+// 	fd_close(fd, (*token)->token_count);
+// 	while(wait(0) != -1)
+// 	;
+// 	printf("\n");
 // }
 
-void	running_pipe(t_tokens **token, t_env **env)
+
+
+
+// Manyyy es chatGPT i aracna vrody ashxatuma bayc sega qcum 
+
+
+
+void child_prr(int (*fd)[2], int i, int count)
 {
-	int			(*fd)[2];
-	int			i;
-	pid_t		*child;
-	t_tokens	*tk;
-	i = 0;
-	tk = *token;
+    if (i == 0)
+    {
+        // Redirect stdout to write end of first pipe
+        dup2(fd[0][1], STDOUT_FILENO);
 
-	t_count		*all_count;
+        // Close read end of first pipe
+        close(fd[0][0]);
+    }
+    else if (i == count - 1)
+    {
+        // Redirect stdin to read end of last pipe
+        dup2(fd[i - 1][0], STDIN_FILENO);
 
+        // Close write end of last pipe
+        close(fd[i - 1][1]);
+    }
+    else
+    {
+        // Redirect stdin to read end of current pipe
+        dup2(fd[i - 1][0], STDIN_FILENO);
 
-	all_count = NULL;
-	all_count = count_all(token);
-call_heredoc(token , all_count->count_herdoc);
-	call_redirections(token, all_count);
-	child = malloc(sizeof(int)* (*token)->token_count);
-	fd = ft_calloc(sizeof(int *), (*token)->token_count - 1);
-	ft_pipe_call(fd, (*token)->token_count);
-	while (tk)
-	{
-		child[i] = fork();
-		if (child[i] == -1)
-		{
-			child_error(i, child );// petqa 
-			break;
-		}
-		else if(child[i] == 0)
-		{
-	
-			//execve_for_pipes(&tk, env);
-			//child_pr(fd, i, (*token)->token_count);
-			running_p(&tk, env, fd, i);
-			exit(0);// eli petq a dzel
-		}
-		//printf("%d\n", i);
-	i++;
-	tk = tk->next;
-	}
-	fd_close(fd, (*token)->token_count);
-	while(wait(0) != -1)
-	;
+        // Redirect stdout to write end of next pipe
+        dup2(fd[i][1], STDOUT_FILENO);
+
+        // Close read end of current pipe
+        close(fd[i - 1][1]);
+
+        // Close write end of next pipe
+        close(fd[i][0]);
+    }
 }
+
+void running_pipe(t_tokens **token, t_env **env)
+{
+    int (*fd)[2];
+    int i;
+    pid_t *child;
+    t_tokens *tk;
+    t_count *all_count;
+	(void)env;
+    tk = *token;
+    i = 0;
+    all_count = NULL;
+    all_count = count_all(token);
+    child = malloc(sizeof(pid_t) * tk->token_count);
+    fd = ft_calloc(sizeof(int *), tk->token_count - 1);
+
+    // Check if pipe was successfully created
+    ft_pipe_call(fd, tk->token_count);
+    // {
+    //     perror("pipe");
+    //     return;
+    // }
+
+    while (tk)
+    {
+        child[i] = fork();
+        if (child[i] == -1)
+        {
+            perror("fork");
+            exit(EXIT_FAILURE);
+        }
+        else if (child[i] == 0)
+        {
+            child_prr(fd, i, tk->token_count);
+
+            // Execute child command
+            execvp(tk->cmd[0], tk->cmd);
+
+            // If execvp returns, there was an error
+            perror("execvp");
+            exit(EXIT_FAILURE);
+        }
+
+        i++;
+        tk = tk->next;
+    }
+
+    // Close all pipe file descriptors
+    fd_close(fd, tk->token_count);
+
+    // Wait for all child processes to finish
+    for (i = 0; i < tk->token_count; i++)
+    {
+        waitpid(child[i], NULL, 0);
+    }
+}
+
+

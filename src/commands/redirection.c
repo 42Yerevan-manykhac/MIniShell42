@@ -54,22 +54,26 @@ void	heredoc(char *key, int i)
 	int		fd;
 
 	file = ft_strjoin(".", key);
+	// ft_signal_handling(1);
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
 		hrd = readline("heredoc> ");
+
 		if (!hrd)
 			break ;
 		if (ft_strcmp1(key, hrd) == 0)
 			break ;
+	
 		write(fd, hrd, ft_strlen(hrd));
 		write(fd, "\n", 1);
 		free(hrd);
 	}
-	free(hrd);
-	close(fd);
+	if (hrd == 0)
+		 	handleterm(0);
 	if (i)
 	{
+	close(fd);
 		fd = open(file, O_RDONLY);
 		dup2(fd, 0);
 		close(fd);

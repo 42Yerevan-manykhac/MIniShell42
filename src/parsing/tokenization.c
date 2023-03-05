@@ -1,19 +1,9 @@
 #include "minishell.h"
 
-int ft_count_tokens(char **token)
+int	count_hrd(char **str)
 {
-	int i;
-
-	i = 0;
-	while (token[i])
-		i++;
-	return (i);
-}
-
-int count_hrd(char **str)
-{
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -30,33 +20,30 @@ int count_hrd(char **str)
 	return (count);
 }
 
-
-void ft_fill_red(t_tokens **token, int flag, char *str)// 
+void	ft_fill_red(t_tokens **token, int flag, char *str)
 {
+	t_tokens	*tk;
+	t_redirects	*red;
 
-
-    t_tokens *tk;
-    t_redirects *red = NULL;
-    tk = *token;
-	
-	if((*token)->head_redct->flag==0)
+	red = NULL;
+	tk = *token;
+	if ((*token)->head_redct->flag == 0)
 	{
 		(*token)->head_redct->del = str;
 		(*token)->head_redct->flag = flag;
 		(*token)->head_redct->pathname = NULL;
 		(*token)->head_redct->next = NULL;
 	}
-	else 
+	else
 	{
 		red = new_t_redirects(flag, str, NULL);
 		t_redirects_add_back(&(tk)->head_redct, red);
 	}
 }
 
-
-t_redirects *new_t_redirects(int flag, char *del, char *pathname)
+t_redirects	*new_t_redirects(int flag, char *del, char *pathname)
 {
-	t_redirects *new_red;
+	t_redirects	*new_red;
 
 	new_red = malloc(sizeof(t_redirects));
 	new_red->flag = flag;
@@ -66,42 +53,36 @@ t_redirects *new_t_redirects(int flag, char *del, char *pathname)
 	return (new_red);
 }
 
-void t_redirects_add_back(t_redirects **head, t_redirects *new_node)
+void	t_redirects_add_back(t_redirects **head, t_redirects *new_node)
 {
-	t_redirects *tmp;
+	t_redirects	*tmp;
 
 	tmp = *head;
-	if ((*head)->flag==0)
+	if ((*head)->flag == 0)
 	{
-	
 		*head = new_node;
-		return;
+		return ;
 	}
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new_node;
-
 }
 
 t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
 {
-	t_tokens *new_node;
+	t_tokens	*new_node;
 	(void)cmd;
 	(void)hrd_count;
 
 	new_node = malloc(sizeof(t_tokens));
 	new_node->rdl = rdl;
-
-	// new_node->cmd = malloc(sizeof(char **));
-	new_node->cmd = NULL; // manyana avelacrel
-	// new_node->hrd_count = hrd_count;
+	new_node->cmd = NULL;
 	new_node->head_redct = NULL;
 	new_node->head_redct = malloc(sizeof(t_redirects));
 	new_node->head_redct->flag = 0;
 	new_node->head_redct->del = NULL;
 	new_node->head_redct->pathname = NULL;
 	new_node->head_redct->next = NULL;
-
 	new_node->token_count = count_token;
 	new_node->next = NULL;
 	return (new_node);
@@ -122,101 +103,41 @@ t_tokens *ft_lstlast1(t_tokens *lst)
 
 void t_tokens_add_back(t_tokens **head, t_tokens *new)
 {
-	t_tokens *node;
+	t_tokens	*node;
 
 	node = *head;
 	if (!node)
 	{
 		*head = new;
-		return;
+		return ;
 	}
 	ft_lstlast1(node)->next = new;
 }
 
-void fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_token)
+void	fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_token)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tokenized && tokenized[i])
 	{
-		t_tokens_add_back(token, new_t_tokens(tokenized[i], NULL, hrd_c, count_token));
+		t_tokens_add_back(token, new_t_tokens(tokenized[i],
+				NULL, hrd_c, count_token));
 		i++;
 	}
-}
-
-int ft_count_pipe(char *str)
-{
-	int count;
-	int i;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-			i = find_end_of_single_quote(str, i);
-		else if (str[i] == '\"')
-			i = find_end_of_double_quote(str, i);
-		if (str[i] == '|')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-int check_error(char **tokenized, char *str)
-{
-	int count_pipe;
-	int count_tokens;
-
-	count_pipe = ft_count_pipe(str);
-
-
-	count_tokens = ft_count_tokens(tokenized);
-	if (count_pipe && count_tokens - 1 != count_pipe)
-	{
-		exit_code = 258;
-		write(2, "Minishell: syntax error near unexpected token `|'\n", 50);
-		return (1);
-	}
-	return (0);
 }
 
 void tokenization(t_tokens **token, char **str)
 {
-	char **tokenized;
-	int *hrd_c;
-	int count_token;
-	(void)token;
-	(void)str;
+	char	**tokenized;
+	int		*hrd_c;
+	int		count_token;
+
 	hrd_c = 0;
-	//	hrd_c = malloc(sizeof(int));
-	//	*hrd_c = count_hrd(str);
-
 	tokenized = smart_split(*str, '|');
-
 	count_token = matrix_len(tokenized);
-
 	check_error(tokenized, str[0]);
 	fill_t_token(token, tokenized, hrd_c, count_token);
-	//printf("TTT%d\n", (*token)->token_count);
 	free(tokenized);
 	smart_smart_split(token);
-	//ftft(token);
-}
-void ftft(t_tokens **token){
-	int i = 0;
-	   t_tokens *tk;
-    tk = *token;
-    while (tk)
-    {
-		i = 0;
-		while(tk->cmd[i])
-		{
-			tk->cmd[i] = ignore_quote(tk->cmd[i]);
-			i++;
-		}
-        tk = tk->next;
-    }
 }

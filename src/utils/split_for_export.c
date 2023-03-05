@@ -25,6 +25,5 @@ char	**split_export(char *str)
 			ptr[0] = ft_substr(str, 0, len);
 			ptr[1] = 0;
 	}
-	//}
 	return (ptr);
 }
