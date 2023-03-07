@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 12:05:38 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/07 12:05:50 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -23,18 +34,16 @@ void	update_pwd(t_env **l_env)
 		env->value = ft_strdup(getcwd(cwd, sizeof(cwd)));
 	free(tmp);
 }
+
 void	cd_cmd(t_env **l_env, char **str)
 {
 	update_oldpwd(l_env);
-
 	if ((ft_strcmp("cd", str[0]) && !str[1]) || ft_strcmp("~", str[1]))
 		chdir(get_env(l_env, "HOME")->value);
 	else
 	{
-			//printf(",STR1,%s\n", str[1]);
-		if(chdir(str[1])==-1)
+		if (chdir(str[1]) == -1)
 			print_error(str[1], "No such file or directory", 1);
-
 	}
 	update_pwd(l_env);
 }

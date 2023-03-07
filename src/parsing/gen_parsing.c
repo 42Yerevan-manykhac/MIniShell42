@@ -8,7 +8,7 @@ int	check(int i, char *str, int *flg)
 		i = find_end_of_double_quote(str, i);
 	else if (str[i] && str[i] == '<')
 	{
-		if(!str[i + 1])
+		if (!str[i + 1])
 			*flg = 0;
 		else if( str[i + 1] && str[i + 1] != '<' )
 		{
@@ -27,9 +27,9 @@ int	check(int i, char *str, int *flg)
 	}
 	else if (str[i] && str[i] == '>')
 	{
-		if(!str[i + 1] )
+		if (!str[i + 1])
 			*flg = 0;
-		else if ( str[i + 1] && str[i + 1] != '>')
+		else if (str[i + 1] && str[i + 1] != '>')
 		{
 			i++;
 			if (cheack_front(str, &i))
@@ -57,7 +57,7 @@ int	syntax_pars_2(char *str)
 	{
 		i = check(i, str, &flg);
 		if (!flg)
-			break;
+			break ;
 		i++;
 	}
 	if (flg == 0)
@@ -89,25 +89,19 @@ int	syntax_pars(char **str)
 	return (0);
 }
 
-int		gen_parsing(t_tokens **token, t_env **env, char **str)
+int	gen_parsing(t_tokens **token, t_env **env, char **str)
 {
-	char	*tmp;
-	(void)env;
-	(void)str;
-	(void)token;
+	t_tokens	*tk;
+	char		*tmp;
 
-t_tokens *tk;
-
-tk = *token;
+	tk = *token;
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
 	if (syntax_pars(str))
 		return (1);
-	// printf(",,%s\n", *str);
-    dolar_pars(str, env);
-	interrogatory(str);		
+	dolar_pars(str, env);
+	interrogatory(str);
 	tokenization(token, str);
-	// printf("AYO\n");
 	return (0);
 }

@@ -46,8 +46,8 @@ int	main(int arg_nb, char **argv, char **env)
 				running(&token, &s_env );
 		}
 		dup2(in_copy, 0);
-		dup2(out_copy,1);
-		close(in_copy);
+		dup2(out_copy, 1);
+		//close(in_copy);
 		close(out_copy);
 		printf("\033[0;36m"); 
 		free_t_list(&token);

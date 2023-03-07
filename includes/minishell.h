@@ -44,8 +44,8 @@ struct s_tokens
     char		**cmd;
 	int			*hrd_count;
 	int 		token_count;
-	//int			istream;
-	//int			ostream;
+	int			in_copy;
+	int			out_copy;
 	t_redirects	*head_redct;
 	t_tokens	*next;
 };
@@ -133,7 +133,13 @@ void call_redirections(t_tokens **tk, t_count *len);
 void ftft(t_tokens **token);
 int ft_count_pipe(char *str);
 int	check_error(char **tokenized, char *str);
-void execve_cmd2(t_env **env, char **str);
 int	ft_count_tokens(char **token);
-
+void	ft_execv(char *new_str, char **mx_env, char **str);
+void	execve_cmd2(t_env **env, char **str);
+void	else_wait(void);
+void	exit_2(char *str);
+int	check_longlongd(char *str);
+int	check_longlongd1(char *str);
+int	check_longlongd2(char *str);
+int	check_longlongd3(char *str);
 # endif

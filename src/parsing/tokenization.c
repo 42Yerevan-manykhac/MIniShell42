@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenization.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 13:15:12 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/07 13:31:01 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "minishell.h"
 
 int	count_hrd(char **str)
@@ -68,7 +81,7 @@ void	t_redirects_add_back(t_redirects **head, t_redirects *new_node)
 	tmp->next = new_node;
 }
 
-t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
+t_tokens	*new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
 {
 	t_tokens	*new_node;
 	(void)cmd;
@@ -88,7 +101,7 @@ t_tokens *new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
 	return (new_node);
 }
 
-t_tokens *ft_lstlast1(t_tokens *lst)
+t_tokens	*ft_lstlast1(t_tokens *lst)
 {
 	if (lst == NULL)
 		return (0);
@@ -101,7 +114,7 @@ t_tokens *ft_lstlast1(t_tokens *lst)
 	return (lst);
 }
 
-void t_tokens_add_back(t_tokens **head, t_tokens *new)
+void	t_tokens_add_back(t_tokens **head, t_tokens *new)
 {
 	t_tokens	*node;
 
@@ -127,7 +140,7 @@ void	fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_toke
 	}
 }
 
-void tokenization(t_tokens **token, char **str)
+void	tokenization(t_tokens **token, char **str)
 {
 	char	**tokenized;
 	int		*hrd_c;
@@ -140,4 +153,5 @@ void tokenization(t_tokens **token, char **str)
 	fill_t_token(token, tokenized, hrd_c, count_token);
 	free(tokenized);
 	smart_smart_split(token);
+	ftft(token);
 }

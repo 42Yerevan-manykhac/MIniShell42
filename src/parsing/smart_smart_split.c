@@ -1,24 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   smart_smart_split.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 13:16:13 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/07 13:29:32 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #include "minishell.h"
 
-int any_quote(char *str, int i)
+int	any_quote(char *str, int i)
 {
-    if (str[i] == '\'')
-        i = find_end_of_single_quote(str, i);
-    else if (str[i] == '\"')
-        i = find_end_of_double_quote(str, i);
-    return (i);
+	if (str[i] == '\'')
+	i = find_end_of_single_quote(str, i);
+	else if (str[i] == '\"')
+		i = find_end_of_double_quote(str, i);
+	return (i);
 }
 
-char *ignore_quote(char *str)
+char	*ignore_quote(char *str)
 {
-	// printf(",%s,\n", str);
     int		i;
     int		j;
     char	*tmp;
 	int flag;
 
 	flag = -1;
-    tmp = NULL;    // exit
+    tmp = NULL;
 	i = 0;
 	j = 0;
     while(str[i])

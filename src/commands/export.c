@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 13:06:04 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/07 13:06:38 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 #include "minishell.h"
 
 t_env	*get_env(t_env **l_env, char *new_key)
 {
 	t_env	*env;
-	env = *l_env;
 
+	env = *l_env;
 	while (env)
 	{
 		if (ft_strcmp1(new_key, env->key))
@@ -19,7 +33,7 @@ int	if_need_to_add(t_env **l_env, char **splited)
 {
 	int		len;
 	t_env	*rtv;
-	char    *tmp;
+	char	*tmp;
 
 	rtv = 0;
 	len = ft_strlen(splited[0]);
@@ -105,6 +119,7 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 
 void	export_cmd(t_env **l_env, char *str)
 {
+
 	int		i;
 	t_env	*env;
 	int		len;
@@ -113,6 +128,8 @@ void	export_cmd(t_env **l_env, char *str)
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
 	splited = split_export(str);
+	printf("------%s\n", splited[1]);
+
 	export_pars(splited[0]);
 	if (!if_key_already_exist(l_env, splited))
 	{

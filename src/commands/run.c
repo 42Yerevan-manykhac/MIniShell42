@@ -111,18 +111,18 @@ void call_redirections(t_tokens **tk, t_count *len)
 	while (token)
 	{
 		while (token->head_redct)
-			{
-				do_the_job(&token, len);
-				if (token->head_redct->next)
+		{
+			do_the_job(&token, len);
+			if (token->head_redct->next)
 				token->head_redct = token->head_redct->next;
-				else
-					break;
-				i++;
-			}
-			if (token->next)
-				token=token->next;
-			else 
+			else
 				break;
+			i++;
+		}
+		if (token->next)
+			token=token->next;
+		else 
+			break ;
 	}
 }
 
@@ -142,23 +142,23 @@ void  running(t_tokens **tk, t_env **l_env)
 	{
 		if (token->cmd && token->cmd[0])
 		{
-			if (ft_strcmp(token->cmd[0], "exit"))
+			if (ft_strcmp1(token->cmd[0], "exit") == 0)
 				exit_cmd(token->cmd);
-			else if (ft_strcmp(token->cmd[0], "pwd"))
+			else if (ft_strcmp1(token->cmd[0], "pwd") == 0)
 				pwd_cmd(l_env);
-			else if (ft_strcmp(token->cmd[0], "env"))
+			else if (ft_strcmp1(token->cmd[0], "env") == 0)
 				env_cmd(env);
-			else if (ft_strcmp(token->cmd[0], "export") && !token->cmd[1])
+			else if (ft_strcmp1(token->cmd[0], "export") == 0 && !token->cmd[1])
 				only_export(l_env);
-			else if (ft_strcmp(token->cmd[0], "export"))
+			else if (ft_strcmp1(token->cmd[0], "export") == 0)
 				export_cmd(l_env, token->cmd[1]);
-			else if (ft_strcmp(token->cmd[0], "cd"))
+			else if (ft_strcmp1(token->cmd[0], "cd") == 0)
 				cd_cmd(l_env, token->cmd);
-			else if (ft_strcmp(token->cmd[0], "echo"))
+			else if (ft_strcmp1(token->cmd[0], "echo") == 0)
 				echo_cmd(token->cmd);
-			else if (ft_strcmp(token->cmd[0], "unset"))
+			else if (ft_strcmp1(token->cmd[0], "unset") == 0)
 				unset_cmd(l_env, token->cmd[1]);
-			else 
+			else
 				execve_cmd(l_env, token->cmd);
 		}
 			token=token->next;
@@ -176,52 +176,33 @@ void running_p(t_tokens **tk, t_env **l_env, int (*fd)[2], int i)
 
 	(void)fd;
 	(void)i;
-	//printf("VVV = %s\n", token->cmd[0]);
 	all_count = NULL;
 	all_count = count_all(tk);
-	// call_heredoc(tk , all_count->count_herdoc);
-	// call_redirections(tk, all_count);
-	printf("--cmd0-- = %s\n", token->cmd[0]);
-	 //child_pr(fd, i, token->token_count);
-	//while (token)	
-	//{
-		while (token->cmd && token->cmd[0])
+	call_heredoc(tk , all_count->count_herdoc);
+	call_redirections(tk, all_count);
+	child_pr(fd, i, token->token_count);
+	if (token->cmd && token->cmd[0])
+	{
+		if (ft_strcmp1(token->cmd[0], "exit") == 0)
+			exit_cmd(token->cmd);
+		else if (ft_strcmp1(token->cmd[0], "pwd") == 0)
+			pwd_cmd(l_env);
+		else if (ft_strcmp1(token->cmd[0], "env") == 0)
+			env_cmd(env);
+		else if (ft_strcmp1(token->cmd[0], "export") == 0 && !token->cmd[1])
+			only_export(l_env);
+		else if (ft_strcmp1(token->cmd[0], "export") == 0)
+			export_cmd(l_env, token->cmd[1]);
+		else if (ft_strcmp1(token->cmd[0], "cd") == 0)
+			cd_cmd(l_env, token->cmd);
+		else if (ft_strcmp1(token->cmd[0], "echo") == 0)
+			echo_cmd(token->cmd);
+		else if (ft_strcmp1(token->cmd[0], "unset") == 0)
+			unset_cmd(l_env, token->cmd[1]);
+		else
 		{
-			printf("--cmd-- = %s\n", token->cmd[0]);
-			//fprintf(stderr, "------\n");
-			if (ft_strcmp(token->cmd[0], "exit"))
-				exit_cmd(token->cmd);
-			else if (ft_strcmp(token->cmd[0], "pwd"))
-				pwd_cmd(l_env);
-			else if (ft_strcmp(token->cmd[0], "env"))
-				env_cmd(env);
-			else if (ft_strcmp(token->cmd[0], "export") && !token->cmd[1])
-				only_export(l_env);
-			else if (ft_strcmp(token->cmd[0], "export"))
-				export_cmd(l_env, token->cmd[1]);
-			else if (ft_strcmp(token->cmd[0], "cd"))
-				cd_cmd(l_env, token->cmd);
-			else if (ft_strcmp(token->cmd[0], "echo"))
-				echo_cmd(token->cmd);
-			else if (ft_strcmp(token->cmd[0], "unset"))
-				unset_cmd(l_env, token->cmd[1]);
-			else
-			{
-				//printf("token->cmd = %s\n", token->cmd[0]);
-				//printf("----0000--\n");
+			//printf("token->cmd = %s\n", token->cmd[0]);
 				execve_cmd2(l_env, token->cmd);
-				//printf("----111--\n");
-			}
-			token=token->next;
 		}
-		// else
-		//    	if (!token->cmd || (token->cmd && !token->cmd[0]))
-		// 	{
-		// 		print_error("", "command not found", 127);
-		// 		return ;
-		// 	} 
-		
-		
-	}
-	// token = *tk;
-//}
+	}	
+}

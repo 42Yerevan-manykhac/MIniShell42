@@ -73,7 +73,7 @@ void	heredoc(char *key, int i)
 		 	handleterm(0);
 	if (i)
 	{
-	close(fd);
+		close(fd);
 		fd = open(file, O_RDONLY);
 		dup2(fd, 0);
 		close(fd);
