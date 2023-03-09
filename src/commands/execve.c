@@ -61,12 +61,15 @@ void	ft_execv(char *new_str, char **mx_env, char **str)
 	(void)new_str;
 	i = 0;
 	if (str[0][0] == '/' || str[0][0] == '.')
+	{
+
 		i = execve(str[0], str, mx_env);
+	}
 	else
 		i = execve(new_str, str, mx_env);
 	if (i == -1)
 	{
-		print_error(str[0], "command not found", 127);
+		print_error(str[0], "command not found", 127); //"" | "" es qysiq hamar petqa \n dnel
 		exit(127);
 	}
 }

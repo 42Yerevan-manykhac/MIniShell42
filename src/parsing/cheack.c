@@ -4,12 +4,13 @@
 int	cheack_front(char *str, int *x)
 {
 	int	i;
-
+	
 	while (str[*x] && str[*x] == ' ')
 			(*x)++;
 	i = *x;
 	while (str[*x] && !ft_strchr(METACHARS, str[*x]))
 		(*x)++;
+		//printf("lal => %d\n", *x-i);
 	if (*x - i <= 0)
 		return (1);
 	return (0);

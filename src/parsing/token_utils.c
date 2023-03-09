@@ -19,16 +19,26 @@ void	ftft(t_tokens **token)
 
 	i = 0;
 	tk = *token;
+		
 	while (tk)
 	{
+	
 		i = 0;
-		while (tk->cmd[i])
+		
+		
+		while (tk  && tk->cmd && tk->cmd[i])
 		{
+
+			// printf("-------------%s\n",tk->cmd[i]);
 			tk->cmd[i] = ignore_quote(tk->cmd[i]);
 			i++;
 		}
-		tk = tk->next;
+
+		tk=tk->next;
 	}
+
+
+
 }
 
 int	ft_count_pipe(char *str)

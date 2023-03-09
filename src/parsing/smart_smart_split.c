@@ -94,23 +94,25 @@ char	*ignore_quote(char *str)
         i++;
     } 
     free(str);
-		// printf(",%s,\n", tmp);
+		
     return(tmp);
 }
 
 
 void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert) 
 {
-    char    *tmp;
-	// char	*smt;
-	 char 	*ptr;
-    int i;
-    int j;
-	(void)tk;
-    j = 0;
-    i = 0;
-    tmp= NULL;
-	(void)ptr;
+	char    *tmp;
+	char 	*ptr;
+	int		i;
+	int		j;
+(void)*tk;
+char *result;
+	j = 0;
+	i = 0;
+	tmp = NULL;
+	result = NULL;
+
+
     while (rdl[i])
     {
         while (rdl[i] && rdl[i] == ' ')
@@ -123,7 +125,8 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-           ft_fill_red(tk, 2, ft_substr(rdl, j, i - j));
+			
+           ft_fill_red(hert, 2, ft_substr(rdl, j, i - j));
 	
         }
         else if(rdl[i] && rdl[i + 1] && rdl[i] == '>' && rdl[i + 1] == '>')
@@ -134,28 +137,29 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-           ft_fill_red(tk, 4, ft_substr(rdl, j, i - j));
+           ft_fill_red(hert, 4, ft_substr(rdl, j, i - j));
         }
 
          else if(rdl[i] && rdl[i] == '>' )
         {
-            i+=1;
+            i += 1;
              while (rdl[i] && rdl[i] == ' ')
                 i++;
             j = i;
-            while (rdl[i] && rdl[i] != ' ')
+            while (rdl[i] && !ft_strcrcmp(REDE, rdl[i]))
                 i++;
-           ft_fill_red(tk, 3, ft_substr(rdl, j, i - j));
+				// printf("--------,%s,\n",ft_substr(rdl, j, i - j) );
+           ft_fill_red(hert, 3, ft_substr(rdl, j, i - j));
         }
          else if(rdl[i] && rdl[i] == '<' )
         {
-            i+=1;
+            i += 1;
              while (rdl[i] && rdl[i] == ' ')
                 i++;
             j = i;
             while (rdl[i] && rdl[i] != ' ')
                 i++;
-            ft_fill_red(tk, 1, ft_substr(rdl, j, i - j));
+            ft_fill_red(hert, 1, ft_substr(rdl, j, i - j));
         }
         else 
         {
@@ -168,15 +172,24 @@ void ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
                     i = find_end_of_double_quote(rdl, i);
                     i++;
 			}
-              tmp= ft_strjoin(tmp, ft_substr(rdl, j, i - j));
-		
+			
+ptr = ft_substr(rdl, j, i - j);
+
+char *esim;
+
+esim = tmp;
+              tmp= ft_strjoin1(tmp, ptr);
+			  free(esim);
+			
+			  if(ptr)
+		free(ptr);
         }
     }
 
 (void)hert;
     if(tmp)
 	{
-		//ptr= ignore_quote(tmp);
+	
 		//tmp = ptr;
 		(*hert)->cmd = smart_split(tmp, ' ');
 		free(tmp);
@@ -197,4 +210,7 @@ void smart_smart_split(t_tokens **token)
 		
         tk = tk->next;
     }
+
+	// token=tk;
+
 }

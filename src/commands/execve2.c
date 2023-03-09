@@ -22,16 +22,20 @@ void	execve_cmd2(t_env **env, char **str)
 
 	i = 0;
 	path = get_env(env, "PATH");
-	splited_path = ft_split(path->value, ':');
-	new_str = ft_strjoin("/", str[0]);
-	create_the_paths(splited_path, new_str);
-	free(new_str);
-	new_str = 0;
-	mx_env = t_env_to_matrix(env);
-	new_str = cheack_access(splited_path, str, mx_env);
-	ft_execv(new_str, mx_env, str);
-	matrix_free(mx_env);
-	matrix_free(splited_path);
+	if (path)
+	{
+		splited_path = ft_split(path->value, ':');
+		new_str = ft_strjoin("/", str[0]);
+		create_the_paths(splited_path, new_str);
+		free(new_str);
+		new_str = 0;
+		mx_env = t_env_to_matrix(env);
+		new_str = cheack_access(splited_path, str, mx_env);
+		ft_execv(new_str, mx_env, str);
+		matrix_free(mx_env);
+		matrix_free(splited_path);
+	}
+	return ;
 }
 
 void	execve_cmd(t_env **env, char **str)
@@ -43,20 +47,26 @@ void	execve_cmd(t_env **env, char **str)
 	int		pid;
 
 	pid = 0;
+	
 	path = get_env(env, "PATH");
-	splited_path = ft_split(path->value, ':');
-	new_str = ft_strjoin("/", str[0]);
-	create_the_paths(splited_path, new_str);
-	free(new_str);
-	mx_env = t_env_to_matrix(env);
-	pid = fork();
-	if (pid == 0)
+	if (path)
 	{
-		new_str = cheack_access(splited_path, str, mx_env);
-		ft_execv(new_str, mx_env, str);
+		splited_path = ft_split(path->value, ':');
+		new_str = ft_strjoin("/", str[0]);
+		create_the_paths(splited_path, new_str);
+		free(new_str);
+		mx_env = t_env_to_matrix(env);
+		pid = fork();
+		if (pid == 0)
+		{
+			new_str = cheack_access(splited_path, str, mx_env);
+			ft_execv(new_str, mx_env, str);
+		}
+		else
+			else_wait();
+		matrix_free(mx_env);
+		matrix_free(splited_path);
 	}
-	else
-		else_wait();
-	matrix_free(mx_env);
-	matrix_free(splited_path);
+	else print_error(str[0], "No such file or directory", 127);
+	return ;
 }

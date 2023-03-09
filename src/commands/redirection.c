@@ -4,14 +4,20 @@
 //Redirecting Output
 void	redirection_output(char *file, int i) //>
 {
-	int	fd;
 
+	// char *str;
+	// str = malloc(sizeof(char ) *1 );
+
+	// str[0] = file[0];
+	int	fd;
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (i)
 	{
 		dup2(fd, 1);
 	}
 	close(fd);
+	// printf("zzzz%s\n", file);
+
 }
 
 void	redirection_output_append(char *file, int i) // >>
@@ -53,7 +59,7 @@ void	heredoc(char *key, int i)
 	char	*hrd;
 	int		fd;
 
-	file = ft_strjoin(".", key);
+	file = ft_strjoin(".hrd", key);
 	// ft_signal_handling(1);
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
@@ -63,14 +69,17 @@ void	heredoc(char *key, int i)
 		if (!hrd)
 			break ;
 		if (ft_strcmp1(key, hrd) == 0)
+		{
+			free(hrd);
 			break ;
+		}
 	
 		write(fd, hrd, ft_strlen(hrd));
 		write(fd, "\n", 1);
 		free(hrd);
 	}
-	if (hrd == 0)
-		 	handleterm(0);
+	// if (hrd == 0)
+	// 	 	handleterm(0);
 	if (i)
 	{
 		close(fd);
@@ -78,6 +87,7 @@ void	heredoc(char *key, int i)
 		dup2(fd, 0);
 		close(fd);
 	}
-	unlink(file);
+	 unlink(file);
 	free(file);
+	
 }

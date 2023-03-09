@@ -14,7 +14,8 @@
 # include <termios.h>
 
 # define METACHARS " |&()<>;"
-# define METAE	"-.!@#$^&*()}{"
+# define METAE	"=-.!@#$^&*()}{"
+# define REDE	"<> "
 extern int	exit_code;
 
 typedef struct s_count	t_count;
@@ -142,4 +143,5 @@ int	check_longlongd(char *str);
 int	check_longlongd1(char *str);
 int	check_longlongd2(char *str);
 int	check_longlongd3(char *str);
+char	*ft_strjoin1(char *s1, char *s2);
 # endif

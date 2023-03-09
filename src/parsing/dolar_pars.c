@@ -66,11 +66,8 @@ void	dolar_pars(char **str, t_env **env)
 	// printf(",,%s\n", *str);
 	while ((*str)[i])
 	{
-
-		
 		if ((*str)[i] == '\'')
 		{
-		//	printf("INSIDE SINGLE\n");
 			i = find_end_of_single_quote(*str, i);
 
 		}
@@ -81,22 +78,12 @@ void	dolar_pars(char **str, t_env **env)
 		if ((*str)[i] == '$' && (*str)[i + 1] != ' ' && (*str)[i + 1] && (*str)[i + 1] != '\"')
 		{
 			x = ++i;
-			// printf(",X,%d\n", x );
 			while ((*str)[i] != ' ' && (*str)[i] && (*str)[i] != '$' && (*str)[i] != '"' && (*str)[i] != '/' && (*str)[i] != '\'' && (*str)[i] != '=')
 				i++;
-				// printf(",I,%d\n", i );
 			world = ft_substr(*str, x, i - x);
-			// printf("world = %s\n",world);
 			back = getenv(world);
 			*str = join_dolar_str(*str, back, x, i - x+1);
-			//  printf("world =%s\n", *str);
-	// printf(",%s,\n", str[0]);
 			len = ft_strlen(str[0]);
-			//  printf("STR,%s,\n", str[0]);
-			// printf(",LEN,%d\n", len);
-			// if ((*str)[i] == '$' && i != 0 && i >= len - 1)
-			// 	i--;
-			// i = x - 1;
 			free(world);
 		}
 		i++;

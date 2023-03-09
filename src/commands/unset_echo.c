@@ -7,6 +7,8 @@ void	unset_cmd(t_env **l_env, char *new_key)
 
 	env = *l_env;
 	rtv = 0;
+	if (!new_key)
+		return ;
 	if (find_key(l_env, new_key))
 	{
 		rtv = get_env(l_env, new_key);
@@ -14,7 +16,7 @@ void	unset_cmd(t_env **l_env, char *new_key)
 			env = env->next;
 		env->next = rtv->next;
 		one_node_free(&rtv);
-	}
+	} 
 }
 
 void	echo_cmd(char **str)
@@ -37,10 +39,10 @@ void	echo_cmd(char **str)
 				}	
 
 
-		if(i!=2)	flag= 0;
+		if(i != 2)	flag= 0;
 		}
 	}
-if(flag==0)
+if(flag == 0)
 	{
 
 		i = 2;

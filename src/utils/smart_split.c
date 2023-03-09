@@ -73,6 +73,7 @@ static void	*str_free(char **str, size_t i)
 
 char	**smart_split(char *s, char c)
 {
+
 	int	start;
 	int	end;
 	int	i;
@@ -80,6 +81,7 @@ char	**smart_split(char *s, char c)
 
 	i = -1;
 	start = 0;
+
 	str = malloc(sizeof (char *) * (word_count(s, c) + 1));
 	if (str == 0)
 		return (0);

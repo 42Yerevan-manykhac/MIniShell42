@@ -28,15 +28,20 @@ int	check(int i, char *str, int *flg)
 	else if (str[i] && str[i] == '>')
 	{
 		if (!str[i + 1])
+		{
 			*flg = 0;
+		}
 		else if (str[i + 1] && str[i + 1] != '>')
 		{
+			// printf("smt\n");
 			i++;
 			if (cheack_front(str, &i))
 				*flg = 0;
+				// printf("ZZ= %c\n", str[i]);
 		}
 		else if (str[i + 1] && str[i + 1] == '>')
 		{
+			// printf("FF= %c\n", str[i]);
 			i += 2;
 			if (cheack_front(str, &i))
 				*flg = 0;
@@ -55,10 +60,12 @@ int	syntax_pars_2(char *str)
 	i = 0;
 	while (str[i])
 	{
+		// printf("str = %c\n", str[i]);
 		i = check(i, str, &flg);
 		if (!flg)
 			break ;
-		i++;
+		if (str[i] != '>' && str[i] != '<')
+				i++;
 	}
 	if (flg == 0)
 	{
@@ -98,6 +105,7 @@ int	gen_parsing(t_tokens **token, t_env **env, char **str)
 	tmp = *str;
 	*str = ft_strtrim(tmp, " ");
 	free(tmp);
+	
 	if (syntax_pars(str))
 		return (1);
 	dolar_pars(str, env);

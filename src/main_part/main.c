@@ -3,6 +3,20 @@
 
 int exit_code = 0;
 
+int sp_sp(char *str)
+{
+	char *rt;
+
+	rt = ft_strtrim(str, " ");
+	if (rt == NULL)
+		return (0);
+	else 
+	{
+		free(rt);
+		return (1);
+	}
+}
+
 int	main(int arg_nb, char **argv, char **env)
 {
 	(void)arg_nb;
@@ -35,26 +49,31 @@ int	main(int arg_nb, char **argv, char **env)
 			add_history(str);
 		else
 			break;
-		//rl_catch_signals = 0;
-		gen_parsing(&token, &s_env, &str);
-		
-		if (token)
+		if (sp_sp(str))
 		{
-			if (token->token_count > 1)
-				running_pipe(&token, &s_env);
-			else	
-				running(&token, &s_env );
+			gen_parsing(&token, &s_env, &str);
+			if (token)
+			{
+				if (token->token_count > 1)
+					running_pipe(&token, &s_env);
+				else	
+				{
+					running(&token, &s_env );
+				}
+			}
+			dup2(in_copy, 0);
+			dup2(out_copy, 1);
+			close(out_copy);
+			printf("\033[0;36m");
+			free_t_list(&token);
 		}
-		dup2(in_copy, 0);
-		dup2(out_copy, 1);
-		//close(in_copy);
-		close(out_copy);
-		printf("\033[0;36m"); 
-		free_t_list(&token);
 		free(str);
+		//rl_catch_signals = 0;
 	}
 	return (0);
 }
+
+
 
 
 // redirectionneri qanaky hashvel u verjni depqum dup anel

@@ -2,15 +2,13 @@
 
 void	pwd_cmd(t_env **l_env)
 {
-	//char	cwd[256];
-	//t_env	*env;
 	t_env	*tmp;
 
-
-	//env = *t_env;
 	tmp = get_env(l_env, "PWD");
-	printf("%s\n", tmp->value);
-	
+	if (tmp == NULL)
+		print_error("PWD", "No such file or directory", 127);
+	else
+		printf("%s\n", tmp->value);	
 }
 
 void	env_cmd(t_env *env)

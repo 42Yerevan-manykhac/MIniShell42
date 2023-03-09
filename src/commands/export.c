@@ -69,7 +69,6 @@ int	if_need_to_add(t_env **l_env, char **splited)
 int	find_key(t_env **l_env, char *new_key)
 {
 	t_env	*env;
-
 	env = *l_env;
 	while (env)
 	{
@@ -128,9 +127,12 @@ void	export_cmd(t_env **l_env, char *str)
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
 	splited = split_export(str);
-	printf("------%s\n", splited[1]);
 
-	export_pars(splited[0]);
+	if (export_pars(splited[0]))
+	{
+		matrix_free(splited);
+		return ;
+	}
 	if (!if_key_already_exist(l_env, splited))
 	{
 		env = malloc(sizeof(t_env));

@@ -42,6 +42,7 @@ void	ft_fill_red(t_tokens **token, int flag, char *str)
 	tk = *token;
 	if ((*token)->head_redct->flag == 0)
 	{
+	
 		(*token)->head_redct->del = str;
 		(*token)->head_redct->flag = flag;
 		(*token)->head_redct->pathname = NULL;
@@ -132,12 +133,15 @@ void	fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_toke
 	int	i;
 
 	i = 0;
+
 	while (tokenized && tokenized[i])
 	{
 		t_tokens_add_back(token, new_t_tokens(tokenized[i],
 				NULL, hrd_c, count_token));
 		i++;
 	}
+
+		// printf("------%s\n",() );
 }
 
 void	tokenization(t_tokens **token, char **str)
@@ -150,8 +154,13 @@ void	tokenization(t_tokens **token, char **str)
 	tokenized = smart_split(*str, '|');
 	count_token = matrix_len(tokenized);
 	check_error(tokenized, str[0]);
+	
 	fill_t_token(token, tokenized, hrd_c, count_token);
-	free(tokenized);
-	smart_smart_split(token);
+
+	
+	free(tokenized); // tokenized[i]-ery dranq hteo darnum en tokeni rdlnery/ petq chi dranq maqrel
+	 smart_smart_split(token);
+
 	ftft(token);
+	
 }
