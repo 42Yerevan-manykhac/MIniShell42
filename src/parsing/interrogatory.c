@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:18:08 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 13:20:40 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:21:09 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	interrogatory(char **str)
 	char	*num;
 
 	i = 0;
-
 	num = ft_itoa(exit_code);
 	while ((*str)[i] && (*str)[i + 1])
 	{

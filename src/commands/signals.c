@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 17:25:13 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/11 17:26:38 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 // int handle(int n)
@@ -8,31 +20,34 @@
 //     }
 // }
 
-void handleterm(int s)
+void	handleterm(int s)
 {
-    (void)s;
-    write(1, "\n", 1);
-    rl_on_new_line();
-    rl_redisplay();	
+	(void)s;
+	
+	write(1, "\n", 1);
+	rl_on_new_line ();
+	rl_redisplay ();
 }
 
-void    handle_ctrl_d(int sig)
+void	handle_ctrl_d(int sig)
 {
-    struct termios _term;
-    
-    tcgetattr(0, &_term);
-    if (sig == 0)
-    {
-        _term.c_cflag &= ~ECHOCTL;
-        tcsetattr(0, TCSANOW, &_term);
-    }
+	struct	termios _term;
+
+	tcgetattr(0, &_term);
+	if (sig == 0)
+	{
+		_term.c_cflag &= ~ECHOCTL;
+		tcsetattr(0, TCSANOW, &_term);
+	}
 }
-void    ft_signal_handling(int sig)
+
+void	ft_signal_handling(int sig)
 {
-    (void)sig;
-    handle_ctrl_d(sig);
-    signal(SIGQUIT, SIG_IGN);
-   	signal(SIGINT, handleterm);
+	(void)sig;
+	
+	handle_ctrl_d(sig);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handleterm);
 }
 
 

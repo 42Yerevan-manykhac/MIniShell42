@@ -6,11 +6,9 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:06:04 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 13:06:38 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 11:31:43 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "minishell.h"
 
@@ -69,6 +67,7 @@ int	if_need_to_add(t_env **l_env, char **splited)
 int	find_key(t_env **l_env, char *new_key)
 {
 	t_env	*env;
+
 	env = *l_env;
 	while (env)
 	{
@@ -118,7 +117,6 @@ int	if_key_already_exist(t_env **l_env, char **splited)
 
 void	export_cmd(t_env **l_env, char *str)
 {
-
 	int		i;
 	t_env	*env;
 	int		len;
@@ -127,7 +125,6 @@ void	export_cmd(t_env **l_env, char *str)
 	len = ft_strlen(str);
 	i = ft_int_strchr(str, '=');
 	splited = split_export(str);
-
 	if (export_pars(splited[0]))
 	{
 		matrix_free(splited);

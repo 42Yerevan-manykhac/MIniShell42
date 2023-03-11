@@ -1,41 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 12:30:37 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/11 17:36:55 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-
-//Redirecting Output
-void	redirection_output(char *file, int i) //>
+void	redirection_output(char *file, int i)
 {
-
-	// char *str;
-	// str = malloc(sizeof(char ) *1 );
-
-	// str[0] = file[0];
+	int	len;
 	int	fd;
-	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (i)
-	{
-		dup2(fd, 1);
-	}
-	close(fd);
-	// printf("zzzz%s\n", file);
 
+	len = ft_strlen(file);
+	if (len == 0)
+	{
+		printf("minishell: : No such file or directory\n");
+	}
+	else
+	{
+	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		if (i)
+		{
+			dup2(fd, 1);
+		}
+		close(fd);
+	}
 }
 
-void	redirection_output_append(char *file, int i) // >>
+void	redirection_output_append(char *file, int i)
 {
 	int	fd;
 
 	fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (i)
 	{
-		dup2(fd, 1); // 1 = stdout
+		dup2(fd, 1); 
 	}
 	close(fd);
 }
 
-
-//Redirecting Input
-
-void	 redirection_input(char *file, int i) //  cat < filename
+void	redirection_input(char *file, int i)
 {
 	int	fd;
 
@@ -46,12 +56,10 @@ void	 redirection_input(char *file, int i) //  cat < filename
 		close(fd);
 		return ;
 	}
-	if	(i)
-		dup2(fd, 0); // 0 = stdin
+	if (i)
+		dup2(fd, 0); 
 	close(fd);
 }
-
-//heredoc
 
 void	heredoc(char *key, int i)
 {
@@ -65,7 +73,6 @@ void	heredoc(char *key, int i)
 	while (1)
 	{
 		hrd = readline("heredoc> ");
-
 		if (!hrd)
 			break ;
 		if (ft_strcmp1(key, hrd) == 0)
@@ -73,7 +80,6 @@ void	heredoc(char *key, int i)
 			free(hrd);
 			break ;
 		}
-	
 		write(fd, hrd, ft_strlen(hrd));
 		write(fd, "\n", 1);
 		free(hrd);
@@ -87,7 +93,6 @@ void	heredoc(char *key, int i)
 		dup2(fd, 0);
 		close(fd);
 	}
-	 unlink(file);
+	unlink(file);
 	free(file);
-	
 }

@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:28:25 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 12:36:26 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:59:00 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	execve_cmd(t_env **env, char **str)
 	int		pid;
 
 	pid = 0;
-	
 	path = get_env(env, "PATH");
 	if (path)
 	{
@@ -67,6 +66,7 @@ void	execve_cmd(t_env **env, char **str)
 		matrix_free(mx_env);
 		matrix_free(splited_path);
 	}
-	else print_error(str[0], "No such file or directory", 127);
+	else
+		print_error(str[0], "No such file or directory", 127);
 	return ;
 }

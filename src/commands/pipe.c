@@ -6,26 +6,25 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:30 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 12:22:27 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:37:10 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minishell.h"
 
-void ft_pipe_call(int (*fd)[2],int count)
+void	ft_pipe_call(int (*fd)[2],int count)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < count - 1)
+	while (i < count - 1)
 	{
 		pipe(fd[i]);
 		i++;
 	}
 }
 
-void child_error(int i, pid_t *child )
+void	child_error(int i, pid_t *child )
 {
 	while (i >= 0)
 	{
@@ -36,9 +35,9 @@ void child_error(int i, pid_t *child )
 	ft_putstr_fd("fork error\n", 2);
 }
 
-void fd_close(int (*fd)[2], int count)
+void	fd_close(int (*fd)[2], int count)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < count - 1)
@@ -49,11 +48,9 @@ void fd_close(int (*fd)[2], int count)
 	}
 }
 
-
-
 void	child_pr(int (*fd)[2], int i, int count)
 {
-	if(i == 0)
+	if (i == 0)
 	{
 		dup2(fd[0][1], 1);
 	}
@@ -69,24 +66,18 @@ void	child_pr(int (*fd)[2], int i, int count)
 	fd_close(fd, count);
 }
 
-
-void func_red(t_tokens **token)
+void	func_red(t_tokens **token)
 {
-	
 	t_count		*all_count;
 
 	all_count = NULL;
 	all_count = count_all((token));
-
 	call_heredoc((token), all_count->count_herdoc);
-	call_redirections((token), all_count);
 	free(all_count);
 }
 
-
-void	running_pipe(t_tokens **token, t_env **env) // poxancvaca amboxj tokeny
+void	running_pipe(t_tokens **token, t_env **env)
 {
-
 	int			(*fd)[2];
 	int			i;
 	pid_t		*child;
@@ -94,8 +85,7 @@ void	running_pipe(t_tokens **token, t_env **env) // poxancvaca amboxj tokeny
 
 	tk = *token;
 	i = 0;
-	fd = ft_calloc(sizeof(int *), (*token)->token_count-1);
-
+	fd = ft_calloc(sizeof(int *), (*token)->token_count - 1);
 	child = malloc(sizeof(int) * (*token)->token_count);
 	ft_pipe_call(fd, (*token)->token_count);
 	func_red(token);
@@ -104,8 +94,8 @@ void	running_pipe(t_tokens **token, t_env **env) // poxancvaca amboxj tokeny
 		child[i] = fork();
 		if (child[i] == -1)
 		{
-			child_error(i, child );// petqa 
-			break;
+			child_error(i, child);// petqa 
+			break ;
 		}
 		else if (child[i] == 0)
 		{
@@ -115,14 +105,14 @@ void	running_pipe(t_tokens **token, t_env **env) // poxancvaca amboxj tokeny
 		i++;
 		(*token) = (*token)->next;
 	}
-	(*token)= tk;
+	(*token) = tk;
 	fd_close(fd, (*token)->token_count);
-	for (i = 0; i < (*token)->token_count; i++)
-    {
-        waitpid(child[i], NULL, 0);
-    }
+	i = 0;
+	while (i < (*token)->token_count)
+	{
+		waitpid(child[i], NULL, 0);
+		i++;
+	}
 	free(child);
 	free(fd);
 }
-
-

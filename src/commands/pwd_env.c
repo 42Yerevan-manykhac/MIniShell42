@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pwd_env.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/11 11:36:58 by lter-zak          #+#    #+#             */
+/*   Updated: 2023/03/11 12:30:08 by lter-zak         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	pwd_cmd(t_env **l_env)
@@ -8,7 +20,7 @@ void	pwd_cmd(t_env **l_env)
 	if (tmp == NULL)
 		print_error("PWD", "No such file or directory", 127);
 	else
-		printf("%s\n", tmp->value);	
+		printf("%s\n", tmp->value);
 }
 
 void	env_cmd(t_env *env)
@@ -17,15 +29,12 @@ void	env_cmd(t_env *env)
 	{
 		if (env && env->flag)
 		{
-			//if (env->flag)
-			//{
-				printf("%s", env->key);
-				printf("=");
-				if (env->value)
-					printf("%s\n", env->value);
-				else
-					printf("\n");
-			//}
+			printf("%s", env->key);
+			printf("=");
+			if (env->value)
+				printf("%s\n", env->value);
+			else
+				printf("\n");
 		}
 		env = env->next;
 	}

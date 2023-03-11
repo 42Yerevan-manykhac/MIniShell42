@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:16:04 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 13:16:07 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:20:09 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,16 @@ void	ftft(t_tokens **token)
 
 	i = 0;
 	tk = *token;
-		
 	while (tk)
 	{
-	
 		i = 0;
-		
-		
 		while (tk  && tk->cmd && tk->cmd[i])
 		{
-
-			// printf("-------------%s\n",tk->cmd[i]);
 			tk->cmd[i] = ignore_quote(tk->cmd[i]);
 			i++;
 		}
-
 		tk=tk->next;
 	}
-
-
-
 }
 
 int	ft_count_pipe(char *str)

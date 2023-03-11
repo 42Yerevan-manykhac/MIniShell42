@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:10:08 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 13:11:49 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:17:24 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static char	*word_fill( char *s, size_t start, size_t len)
 		word[i] = s[start + i];
 		i++;
 	}
-//	free(s);
 	word[i] = 0;
 	return (word);
 }
@@ -73,39 +72,36 @@ static void	*str_free(char **str, size_t i)
 
 char	**smart_split(char *s, char c)
 {
-
-	int	start;
-	int	end;
-	int	i;
+	int		start;
+	int		end;
+	int		i;
 	char	**str;
 
 	i = -1;
 	start = 0;
-
 	str = malloc(sizeof (char *) * (word_count(s, c) + 1));
 	if (str == 0)
 		return (0);
-
-	while (++i < word_count(s, c) )
+	while (++i < word_count(s, c))
 	{
 		while (s[start] && s[start] == c)
 		{
-			if(s[start] && s[start]=='\"')
+			if (s[start] && s[start] == '\"')
 				start = find_end_of_double_quote(s, i);
-			if(s[start] && s[start]=='\'')
+			if (s[start] && s[start] == '\'')
 				start = find_end_of_single_quote(s, i);
 				start++;
 		}
 		end = start;
 		while (s[end] && s[end] != c)
 		{
-			if(s[end] && s[end] == '\"')
+			if (s[end] && s[end] == '\"')
 				end = find_end_of_double_quote(s, end);
-			if(s[end] && s[end] == '\'')
+			if (s[end] && s[end] == '\'')
 				end = find_end_of_single_quote(s, end);
 			end++;
 		}
-		str[i] = word_fill(s, start, end - start);//pchanuma stexic heto
+		str[i] = word_fill(s, start, end - start);
 		if (!str[i])
 			str_free(str, i);
 		start = end;
@@ -113,4 +109,3 @@ char	**smart_split(char *s, char c)
 	str[i] = 0;
 	return (str);
 }
-

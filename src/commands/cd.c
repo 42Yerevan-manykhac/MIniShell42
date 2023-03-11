@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:38 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 12:05:50 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:58:16 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	update_oldpwd(t_env **l_env)
 	t_env	*env;
 
 	env = get_env(l_env, "OLDPWD");
-	env->flag = 1;
-	free(env->value);
-	env->value = ft_strdup(get_env(l_env, "PWD")->value);
+	if (env)
+	{
+		env->flag = 1;
+		free(env->value);
+		env->value = ft_strdup(get_env(l_env, "PWD")->value);
+	}
 }
 
 void	update_pwd(t_env **l_env)

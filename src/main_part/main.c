@@ -22,16 +22,11 @@ int	main(int arg_nb, char **argv, char **env)
 	(void)arg_nb;
 	(void)argv;
 	char		*str;
-	int    in_copy;
-	int    out_copy;
-	char *esim;
+	int			in_copy;
+	int			out_copy;
 	t_tokens	*token;
-	
 	t_env		*s_env;
-	(void)esim;
-	(void)token;
-	(void)s_env;
-	(void)env;
+
 	//print_logo();
 	s_env = malloc(sizeof(t_env));
 	ft_signal_handling(0);
@@ -48,7 +43,7 @@ int	main(int arg_nb, char **argv, char **env)
 		if (str)
 			add_history(str);
 		else
-			break;
+		break;
 		if (sp_sp(str))
 		{
 			gen_parsing(&token, &s_env, &str);
@@ -56,9 +51,9 @@ int	main(int arg_nb, char **argv, char **env)
 			{
 				if (token->token_count > 1)
 					running_pipe(&token, &s_env);
-				else	
+				else
 				{
-					running(&token, &s_env );
+					running(&token, &s_env);
 				}
 			}
 			dup2(in_copy, 0);

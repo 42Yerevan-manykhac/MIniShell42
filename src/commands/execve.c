@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:06:58 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 12:39:03 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 12:36:55 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,16 @@ void	ft_execv(char *new_str, char **mx_env, char **str)
 	i = 0;
 	if (str[0][0] == '/' || str[0][0] == '.')
 	{
-
 		i = execve(str[0], str, mx_env);
 	}
 	else
 		i = execve(new_str, str, mx_env);
 	if (i == -1)
 	{
-		print_error(str[0], "command not found", 127); //"" | "" es qysiq hamar petqa \n dnel
+		print_error(str[0], "command not found", 127);
 		exit(127);
 	}
 }
-
 
 char	**t_env_to_matrix(t_env **env)
 {

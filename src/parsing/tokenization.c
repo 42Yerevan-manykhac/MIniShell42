@@ -6,10 +6,9 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:15:12 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/07 13:31:01 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:20:03 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -42,7 +41,6 @@ void	ft_fill_red(t_tokens **token, int flag, char *str)
 	tk = *token;
 	if ((*token)->head_redct->flag == 0)
 	{
-	
 		(*token)->head_redct->del = str;
 		(*token)->head_redct->flag = flag;
 		(*token)->head_redct->pathname = NULL;
@@ -85,9 +83,9 @@ void	t_redirects_add_back(t_redirects **head, t_redirects *new_node)
 t_tokens	*new_t_tokens(char *rdl, char **cmd, int *hrd_count, int count_token)
 {
 	t_tokens	*new_node;
+	
 	(void)cmd;
 	(void)hrd_count;
-
 	new_node = malloc(sizeof(t_tokens));
 	new_node->rdl = rdl;
 	new_node->cmd = NULL;
@@ -133,15 +131,12 @@ void	fill_t_token(t_tokens **token, char **tokenized, int *hrd_c, int count_toke
 	int	i;
 
 	i = 0;
-
 	while (tokenized && tokenized[i])
 	{
 		t_tokens_add_back(token, new_t_tokens(tokenized[i],
 				NULL, hrd_c, count_token));
 		i++;
 	}
-
-		// printf("------%s\n",() );
 }
 
 void	tokenization(t_tokens **token, char **str)
@@ -154,13 +149,8 @@ void	tokenization(t_tokens **token, char **str)
 	tokenized = smart_split(*str, '|');
 	count_token = matrix_len(tokenized);
 	check_error(tokenized, str[0]);
-	
 	fill_t_token(token, tokenized, hrd_c, count_token);
-
-	
-	free(tokenized); // tokenized[i]-ery dranq hteo darnum en tokeni rdlnery/ petq chi dranq maqrel
-	 smart_smart_split(token);
-
+	free(tokenized);
+	smart_smart_split(token);
 	ftft(token);
-	
 }
