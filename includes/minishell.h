@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:05:03 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 20:01:40 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:06:57 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <signal.h>
 # include <string.h>
 # include <termios.h>
+# include <sys/ioctl.h>
+
 
 # define METACHARS " |&()<>;"
 # define METAE	"=-.!@#$^&*()}{"
@@ -157,8 +159,13 @@ char		*ft_strjoin1(char *s1, char *s2);
 t_count		*count_redirect(t_tokens **tk);
 void		call_redirections6(t_tokens **tk, t_count *len);
 
-
-
+void	processing_status( int size);
+void	sig_handler_hdoc(int sig);
+void	sigint_handler(int sig);
 void	handler(int sig);
+void	sig_control(int a);
+void	ft_putstr_fd1(char *s, int fd, int fl);
+void	processing_status_pipe( pid_t *a, int size);
+
 
 #endif

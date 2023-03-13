@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:16:13 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 18:11:12 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:07:58 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,14 @@ char	*ignore_quote(char *str)
 	int		i;
 	int		j;
 	char	*tmp;
-	int flag;
 
-	flag = -1;
 	tmp = NULL;
 	i = 0;
 	j = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
-		j++;
+			j++;
 		i++;
 	}
 	tmp = malloc(sizeof(char *) * (i - j + 1));

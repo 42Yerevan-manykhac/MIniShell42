@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:30 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 18:02:06 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:13:30 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,31 @@ void	func_red(t_tokens **token)
 	free(all_count);
 }
 
+void	processing_status(int size)
+{
+	pid_t	pid;
+	int		i;
+	int		status;
+
+
+	i = -1;
+	status = 0;
+	while (++i < size)
+	{
+	pid = waitpid(-1, &status, 0);
+		if (!WTERMSIG(status)) 
+			exit_code = WEXITSTATUS(status);
+		else
+		{
+		exit_code = WTERMSIG(status) + 128;
+			if (exit_code == 130)
+				write(1, "\n", 1);
+			else if (exit_code == 131)
+				ft_putstr_fd1("Quit 3", 1, 1);
+		}
+	}
+}
+
 void	running_pipe(t_tokens **token, t_env **env)
 {
 	int			(*fd)[2];
@@ -99,6 +124,7 @@ void	running_pipe(t_tokens **token, t_env **env)
 		}
 		else if (child[i] == 0)
 		{
+			sig_control(0);
 			running_p((token), env, fd, i);
 			exit(1);//exit anel statusov voch te 1-ov
 		}
@@ -106,6 +132,9 @@ void	running_pipe(t_tokens **token, t_env **env)
 		(*token) = (*token)->next;
 	}
 	(*token) = tk;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	processing_status_pipe(child, (*token)->token_count);
 	fd_close(fd, (*token)->token_count);
 	i = 0;
 	while (i < (*token)->token_count)
@@ -115,4 +144,32 @@ void	running_pipe(t_tokens **token, t_env **env)
 	}
 	free(child);
 	free(fd);
+}
+
+
+void	processing_status_pipe(pid_t *a, int size)
+{
+	pid_t	pid;
+	int		i;
+	int		status;
+
+	i = -1;
+	status = 0;
+	while (++i < size)
+	{
+		pid = waitpid(-1, &status, 0);
+		if (pid == a[size - 1])
+		{
+			if (!WTERMSIG(status)) 
+				exit_code = WEXITSTATUS(status);
+			else
+			{
+				exit_code = WTERMSIG(status) + 128;
+				if (exit_code == 130)
+					write(1, "\n", 1);
+				else if (exit_code== 131)
+					ft_putstr_fd1("Quit 3", 1, 1);
+			}
+		}
+	}
 }

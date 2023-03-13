@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:30:37 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 12:24:07 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:51:55 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ void	redirection_input(char *file, int i)
 	close(fd);
 }
 
+int	status_check(char *file, char *s)
+{
+	if (exit_code == -14)
+	{
+		exit_code = 1;
+		free(file);
+		free(s);
+		return (1);
+	}
+	return (0);
+}
+
 void	heredoc(char *key, int i)
 {
 	char	*file;
@@ -71,9 +83,12 @@ void	heredoc(char *key, int i)
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
+		sig_control(2);
 		hrd = readline("heredoc> ");
 		if (!hrd)
 			break ;
+		if (status_check(file, hrd))
+			return ;
 		if (ft_strcmp1(key, hrd) == 0)
 		{
 			free(hrd);

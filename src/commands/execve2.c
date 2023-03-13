@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:28:25 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 13:26:23 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 23:02:09 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,21 @@ void	execve_cmd(t_env **env, char **str)
 		free(new_str);
 		mx_env = t_env_to_matrix(env);
 		pid = fork();
+	
 		if (pid == 0)
 		{
+			
+			sig_control(0);
 			new_str = cheack_access(splited_path, str, mx_env);
 			ft_execv(new_str, mx_env, str);
 		}
 		else
-			else_wait();
-			
+		{
+			signal(SIGINT, SIG_IGN);
+			signal(SIGQUIT, SIG_IGN);
+			processing_status( 1);
+			//else_wait();
+		}
 		matrix_free(mx_env);
 		matrix_free(splited_path);
 	}
