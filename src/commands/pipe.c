@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:05:30 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:37:10 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:02:06 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	running_pipe(t_tokens **token, t_env **env)
 		child[i] = fork();
 		if (child[i] == -1)
 		{
-			child_error(i, child);// petqa 
+			child_error(i, child);
 			break ;
 		}
 		else if (child[i] == 0)

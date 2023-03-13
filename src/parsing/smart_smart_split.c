@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:16:13 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:20:59 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:11:12 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ void	ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
                     i = find_end_of_double_quote(rdl, i);
 				i++;
 			}		
-		ptr = ft_substr(rdl, j, i - j);
 		char *esim;
+		ptr = ft_substr(rdl, j, i - j);
 
 		esim = tmp;
 		tmp = ft_strjoin1(tmp, ptr);

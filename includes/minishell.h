@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:05:03 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:11:56 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:01:40 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,9 @@ int			check_longlongd3(char *str);
 char		*ft_strjoin1(char *s1, char *s2);
 t_count		*count_redirect(t_tokens **tk);
 void		call_redirections6(t_tokens **tk, t_count *len);
+
+
+
+void	handler(int sig);
 
 #endif

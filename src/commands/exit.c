@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:40:35 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 11:31:19 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:52:10 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	exit_cmd(char **c)
 	if (c[2] && ft_isdigit(c[1]))
 	{
 		print_error("exit", " too many arguments", 255);
-		exit_code = 1;
 		return (0);
 	}
 	str = ft_cat_str(c[1]);

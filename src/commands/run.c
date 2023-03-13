@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:32:02 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:35:21 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:16:05 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	running(t_tokens **tk, t_env **l_env)
 	all_count = count_all(&token);
 	token = *tk;
 	j = 1;
-	call_heredoc(tk , all_count->count_herdoc);
+	call_heredoc(tk, all_count->count_herdoc);
 	call_redirections(tk, all_count);
 	if (token->cmd && token->cmd[0])
 	{

@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:30:37 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:36:55 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:24:07 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	heredoc(char *key, int i)
 	int		fd;
 
 	file = ft_strjoin(".hrd", key);
-	// ft_signal_handling(1);
 	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	while (1)
 	{
@@ -84,8 +83,6 @@ void	heredoc(char *key, int i)
 		write(fd, "\n", 1);
 		free(hrd);
 	}
-	// if (hrd == 0)
-	// 	 	handleterm(0);
 	if (i)
 	{
 		close(fd);

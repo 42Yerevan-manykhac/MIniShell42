@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:25:13 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:26:38 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:00:46 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,34 @@
 //     }
 // }
 
-void	handleterm(int s)
-{
-	(void)s;
-	
-	write(1, "\n", 1);
-	rl_on_new_line ();
-	rl_redisplay ();
-}
+// void	handleterm(int s)
+// {
+// 	(void)s;
+// 	write(1, "\n", 1);
+// 	rl_on_new_line ();
+// 	rl_replace_line("", 0);
+// 	rl_redisplay ();
+// }
 
-void	handle_ctrl_d(int sig)
-{
-	struct	termios _term;
+// void	handle_ctrl_d(int sig)
+// {
+// 	struct	termios _term;
 
-	tcgetattr(0, &_term);
-	if (sig == 0)
-	{
-		_term.c_cflag &= ~ECHOCTL;
-		tcsetattr(0, TCSANOW, &_term);
-	}
-}
+// 	tcgetattr(0, &_term);
+// 	if (sig == 0)
+// 	{
+// 		_term.c_cflag &= ~ECHOCTL;
+// 		tcsetattr(0, TCSANOW, &_term);
+// 	}
+// }
 
-void	ft_signal_handling(int sig)
-{
-	(void)sig;
-	
-	handle_ctrl_d(sig);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handleterm);
-}
-
-
+// void	ft_signal_handling(int sig)
+// {
+// 	(void)sig;
+// 	handle_ctrl_d(sig);
+// 	signal(SIGQUIT, SIG_IGN);
+// 	signal(SIGINT, handleterm);
+// }
 
 // struct termios {
 // 	tcflag_t c_iflag;

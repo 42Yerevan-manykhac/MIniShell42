@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:21:52 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:21:54 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:49:06 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,34 @@ int	syntax_pars_2(char *str)
 	return (0);
 }
 
+int	syntax_pars_3(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'')
+			i = find_end_of_single_quote(str, i);
+		else if (str[i] == '\"')
+			i = find_end_of_double_quote(str, i);
+		if (str[i] == '|' && str[i + 1])
+		{
+			i++;
+			while (str[i] == ' ')
+				i++;
+			if (str[i] == '|')
+			{
+				print_error(NULL, "syntax error nearunexpected token `newline",
+					258);
+				return (1);
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	syntax_pars_1(char c)
 {
 	if (c == '|' || c == '&' || c == ';')
@@ -98,13 +126,11 @@ int	syntax_pars_1(char c)
 int	syntax_pars(char **str)
 {
 	if (syntax_pars_1(*str[0]))
-	{
 		return (1);
-	}
 	if (syntax_pars_2(*str))
-	{
 		return (1);
-	}
+	if (syntax_pars_3(*str))
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:06:58 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 12:36:55 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:25:41 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,23 @@ void	else_wait(void)
 	if (WIFEXITED(num))
 		exit_code = WEXITSTATUS(num);
 }
+void	handler_0(int sig)
+{
+	(void)sig;
+	rl_replace_line("", 0);
+	write(1, "\n", 1);
+	rl_done = 1;
+	exit_code = 26354;
+}
 
 char	*cheack_access(char **path, char **str, char **mx_env)
 {
 	int	i;
-
+	//rl_catch_signals = 0;
+	//signal(SIGINT, SIG_DFL);
+	//signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, &handler_0);
+	signal(SIGQUIT, SIG_IGN);
 	(void)mx_env;
 	i = 0;
 	while (path[i])

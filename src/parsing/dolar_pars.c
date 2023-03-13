@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:22:56 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:24:21 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:06:55 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	dolar_pars(char **str, t_env **env)
 	char	*world;
 	char	*back;
 	int		len;
+
 	(void)env;
-	
 	i = 0;
 	x = 0;
 	while ((*str)[i])

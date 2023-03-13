@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:28:25 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/10 21:59:00 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:26:23 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	execve_cmd2(t_env **env, char **str)
 	return ;
 }
 
+
 void	execve_cmd(t_env **env, char **str)
 {
 	t_env	*path;
@@ -63,6 +64,7 @@ void	execve_cmd(t_env **env, char **str)
 		}
 		else
 			else_wait();
+			
 		matrix_free(mx_env);
 		matrix_free(splited_path);
 	}
