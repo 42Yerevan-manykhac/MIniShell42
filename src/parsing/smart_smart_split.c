@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:16:13 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 14:07:58 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:22:32 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
 	int		j;
 	char *result;
 	(void)*tk;
-	
 	j = 0;
 	i = 0;
 	tmp = NULL;
@@ -135,7 +134,6 @@ void	ft_smart_sub(t_tokens **tk, char *rdl, t_tokens **hert)
 			}		
 		char *esim;
 		ptr = ft_substr(rdl, j, i - j);
-
 		esim = tmp;
 		tmp = ft_strjoin1(tmp, ptr);
 			free(esim);

@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:30:37 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 19:51:55 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:15:37 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,40 +71,4 @@ int	status_check(char *file, char *s)
 		return (1);
 	}
 	return (0);
-}
-
-void	heredoc(char *key, int i)
-{
-	char	*file;
-	char	*hrd;
-	int		fd;
-
-	file = ft_strjoin(".hrd", key);
-	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	while (1)
-	{
-		sig_control(2);
-		hrd = readline("heredoc> ");
-		if (!hrd)
-			break ;
-		if (status_check(file, hrd))
-			return ;
-		if (ft_strcmp1(key, hrd) == 0)
-		{
-			free(hrd);
-			break ;
-		}
-		write(fd, hrd, ft_strlen(hrd));
-		write(fd, "\n", 1);
-		free(hrd);
-	}
-	if (i)
-	{
-		close(fd);
-		fd = open(file, O_RDONLY);
-		dup2(fd, 0);
-		close(fd);
-	}
-	unlink(file);
-	free(file);
 }

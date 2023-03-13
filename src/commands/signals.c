@@ -6,12 +6,11 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:25:13 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 21:29:44 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:17:48 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void	init_term(void)
 {
@@ -45,7 +44,6 @@ void	sig_control(int a)
 	else if (a == 1)
 	{
 		init_term();
-		//printf("in main\n");
 		signal(SIGINT, sigint_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}

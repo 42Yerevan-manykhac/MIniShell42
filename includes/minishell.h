@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:05:03 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 23:06:57 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 02:21:34 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,12 @@ int			check_longlongd3(char *str);
 char		*ft_strjoin1(char *s1, char *s2);
 t_count		*count_redirect(t_tokens **tk);
 void		call_redirections6(t_tokens **tk, t_count *len);
+void	need_to_add(t_env **l_env, char **splited, t_env *rtv, char *tmp);
+int	if_need_to_add(t_env **l_env, char **splited);
+int	if_key_already_exist(t_env **l_env, char **splited);
+void	already_exist(char **splited, t_env *rtv);
 
+void	only_export(t_env **node);
 void	processing_status( int size);
 void	sig_handler_hdoc(int sig);
 void	sigint_handler(int sig);
@@ -166,6 +171,19 @@ void	handler(int sig);
 void	sig_control(int a);
 void	ft_putstr_fd1(char *s, int fd, int fl);
 void	processing_status_pipe( pid_t *a, int size);
-
+void	func_red(t_tokens **token);
+void	child_pr(int (*fd)[2], int i, int count);
+void	fd_close(int (*fd)[2], int count);
+void	child_error(int i, pid_t *child );
+void	ft_pipe_call(int (*fd)[2],int count);
+void run_p(pid_t *child, t_tokens **token, t_env **env, int (*fd)[2]);
+void	heredoc_part2(int i, int fd, char *file);
+void	heredoc(char *key, int i);
+t_redirects	*new_t_redirects(int flag, char *del, char *pathname);
+int	status_check(char *file, char *s);
+void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
+t_tokens	*new_t_tokens(char *rdl, char **cmd,
+	int *hrd_count, int count_token);
+	t_tokens	*ft_lstlast1(t_tokens *lst);
 
 #endif

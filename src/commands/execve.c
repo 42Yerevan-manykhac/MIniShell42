@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:06:58 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 21:17:44 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:47:19 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,6 @@ void	create_the_paths(char **splited_path, char *new_str)
 		i++;
 	}
 }
-
-void	else_wait(void)
-{
-	int	num;
-
-	wait(&num);
-	if (WIFEXITED(num))
-		exit_code = WEXITSTATUS(num);
-	//signal(SIGINT, SIG_IGN);
-	//signal(SIGQUIT, SIG_IGN);///////////////////////////////
-}
-
 
 char	*cheack_access(char **path, char **str, char **mx_env)
 {
@@ -64,9 +52,7 @@ void	ft_execv(char *new_str, char **mx_env, char **str)
 	(void)new_str;
 	i = 0;
 	if (str[0][0] == '/' || str[0][0] == '.')
-	{
 		i = execve(str[0], str, mx_env);
-	}
 	else
 		i = execve(new_str, str, mx_env);
 	if (i == -1)

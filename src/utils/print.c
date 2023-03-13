@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:11:37 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/13 22:23:50 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 00:06:55 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	print_error(char *cmd, char *str, int code)
 
 void	ft_putstr_fd1(char *s, int fd, int fl)
 {
-
 	write(fd, s, ft_strlen(s));
-	if (fl){
-		
+	if (fl)
 		write(fd, "\n", 1);
-	}
 }
