@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 18:28:34 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 18:28:36 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:45:49 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,6 @@ int	ft_strlen(char *str)
 	while (str && str[i])
 		i++;
 	return (i);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	char	*str;
-	int		i;
-	int		k;
-
-	i = 0;
-	if (start > ft_strlen(s))
-		k = 0;
-	else if (ft_strlen(s) - start > len)
-		k = len;
-	else
-		k = ft_strlen(s) - start;
-	str = (char *) malloc(sizeof(char) * (k + 1));
-	if (str == NULL)
-		return (NULL);
-	while (s[i] && len > 0 && start < ft_strlen(s))
-	{
-		str[i++] = s[start++];
-		len--;
-	}
-	str[i] = '\0';
-	return (str);
 }
 
 char	*ft_strchr(char *str, int c)
@@ -67,19 +42,15 @@ char	*ft_strchr(char *str, int c)
 	return (0);
 }
 
-int	ft_strcmp(char *str, char *cmd)
+int	ft_strcmp_part2(char *str, char *cmd, int len)
 {
 	int	i;
 	int	j;
-	int	len;
 	int	flag;
 
 	flag = 0;
 	i = 0;
 	j = 0;
-	len = ft_strlen(cmd);
-	if (len != ft_strlen(str))
-		return (0);
 	while (cmd && str && cmd[j] && str[i])
 	{
 		while (str[i++] == cmd[j++])
@@ -97,6 +68,18 @@ int	ft_strcmp(char *str, char *cmd)
 		}
 	}
 	return (0);
+}
+
+int	ft_strcmp(char *str, char *cmd)
+{
+	int	len;
+	int	result;
+
+	len = ft_strlen(cmd);
+	if (len != ft_strlen(str))
+		return (0);
+	result = ft_strcmp_part2(str, cmd, len);
+	return (result);
 }
 
 int	ft_strcmp1(char *s1, char *s2)

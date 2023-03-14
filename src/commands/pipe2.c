@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 01:49:22 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/14 02:09:36 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:57:01 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	running_pipe(t_tokens **token, t_env **env)
 	child = malloc(sizeof(int) * (*token)->token_count);
 	ft_pipe_call(fd, (*token)->token_count);
 	func_red(token);
-	run_p(child,token, env, fd);
+	run_p(child, token, env, fd);
 	(*token) = tk;
 	fd_close(fd, (*token)->token_count);
 	processing_status_pipe(child, (*token)->token_count);
@@ -57,7 +57,7 @@ void	running_pipe(t_tokens **token, t_env **env)
 	free(fd);
 }
 
-void run_p(pid_t *child, t_tokens **token, t_env **env, int (*fd)[2])
+void	run_p(pid_t *child, t_tokens **token, t_env **env, int (*fd)[2])
 {
 	int			i;
 
@@ -74,7 +74,7 @@ void run_p(pid_t *child, t_tokens **token, t_env **env, int (*fd)[2])
 		{
 			sig_control(0);
 			running_p((token), env, fd, i);
-			exit(1);//exit anel statusov voch te 1-ov
+			exit(1);
 		}
 		i++;
 		(*token) = (*token)->next;

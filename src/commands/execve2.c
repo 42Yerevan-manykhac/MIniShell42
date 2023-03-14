@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:28:25 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/14 01:15:04 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:57:38 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	ft_execve_cmd_part2(char **splited_path,
 	matrix_free(mx_env);
 	matrix_free(splited_path);
 }
-
 
 void	execve_cmd(t_env **env, char **str)
 {

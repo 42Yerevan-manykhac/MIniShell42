@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 21:51:52 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:25:01 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:48:57 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,12 @@ void	echo_cmd(char **str)
 			i = 2;
 			while (ft_strcmp(str[i], "-n"))
 					i++;
-			while (str[i])
+			while (str[i] && str[i+1])
 			{
 				printf("%s ", str[i]);
 					i++;
 			}
+			printf("%s", str[i]);
 		}
 	}
 	else
@@ -83,11 +84,12 @@ void	echo_cmd(char **str)
 		if (str[1])
 		{
 			i = 1;
-			while (str[i])
+			while (str[i] && str[i+1])
 			{
-				printf("%s", str[i]);
+				printf("%s ", str[i]);
 				i++;
 			}
+			printf("%s", str[i]);
 			printf("\n");
 		}
 		else

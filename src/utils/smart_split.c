@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:10:08 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/11 17:17:24 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:37:50 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,9 @@ char	**smart_split(char *s, char c)
 		return (0);
 	while (++i < word_count(s, c))
 	{
-		while (s[start] && s[start] == c)
-		{
-			if (s[start] && s[start] == '\"')
-				start = find_end_of_double_quote(s, i);
-			if (s[start] && s[start] == '\'')
-				start = find_end_of_single_quote(s, i);
-				start++;
-		}
-		end = start;
-		while (s[end] && s[end] != c)
-		{
-			if (s[end] && s[end] == '\"')
-				end = find_end_of_double_quote(s, end);
-			if (s[end] && s[end] == '\'')
-				end = find_end_of_single_quote(s, end);
-			end++;
-		}
+		end = smart_split_part1(start, s, c, i);
+		start = end;
+		end = smart_split_part2(end, s, c);
 		str[i] = word_fill(s, start, end - start);
 		if (!str[i])
 			str_free(str, i);

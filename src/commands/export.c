@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:06:04 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/14 01:17:15 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 12:57:28 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_env	*get_env(t_env **l_env, char *new_key)
 	}
 	return (0);
 }
-
 
 int	find_key(t_env **l_env, char *new_key)
 {
@@ -102,4 +101,3 @@ void	export_cmd(t_env **l_env, char *str)
 	}
 	free(splited);
 }
-

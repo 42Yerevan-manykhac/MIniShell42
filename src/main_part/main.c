@@ -47,7 +47,6 @@ int	main(int arg_nb, char **argv, char **env)
 		out_copy = dup(1);
 		str = readline ("Minishell$> ");
 		ctrl_d_check(str);
-		printf("\033[0;35m");
 		if (str)
 			add_history(str);
 		else

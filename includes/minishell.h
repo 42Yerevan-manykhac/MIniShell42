@@ -6,7 +6,7 @@
 /*   By: lter-zak <lter-zak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 17:05:03 by lter-zak          #+#    #+#             */
-/*   Updated: 2023/03/14 02:21:34 by lter-zak         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:31:05 by lter-zak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,13 @@ t_redirects	*new_t_redirects(int flag, char *del, char *pathname);
 int	status_check(char *file, char *s);
 void	t_redirects_add_back(t_redirects **head, t_redirects *new_node);
 t_tokens	*new_t_tokens(char *rdl, char **cmd,
-	int *hrd_count, int count_token);
-	t_tokens	*ft_lstlast1(t_tokens *lst);
+int *hrd_count, int count_token);
+t_tokens	*ft_lstlast1(t_tokens *lst);
+char	*ft_strjoin1(char *s1, char *s2);
+char	*ft_substr(char *s, int start, int len);
+int	ft_strcmp_part2(char *str, char *cmd, int len);
+int smart_split_part1(int start, char *s, char c, int i);
+int smart_split_part2(int end, char *s, char c );
+
 
 #endif
